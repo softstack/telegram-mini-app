@@ -1,46 +1,34 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+
+import ConnectButton from './components/buttons/ConnectButton';
+
+import avatorPhone from './assets/avatar_phone.png';
+import walletConnectIcon from './assets/wallet_connect.png';
+import tonConnectIcon from './assets/ton_connect.png';
+import solanaConnectIcon from './assets/solana_connect.png';
 
 import WebApp from '@twa-dev/sdk';
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
-        <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img
-                        src={reactLogo}
-                        className="logo react"
-                        alt="React logo"
+        <div className="container">
+            <div className="main-component">
+                <div className="avatar">
+                    <img src={avatorPhone} alt="" />
+                </div>
+                <div className="connect-buttons">
+                    <ConnectButton
+                        title="Wallet Connect"
+                        icon={walletConnectIcon}
                     />
-                </a>
+                    <ConnectButton title="TON Connect" icon={tonConnectIcon} />
+                    <ConnectButton
+                        title="Solana Connect"
+                        icon={solanaConnectIcon}
+                    />
+                </div>
             </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-            </div>
-            {/* Here we add our button with alert callback */}
-            <div className="card">
-                <button
-                    onClick={() =>
-                        WebApp.showAlert(
-                            `Hello World! Current count is ${count}`
-                        )
-                    }
-                >
-                    Show Alert
-                </button>
-            </div>
-        </>
+        </div>
     );
 }
 

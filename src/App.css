@@ -1,42 +1,105 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    /* padding: 2rem; */
+    text-align: center;
+    background-color: #efeff4;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+    filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+    filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
 }
 
-.card {
-  padding: 2em;
+.container {
+    padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.main-component {
+    /* padding: 2em; */
+    border-radius: 10px;
+    background-color: #aadaf1;
+    overflow: hidden;
+}
+
+.avatar {
+    width: 100%;
+}
+
+.avatar img {
+    width: 100%;
+    height: auto;
+}
+
+.connect-buttons {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 2em;
+    gap: 1em;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0px 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+.connect-button {
+    display: flex;
+    align-items: center; /* Vertically center align items */
+    justify-content: center; /* Horizontally center content */
+    background-color: #007aff; /* Background color of the button */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding around text and icon */
+    border-radius: 25px; /* Rounded corners */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Text size */
+    font-weight: bold; /* Font weight for the text */
+    white-space: nowrap; /* Prevents wrapping of text */
+}
+
+.connect-button-icon {
+    flex-shrink: 0; /* Prevent the icon container from shrinking */
+    width: 24px; /* Width of the icon container */
+    height: 24px; /* Height of the icon container */
+    display: flex;
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.connect-button-icon img {
+    max-width: 100%; /* Ensure the icon is contained within the icon-container */
+    max-height: 100%;
+}
+
+.button-text {
+    flex-grow: 1;
+    margin-left: -34px;
+    text-align: center; /* Center the text */
 }
