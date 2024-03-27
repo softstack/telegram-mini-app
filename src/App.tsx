@@ -9,7 +9,7 @@ import solanaConnectIcon from './assets/solana_connect.png';
 
 function App() {
     return (
-        <div className="container">
+        <>
             <div className="main-component">
                 <div className="avatar">
                     <img src={avatorPhone} alt="" />
@@ -26,7 +26,7 @@ function App() {
                     />
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

@@ -35,24 +35,27 @@
 }
 
 .container {
-    padding: 2em;
+    /* padding: 2em; */
 }
 
 .main-component {
-    /* padding: 2em; */
-    border-radius: 10px;
     background-color: #aadaf1;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .avatar {
-    width: 100%;
-    margin-bottom: -80px;
+    /* width: 100%; */
+    margin-bottom: -240px;
+    margin-top: -80px;
+    /* height: 80px; */
 }
 
 .avatar img {
+    scale: 0.8;
     width: 100%;
-    height: auto;
+    height: 90%;
 }
 
 .connect-buttons {
@@ -64,8 +67,8 @@
     gap: 1em;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    /* border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px; */
     box-shadow: 0px 0px 4px 10px rgba(255, 255, 255, 0.2);
 }
 
