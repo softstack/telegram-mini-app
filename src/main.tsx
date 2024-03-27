@@ -5,6 +5,7 @@ import WebApp from '@twa-dev/sdk';
 import './index.css';
 
 WebApp.ready();
+WebApp.expand();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
