@@ -1,5 +1,3 @@
-// basic typescript react scaffold for a button with an icon left of the centered text
-
 import React from 'react';
 
 type Props = {
