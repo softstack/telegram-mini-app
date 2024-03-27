@@ -7,8 +7,6 @@ import walletConnectIcon from './assets/wallet_connect.png';
 import tonConnectIcon from './assets/ton_connect.png';
 import solanaConnectIcon from './assets/solana_connect.png';
 
-import WebApp from '@twa-dev/sdk';
-
 function App() {
     return (
         <div className="container">
