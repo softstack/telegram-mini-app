@@ -13,6 +13,8 @@
     "@twa-dev/sdk": "^7.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "@web3modal/ethers": "^4.1.1",
+    "ethers": "^6.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"

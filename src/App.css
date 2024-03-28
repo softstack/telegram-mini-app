@@ -74,7 +74,7 @@
     background-color: #007aff; /* Background color of the button */
     color: white; /* Text color */
     padding: 10px 20px; /* Padding around text and icon */
-    border-radius: 25px; /* Rounded corners */
+    border-radius: 10px; /* Rounded corners */
     border: none; /* No border */
     cursor: pointer; /* Pointer cursor on hover */
     font-size: 16px; /* Text size */
