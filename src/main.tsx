@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import {
+    ConnectionProvider,
+    WalletProvider,
+} from '@solana/wallet-adapter-react';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import {
+    PhantomWalletAdapter,
+    SolflareWalletAdapter,
+    TorusWalletAdapter,
+} from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
+
 import WebApp from '@twa-dev/sdk';
 import App from './App.tsx';
 import './index.css';
@@ -54,10 +67,34 @@ createWeb3Modal({
     enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
 
+// Solana Context
+const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const network = WalletAdapterNetwork.Mainnet;
+    const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
+
+    const wallets = React.useMemo(
+        () => [
+            new PhantomWalletAdapter(),
+            new SolflareWalletAdapter(),
+            new TorusWalletAdapter(),
+        ],
+        [network]
+    );
+    return (
+        <ConnectionProvider endpoint={endpoint}>
+            <WalletProvider wallets={wallets} autoConnect>
+                <WalletModalProvider>{children}</WalletModalProvider>
+            </WalletProvider>
+        </ConnectionProvider>
+    );
+};
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
-            <App />
+            <Context>
+                <App />
+            </Context>
         </TonConnectUIProvider>
     </React.StrictMode>
 );
