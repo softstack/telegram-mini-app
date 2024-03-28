@@ -1,6 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import {
+    ConnectionProvider,
+    WalletProvider,
+} from '@solana/wallet-adapter-react';
+import {
+    LedgerWalletAdapter,
+    PhantomWalletAdapter,
+} from '@solana/wallet-adapter-wallets';
+import { clusterApiUrl } from '@solana/web3.js';
 import WebApp from '@twa-dev/sdk';
 import App from './App.tsx';
 import './index.css';
@@ -9,6 +20,8 @@ import './index.css';
 WebApp.ready();
 // Expand the Telegram Mini App SDK to full screen
 WebApp.expand();
+
+// Wallet Connect Config
 
 // 1. Get projectId
 const projectId = '10bc66667bce58aa9b1b9284ac74e731';
@@ -51,8 +64,30 @@ createWeb3Modal({
     enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
 
+// Solana Connect Config
+// const network = WalletAdapterNetwork.Mainnet;
+// const endpoint = React.useMemo(() => clusterApiUrl(network), [network]);
+
+// const wallets = React.useMemo(
+//     () => [
+//         PhantomWalletAdapter,
+//         // getSlopeWallet(),
+//         // getSolflareWallet(),
+//         LedgerWalletAdapter,
+//         // getSolletWallet({ network }),
+//         // getSolletExtensionWallet({ network }),
+//     ],
+//     [network]
+// );
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <App />
+        {/* <ConnectionProvider endpoint={endpoint}> */}
+        {/* <WalletProvider wallets={wallets}> */}
+        <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
+            <App />
+        </TonConnectUIProvider>
+        {/* </WalletProvider> */}
+        {/* </ConnectionProvider> */}
     </React.StrictMode>
 );
