@@ -44,12 +44,13 @@ function App() {
     };
 
     // Wallet Connect
-    const { address, chainId, isConnected } = useWeb3ModalAccount();
+    const { isConnected } = useWeb3ModalAccount();
     useEffect(() => {
+        if (view === View.LANDING || view === View.WALLET) {
+            return;
+        }
         if (isConnected) {
-            console.log(isConnected, chainId, address);
             setView(View.CONNECTED);
-            console.log(view);
         }
     }, [isConnected]);
 
