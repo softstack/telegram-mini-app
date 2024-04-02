@@ -13,7 +13,7 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
     const { open } = useWeb3Modal();
 
     const openModal = () => {
-        const promise = open();
+        const promise = open({ view: 'Connect' });
 
         if (promise) {
             console.log(promise);
