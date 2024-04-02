@@ -30,6 +30,9 @@ function App() {
         setView(View.CONNECT);
     };
 
+    const skip = () => {
+        setView(View.CONNECT);
+    };
     const goBack = () => {
         if (view === View.LANDING) {
             return;
@@ -43,7 +46,7 @@ function App() {
                 {view === View.LANDING && (
                     <div className="components-container">
                         <div className="skip-button">
-                            <span>Skip</span>
+                            <span onClick={skip}>Skip</span>
                         </div>
                         <div className="avatar">
                             <img src={avatarScooter} alt="" />

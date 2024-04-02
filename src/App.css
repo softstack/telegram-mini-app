@@ -54,19 +54,18 @@
 }
 
 .avatar {
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
-    width: 100%;
     overflow: hidden;
     height: 100%;
+    padding: 1em 2em 1em 2em;
 }
 
 .avatar img {
-    scale: 0.8;
+    object-fit: scale-down;
     max-width: 100%;
     max-height: 100%;
-    object-fit: scale-down;
 }
 
 .add-to-home {
@@ -158,9 +157,17 @@
     justify-content: flex-end;
 }
 
+.skip-button span {
+    cursor: pointer;
+}
+
 .back-button {
     display: flex;
     padding: 1em;
     font-size: 0.8rem;
     justify-content: flex-start;
+}
+
+.back-button img {
+    cursor: pointer;
 }
