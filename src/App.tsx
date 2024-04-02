@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useWeb3ModalAccount } from '@web3modal/ethers/react';
+import { useTonWallet } from '@tonconnect/ui-react';
 
 import './App.css';
 
@@ -10,6 +12,7 @@ import SolanaConnectModal from './components/connectors/SolanaConnectModal';
 
 import avatarPhone from './assets/avatar_phone.png';
 import avatarScooter from './assets/avatar_scooter.png';
+import avatarTable from './assets/avatar_table.png';
 import chevronLeftIcon from './assets/chevron-left.svg';
 
 import walletConnectIcon from './assets/wallet_connect.png';
@@ -39,6 +42,28 @@ function App() {
         }
         setView(view - 1);
     };
+
+    // Wallet Connect
+    const { address, chainId, isConnected } = useWeb3ModalAccount();
+    useEffect(() => {
+        if (isConnected) {
+            console.log(isConnected, chainId, address);
+            setView(View.CONNECTED);
+            console.log(view);
+        }
+    }, [isConnected]);
+
+    // TON Connect
+    const tonWallet = useTonWallet();
+    useEffect(() => {
+        // TON Connect
+        console.log(tonWallet);
+    }, [tonWallet]);
+
+    // Solana Connect
+    useEffect(() => {
+        // Solana Connect
+    }, []);
 
     return (
         <>
@@ -99,7 +124,25 @@ function App() {
                         </div>
                     </div>
                 )}
-                {view === View.CONNECTED && <div></div>}
+                {view === View.CONNECTED && (
+                    <div>
+                        <div className="components-container">
+                            <div className="back-button">
+                                <img
+                                    onClick={goBack}
+                                    src={chevronLeftIcon}
+                                    alt="Back"
+                                />
+                            </div>
+                            <div className="avatar" style={{ height: '58%' }}>
+                                <img src={avatarTable} alt="" />
+                            </div>
+                            <div className="connect-buttons">
+                                <h2 className="headline">HORRAY!</h2>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {view === View.WALLET && <div></div>}
             </div>
         </>
