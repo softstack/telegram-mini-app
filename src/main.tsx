@@ -21,7 +21,7 @@ import './index.css';
 
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
-// Expand the Telegram Mini App SDK to full screen
+// Expand the Telegram Mini App to full screen
 WebApp.expand();
 
 // Wallet Connect Config
