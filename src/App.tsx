@@ -37,18 +37,22 @@ enum View {
 function App() {
     const [view, setView] = useState<View>(View.LANDING);
 
-    const addToHomeScreen = () => {
-        setView(View.CONNECT);
-    };
-
     const skip = () => {
-        setView(View.CONNECT);
+        setView(view + 1);
     };
     const goBack = () => {
         if (view === View.LANDING) {
             return;
         }
         setView(view - 1);
+    };
+
+    const addToHomeScreen = () => {
+        setView(View.CONNECT);
+    };
+
+    const openWallet = () => {
+        setView(View.WALLET);
     };
 
     // Wallet Connect
@@ -122,7 +126,10 @@ function App() {
                 )}
                 {view === View.CONNECT && (
                     <div className="components-container">
-                        <BackButton goBack={goBack} />
+                        <div className="navigation">
+                            <BackButton goBack={goBack} />
+                            {isConnected && <SkipButton skip={skip} />}
+                        </div>
                         <Avatar src={avatarPhone} height="60%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
@@ -152,10 +159,22 @@ function App() {
                                     <p>{address}</p>
                                 </div>
                             </div>
+                            <div className="button-container">
+                                <PrimaryButton
+                                    title="Open my Wallet"
+                                    callback={openWallet}
+                                />
+                            </div>
                         </div>
                     </div>
                 )}
-                {view === View.WALLET && <div></div>}
+                {view === View.WALLET && (
+                    <div>
+                        <div className="components-container">
+                            <BackButton goBack={goBack} />
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );
