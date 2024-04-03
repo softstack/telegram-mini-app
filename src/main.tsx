@@ -24,11 +24,6 @@ WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 
-WebApp.MainButton.enable();
-WebApp.MainButton.color = '#000000';
-WebApp.MainButton.setText('test');
-WebApp.MainButton.show();
-
 // Wallet Connect Config
 // 1. Get projectId
 const projectId = '10bc66667bce58aa9b1b9284ac74e731';
