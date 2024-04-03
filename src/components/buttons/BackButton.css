@@ -1,0 +1,10 @@
+.back-button {
+    display: flex;
+    padding: 1em;
+    font-size: 0.8rem;
+    justify-content: flex-start;
+}
+
+.back-button img {
+    cursor: pointer;
+}

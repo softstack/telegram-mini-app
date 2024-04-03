@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useWeb3ModalAccount } from '@web3modal/ethers/react';
 import { useTonWallet } from '@tonconnect/ui-react';
-import WebApp from '@twa-dev/sdk';
 
 import './App.css';
 
 import PrimaryButton from './components/buttons/PrimaryButton';
+import Avatar from './components/utils/Avatar';
+import BackButton from './components/buttons/BackButton';
+import SkipButton from './components/buttons/SkipButton';
 
 import WalletConnectModal from './components/connectors/WalletConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
@@ -14,7 +16,6 @@ import SolanaConnectModal from './components/connectors/SolanaConnectModal';
 import avatarPhone from './assets/avatar_phone.png';
 import avatarScooter from './assets/avatar_scooter.png';
 import avatarTable from './assets/avatar_table.png';
-import chevronLeftIcon from './assets/chevron-left.svg';
 
 import walletConnectIcon from './assets/wallet_connect.png';
 import tonConnectIcon from './assets/ton_connect.png';
@@ -28,11 +29,6 @@ enum View {
 }
 
 function App() {
-    // DEBUG
-    const initData = WebApp.initData;
-
-    // DEBUG
-
     const [view, setView] = useState<View>(View.LANDING);
 
     const addToHomeScreen = () => {
@@ -50,7 +46,7 @@ function App() {
     };
 
     // Wallet Connect
-    const { isConnected } = useWeb3ModalAccount();
+    const { address, isConnected } = useWeb3ModalAccount();
     useEffect(() => {
         if (view === View.LANDING || view === View.WALLET) {
             return;
@@ -77,13 +73,8 @@ function App() {
             <div className="main-component">
                 {view === View.LANDING && (
                     <div className="components-container">
-                        <div className="skip-button">
-                            <span onClick={skip}>Skip</span>
-                        </div>
-                        {initData}
-                        <div className="avatar">
-                            <img src={avatarScooter} alt="" />
-                        </div>
+                        <SkipButton skip={skip} />
+                        <Avatar src={avatarScooter} />
                         <div className="add-to-home">
                             <div>
                                 <h2 className="headline">CALL IT HOME</h2>
@@ -94,27 +85,19 @@ function App() {
                                     pengeluaran dan pemasukan akan terdata rapi
                                 </p>
                             </div>
-                            <div>
-                                <PrimaryButton
-                                    title="Add to your Home Screen"
-                                    callback={addToHomeScreen}
-                                />
-                            </div>
+                        </div>
+                        <div className="button-container">
+                            <PrimaryButton
+                                title="Add to your Home Screen"
+                                callback={addToHomeScreen}
+                            />
                         </div>
                     </div>
                 )}
                 {view === View.CONNECT && (
                     <div className="components-container">
-                        <div className="back-button">
-                            <img
-                                onClick={goBack}
-                                src={chevronLeftIcon}
-                                alt="Back"
-                            />
-                        </div>
-                        <div className="avatar" style={{ height: '58%' }}>
-                            <img src={avatarPhone} alt="" />
-                        </div>
+                        <BackButton goBack={goBack} />
+                        <Avatar src={avatarPhone} height="58%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
                             <WalletConnectModal
@@ -135,18 +118,13 @@ function App() {
                 {view === View.CONNECTED && (
                     <div>
                         <div className="components-container">
-                            <div className="back-button">
-                                <img
-                                    onClick={goBack}
-                                    src={chevronLeftIcon}
-                                    alt="Back"
-                                />
-                            </div>
-                            <div className="avatar" style={{ height: '58%' }}>
-                                <img src={avatarTable} alt="" />
-                            </div>
-                            <div className="connect-buttons">
+                            <BackButton goBack={goBack} />
+                            <Avatar src={avatarTable} height="58%" />
+                            <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
+                                <div className="address-container">
+                                    <p>{address}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

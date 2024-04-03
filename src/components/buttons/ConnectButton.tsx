@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './ConnectButton.css';
+
 type Props = {
     title: string;
     icon: string;

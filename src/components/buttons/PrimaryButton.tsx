@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './PrimaryButton.css';
+
 type Props = {
     title: string;
     callback: () => void;
