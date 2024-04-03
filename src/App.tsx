@@ -123,7 +123,7 @@ function App() {
                 {view === View.CONNECT && (
                     <div className="components-container">
                         <BackButton goBack={goBack} />
-                        <Avatar src={avatarPhone} height="58%" />
+                        <Avatar src={avatarPhone} height="60%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
                             <WalletConnectModal
@@ -145,7 +145,7 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
-                            <Avatar src={avatarTable} height="58%" />
+                            <Avatar src={avatarTable} height="60%" />
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
                                 <div className="address-container">
