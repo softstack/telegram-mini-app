@@ -24,6 +24,9 @@ WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 
+// Authenticate Telegram User
+// const initData = WebApp.initData;
+
 // Wallet Connect Config
 
 // 1. Get projectId

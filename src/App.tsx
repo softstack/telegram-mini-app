@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useWeb3ModalAccount } from '@web3modal/ethers/react';
 import { useTonWallet } from '@tonconnect/ui-react';
+import WebApp from '@twa-dev/sdk';
 
 import './App.css';
 
@@ -27,6 +28,11 @@ enum View {
 }
 
 function App() {
+    // DEBUG
+    const initData = WebApp.initData;
+
+    // DEBUG
+
     const [view, setView] = useState<View>(View.LANDING);
 
     const addToHomeScreen = () => {
@@ -58,7 +64,7 @@ function App() {
     const tonWallet = useTonWallet();
     useEffect(() => {
         // TON Connect
-        console.log(tonWallet);
+        // console.log(tonWallet);
     }, [tonWallet]);
 
     // Solana Connect
@@ -74,6 +80,7 @@ function App() {
                         <div className="skip-button">
                             <span onClick={skip}>Skip</span>
                         </div>
+                        {initData}
                         <div className="avatar">
                             <img src={avatarScooter} alt="" />
                         </div>
