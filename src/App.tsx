@@ -38,7 +38,10 @@ function App() {
     const [view, setView] = useState<View>(View.LANDING);
 
     const addToHomeScreen = () => {
-        setView(View.CONNECT);
+        // setView(View.CONNECT);
+        WebApp.openLink(
+            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/'
+        );
     };
 
     const skip = () => {
@@ -67,7 +70,7 @@ function App() {
         if (view === View.LANDING) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Add to your Home Screen');
-            WebApp.MainButton.onClick = skip;
+            WebApp.MainButton.onClick = () => skip;
         }
         if (view === View.CONNECT) {
             WebApp.MainButton.hide();
