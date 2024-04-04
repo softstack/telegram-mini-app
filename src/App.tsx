@@ -66,15 +66,13 @@ function App() {
         }
     }, [isConnected]);
 
-    WebApp.MainButton.onClick = () => setView(View.CONNECT);
-
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Add to your Home Screen');
-            WebApp.MainButton.onClick = () => setView(View.CONNECT);
-            WebApp.MainButton.offClick = () => setView(View.CONNECT);
+            WebApp.MainButton.onClick(skip);
+            // WebApp.MainButton.offClick = () => setView(View.CONNECT);
         }
         if (view === View.CONNECT) {
             WebApp.MainButton.hide();
