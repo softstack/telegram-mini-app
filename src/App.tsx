@@ -78,7 +78,6 @@ function App() {
         if (view === View.CONNECT) {
             WebApp.MainButton.show();
             WebApp.MainButton.disable();
-            // WebApp.MainButton.hide();
             WebApp.MainButton.text = '_';
             WebApp.MainButton.textColor = '#010101';
             WebApp.MainButton.color = '#010101';
