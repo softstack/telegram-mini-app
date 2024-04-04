@@ -71,6 +71,8 @@ function App() {
         if (view === View.LANDING) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Add to your Home Screen');
+            WebApp.MainButton.color = '#007aff';
+            WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(addToHomeScreen);
         }
         if (view === View.CONNECT) {
@@ -78,16 +80,20 @@ function App() {
             WebApp.MainButton.disable();
             // WebApp.MainButton.hide();
             WebApp.MainButton.text = '_';
-            WebApp.MainButton.textColor = '#ffffff';
-            WebApp.MainButton.color = '#ffffff';
+            WebApp.MainButton.textColor = '#010101';
+            WebApp.MainButton.color = '#010101';
         }
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Open my Wallet');
+            WebApp.MainButton.color = '#007aff';
+            WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(openWallet);
         }
         if (view === View.WALLET) {
             WebApp.MainButton.show();
+            WebApp.MainButton.color = '#007aff';
+            WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.setText('Contact Sales');
         }
     }, [view]);
