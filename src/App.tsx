@@ -55,17 +55,6 @@ function App() {
         setView(View.WALLET);
     };
 
-    // Wallet Connect
-    const { address, isConnected } = useWeb3ModalAccount();
-    useEffect(() => {
-        if (view === View.LANDING || view === View.WALLET) {
-            return;
-        }
-        if (isConnected) {
-            setView(View.CONNECTED);
-        }
-    }, [isConnected]);
-
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
@@ -82,6 +71,7 @@ function App() {
             WebApp.MainButton.textColor = '#1a1a1a';
             WebApp.MainButton.color = '#1a1a1a';
         }
+        // Change the Main Buttons color and textColor to match telegrams background color, to "hide" the button
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Open my Wallet');
@@ -96,6 +86,17 @@ function App() {
             WebApp.MainButton.setText('Contact Sales');
         }
     }, [view]);
+
+    // Wallet Connect
+    const { address, isConnected } = useWeb3ModalAccount();
+    useEffect(() => {
+        if (view === View.LANDING || view === View.WALLET) {
+            return;
+        }
+        if (isConnected) {
+            setView(View.CONNECTED);
+        }
+    }, [isConnected]);
 
     // TON Connect
     const tonWallet = useTonWallet();
