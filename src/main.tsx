@@ -23,8 +23,6 @@ import './index.css';
 WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
-WebApp.BackButton.hide();
-WebApp.SettingsButton.hide();
 
 // Wallet Connect Config
 // 1. Get projectId

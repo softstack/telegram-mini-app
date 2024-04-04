@@ -34,8 +34,6 @@ WebApp.MainButton.color = '#007aff';
 WebApp.MainButton.setText('Add to your Home Screen');
 WebApp.MainButton.show();
 
-WebApp.expand();
-
 function App() {
     const [view, setView] = useState<View>(View.LANDING);
 
@@ -78,6 +76,7 @@ function App() {
         if (view === View.CONNECT) {
             WebApp.MainButton.disable();
             WebApp.MainButton.hide();
+            WebApp.expand();
         }
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
