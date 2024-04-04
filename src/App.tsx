@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useWeb3ModalAccount } from '@web3modal/ethers/react';
 import { useTonWallet } from '@tonconnect/ui-react';
-// import WebApp from '@twa-dev/sdk';
+import WebApp from '@twa-dev/sdk';
 
 import './App.css';
 
@@ -29,10 +29,10 @@ enum View {
     WALLET = 3,
 }
 
-// WebApp.MainButton.enable();
-// WebApp.MainButton.color = '#007aff';
-// WebApp.MainButton.setText('Add to your Home Screen');
-// WebApp.MainButton.show();
+WebApp.MainButton.enable();
+WebApp.MainButton.color = '#007aff';
+WebApp.MainButton.setText('Add to your Home Screen');
+WebApp.MainButton.show();
 
 function App() {
     const [view, setView] = useState<View>(View.LANDING);
@@ -66,25 +66,26 @@ function App() {
         }
     }, [isConnected]);
 
-    // // Handle MainButton changes on view change
-    // useEffect(() => {
-    //     if (view === View.LANDING) {
-    //         WebApp.MainButton.show();
-    //         WebApp.MainButton.setText('Add to your Home Screen');
-    //         WebApp.MainButton.onClick = () => setView(View.CONNECT);
-    //     }
-    //     if (view === View.CONNECT) {
-    //         WebApp.MainButton.hide();
-    //     }
-    //     if (view === View.CONNECTED) {
-    //         WebApp.MainButton.show();
-    //         WebApp.MainButton.setText('Open my Wallet');
-    //     }
-    //     if (view === View.WALLET) {
-    //         WebApp.MainButton.show();
-    //         WebApp.MainButton.setText('Contact Sales');
-    //     }
-    // }, [view]);
+    // Handle MainButton changes on view change
+    useEffect(() => {
+        if (view === View.LANDING) {
+            WebApp.MainButton.show();
+            WebApp.MainButton.setText('Add to your Home Screen');
+            WebApp.MainButton.onClick = () => setView(View.CONNECT);
+            WebApp.MainButton.offClick = () => setView(View.CONNECT);
+        }
+        if (view === View.CONNECT) {
+            WebApp.MainButton.hide();
+        }
+        if (view === View.CONNECTED) {
+            WebApp.MainButton.show();
+            WebApp.MainButton.setText('Open my Wallet');
+        }
+        if (view === View.WALLET) {
+            WebApp.MainButton.show();
+            WebApp.MainButton.setText('Contact Sales');
+        }
+    }, [view]);
 
     // TON Connect
     const tonWallet = useTonWallet();
