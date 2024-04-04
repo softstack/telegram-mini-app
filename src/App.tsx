@@ -75,6 +75,7 @@ function App() {
         }
         if (view === View.CONNECT) {
             WebApp.MainButton.disable();
+            WebApp.MainButton.hide();
         }
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
