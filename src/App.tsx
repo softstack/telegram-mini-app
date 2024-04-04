@@ -5,7 +5,7 @@ import WebApp from '@twa-dev/sdk';
 
 import './App.css';
 
-import PrimaryButton from './components/buttons/PrimaryButton';
+// import PrimaryButton from './components/buttons/PrimaryButton';
 import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
 import SkipButton from './components/buttons/SkipButton';
@@ -71,8 +71,7 @@ function App() {
         if (view === View.LANDING) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Add to your Home Screen');
-            WebApp.MainButton.onClick(skip);
-            // WebApp.MainButton.offClick = () => setView(View.CONNECT);
+            WebApp.MainButton.onClick(addToHomeScreen);
         }
         if (view === View.CONNECT) {
             WebApp.MainButton.hide();
@@ -80,6 +79,7 @@ function App() {
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
             WebApp.MainButton.setText('Open my Wallet');
+            WebApp.MainButton.onClick(openWallet);
         }
         if (view === View.WALLET) {
             WebApp.MainButton.show();
@@ -117,12 +117,12 @@ function App() {
                                 </p>
                             </div>
                         </div>
-                        <div className="button-container">
+                        {/* <div className="button-container">
                             <PrimaryButton
                                 title="Add to your Home Screen"
                                 callback={addToHomeScreen}
                             />
-                        </div>
+                        </div> */}
                     </div>
                 )}
                 {view === View.CONNECT && (
@@ -160,12 +160,12 @@ function App() {
                                     <p>{address}</p>
                                 </div>
                             </div>
-                            <div className="button-container">
+                            {/* <div className="button-container">
                                 <PrimaryButton
                                     title="Open my Wallet"
                                     callback={openWallet}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 )}
