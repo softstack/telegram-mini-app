@@ -79,8 +79,8 @@ function App() {
             WebApp.MainButton.show();
             WebApp.MainButton.disable();
             WebApp.MainButton.text = '_';
-            WebApp.MainButton.textColor = '#2f2f2f';
-            WebApp.MainButton.color = '#2f2f2f';
+            WebApp.MainButton.textColor = '#1a1a1a';
+            WebApp.MainButton.color = '#1a1a1a';
         }
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
