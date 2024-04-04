@@ -74,6 +74,7 @@ function App() {
             WebApp.MainButton.onClick(addToHomeScreen);
         }
         if (view === View.CONNECT) {
+            WebApp.MainButton.show();
             WebApp.MainButton.disable();
             // WebApp.MainButton.hide();
             WebApp.MainButton.text = '';
