@@ -66,6 +66,8 @@ function App() {
         }
     }, [isConnected]);
 
+    WebApp.MainButton.onClick = () => setView(View.CONNECT);
+
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {

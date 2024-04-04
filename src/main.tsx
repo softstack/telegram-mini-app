@@ -24,7 +24,7 @@ WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 
-WebApp.backgroundColor = '#333333';
+WebApp.setBackgroundColor('#333333');
 
 // Wallet Connect Config
 // 1. Get projectId
