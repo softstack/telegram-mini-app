@@ -77,7 +77,7 @@ function App() {
             WebApp.MainButton.show();
             WebApp.MainButton.disable();
             // WebApp.MainButton.hide();
-            WebApp.MainButton.text = '';
+            WebApp.MainButton.text = ' ';
             WebApp.MainButton.color = '#ffffff';
         }
         if (view === View.CONNECTED) {
