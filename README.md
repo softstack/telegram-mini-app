@@ -1,6 +1,26 @@
 # Telegram Mini Apps Demo
 
-Welcome to our guide on developing Telegram Mini Apps! Telegram Mini Apps offer a seamless way to enhance user interaction within the Telegram ecosystem, allowing businesses, developers, and creators to integrate custom web applications directly into Telegram chats. These lightweight, highly interactive web apps can be accessed through special menu buttons or inline buttons in messages, providing users with a rich and immersive experience without ever leaving the chat interface.
+Welcome to our guide on developing Telegram Mini Apps! Telegram Mini Apps offer a seamless way to enhance user interaction within the Telegram ecosystem, allowing businesses, developers, and creators to integrate custom web applications directly into Telegram chats. These lightweight, highly interactive web apps can be accessed through special menu buttons or inline buttons in messages, providing users with a rich and immersive experience without ever leaving the chat interface. 
+
+Reach out if you need custom telegram mini app development or support. 
+<p align="left">
+
+  <a href="https://t.me/softstack" alt="WhatsApp" target="_blank">
+    <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=WhatsApp&logoColor=%231c1914" />
+  </a>
+
+  <a href="mailto:hello@softstack.io" alt="mail" target="_blank">
+    <img src="https://img.shields.io/badge/-Mail-f5f1ea?style=for-the-badge&logo=gmail&logoColor=%231c1914" />
+  </a>
+
+  <a href="https://www.linkedin.com/company/softstack" alt="LinkedIn" target="_blank">
+    <img src="https://img.shields.io/badge/-LinkedIn-f5f1ea?style=for-the-badge&logo=Linkedin&logoColor=%231c1914" />
+  </a>
+  
+  <a href="https://softstack.io" alt="Website" target="_blank">
+    <img src="https://img.shields.io/badge/-Website-f5f1ea?style=for-the-badge&logo=nextdotjs&logoColor=%231c1914" />
+  </a>
+</p>
 
 ## Why Telegram Mini Apps?
 
