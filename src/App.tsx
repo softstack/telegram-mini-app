@@ -36,6 +36,8 @@ enum View {
     WALLET = 3,
 }
 
+WebApp.setBackgroundColor('#000000');
+
 WebApp.MainButton.enable();
 WebApp.MainButton.color = '#007aff';
 WebApp.MainButton.setText('Add to your Home Screen');
