@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     gap: 0.7em;
+    color: #212121;
 }
 
 .wallet-badge img {

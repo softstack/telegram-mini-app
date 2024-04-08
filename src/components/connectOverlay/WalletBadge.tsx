@@ -5,11 +5,12 @@ import './WalletBadge.css';
 type Props = {
     walletName: string;
     icon: string;
+    callback: () => void;
 };
 
-const WalletBadge: React.FC<Props> = ({ walletName, icon }) => {
+const WalletBadge: React.FC<Props> = ({ walletName, icon, callback }) => {
     return (
-        <div className="wallet-badge">
+        <div onClick={callback} className="wallet-badge">
             <img src={icon} alt="" />
             <p>{walletName}</p>
         </div>

@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: #212121;
 }
 
 .network-badge img {

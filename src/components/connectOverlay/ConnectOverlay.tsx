@@ -30,8 +30,24 @@ const ConnectOverlay: React.FC<Props> = ({ close }) => {
         setWalletsExpanded(!walletsExpanded);
     };
 
+    // connect function
+
+    const [showMetamaskConnectModal, setShowMetamaskConnectModal] =
+        useState(false);
+    const connectMetamask = () => {
+        console.log('Connecting Metamask');
+        setShowMetamaskConnectModal(true);
+    };
+
     return (
         <div className="connect-overlay">
+            {showMetamaskConnectModal && (
+                <iframe
+                    src="https://softstackhq.github.io/telegram-mini-app/"
+                    width="200"
+                    height="200"
+                ></iframe>
+            )}
             <div className="connect-overlay-header">
                 <p>Connect Account</p>
                 <div onClick={close} className="connect-overlay-close">
@@ -65,8 +81,16 @@ const ConnectOverlay: React.FC<Props> = ({ close }) => {
             </div>
             {walletsExpanded && (
                 <div className="available-wallets">
-                    <WalletBadge walletName="Metamask" icon={metamaskLogo} />
-                    <WalletBadge walletName="Coinbase" icon={coinbaseLogo} />
+                    <WalletBadge
+                        walletName="Metamask"
+                        icon={metamaskLogo}
+                        callback={connectMetamask}
+                    />
+                    <WalletBadge
+                        walletName="Coinbase"
+                        icon={coinbaseLogo}
+                        callback={() => {}}
+                    />
                 </div>
             )}
         </div>
