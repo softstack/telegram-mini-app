@@ -41,6 +41,11 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
         );
     };
 
+    // Toggle Wallets
+    const showAvailableWallets = () => {
+        setWalletsExpanded(true);
+    };
+
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
             <div className="connect-overlay-header">
@@ -61,9 +66,21 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
             </div>
             {networksExpanded && (
                 <div className="available-networks">
-                    <NetworkBadge network="Ethereum" icon={ethereumLogo} />
-                    <NetworkBadge network="Polygon" icon={polygonLogo} />
-                    <NetworkBadge network="Avalanche" icon={avalancheLogo} />
+                    <NetworkBadge
+                        network="Ethereum"
+                        icon={ethereumLogo}
+                        callback={showAvailableWallets}
+                    />
+                    <NetworkBadge
+                        network="Polygon"
+                        icon={polygonLogo}
+                        callback={showAvailableWallets}
+                    />
+                    <NetworkBadge
+                        network="Avalanche"
+                        icon={avalancheLogo}
+                        callback={showAvailableWallets}
+                    />
                 </div>
             )}
             <div className="select-wallet-header">

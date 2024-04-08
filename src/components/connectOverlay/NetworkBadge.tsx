@@ -5,11 +5,12 @@ import './NetworkBadge.css';
 type Props = {
     network: string;
     icon: string;
+    callback: () => void;
 };
 
-const NetworkBadge: React.FC<Props> = ({ network, icon }) => {
+const NetworkBadge: React.FC<Props> = ({ network, icon, callback }) => {
     return (
-        <div className="network-badge">
+        <div onClick={callback} className="network-badge">
             <img src={icon} alt="" />
             <p>{network}</p>
         </div>
