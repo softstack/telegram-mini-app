@@ -36,7 +36,7 @@ enum View {
     WALLET = 3,
 }
 
-WebApp.setBackgroundColor('#000000');
+WebApp.setHeaderColor('#1a1a1a');
 
 WebApp.MainButton.enable();
 WebApp.MainButton.color = '#007aff';
