@@ -5,10 +5,10 @@ import WebApp from '@twa-dev/sdk';
 
 import './App.css';
 
-// import PrimaryButton from './components/buttons/PrimaryButton';
 import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
 import SkipButton from './components/buttons/SkipButton';
+import Tooltip from './components/utils/Tooltip';
 
 import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
@@ -174,7 +174,10 @@ function App() {
                                 <div className="wallet-balance-details">
                                     <div className="wallet-balance-header">
                                         <p>Total Balance</p>
-                                        {/* Tooltip */}
+                                        <Tooltip
+                                            headline="Balance"
+                                            content="The balance that your wallet is currently holding."
+                                        />
                                     </div>
                                     <div className="wallet-balance-value">
                                         200

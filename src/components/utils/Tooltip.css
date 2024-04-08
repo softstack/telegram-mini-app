@@ -1,0 +1,65 @@
+@media only screen and (min-width: 768px) {
+    .tooltip {
+        position: absolute;
+        height: fit-content;
+        z-index: 10;
+        background-color: var(--uncx-white);
+        color: var(--uncx-black);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: left;
+        box-shadow: 0 8px 6px -6px #0c0c0c;
+    }
+
+    .tooltip-content {
+        max-width: 400px;
+    }
+
+    .tooltip-content h3 {
+        padding: 0;
+        margin: 0;
+    }
+
+    .tooltip-content p {
+        padding: 10px 0 0 0;
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .tooltip-container {
+        position: relative;
+    }
+
+    .tooltip {
+        position: absolute;
+        height: fit-content;
+        z-index: 10;
+        background-color: green;
+        color: var(--uncx-black);
+        border-radius: 15px;
+        padding: 10px;
+        text-align: left;
+        box-shadow: 0 8px 6px -6px #0c0c0c;
+        margin: 0 10px 0 0;
+    }
+
+    .tooltip-content {
+        max-width: 400px;
+    }
+
+    .tooltip-content h3 {
+        padding: 0;
+        margin: 0;
+    }
+
+    .tooltip-content p {
+        padding: 10px 0 0 0;
+        margin: 0;
+    }
+
+    .tooltip-image img {
+        width: 16px;
+        height: 16px;
+    }
+}
