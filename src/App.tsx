@@ -40,6 +40,7 @@ WebApp.MainButton.enable();
 WebApp.MainButton.color = '#007aff';
 WebApp.MainButton.setText('Add to your Home Screen');
 WebApp.MainButton.show();
+WebApp.HapticFeedback.impactOccurred('light');
 
 function App() {
     const [view, setView] = useState<View>(View.LANDING);

@@ -32,22 +32,12 @@ const ConnectOverlay: React.FC<Props> = ({ close }) => {
 
     // connect function
 
-    const [showMetamaskConnectModal, setShowMetamaskConnectModal] =
-        useState(false);
     const connectMetamask = () => {
         console.log('Connecting Metamask');
-        setShowMetamaskConnectModal(true);
     };
 
     return (
         <div className="connect-overlay">
-            {showMetamaskConnectModal && (
-                <iframe
-                    src="https://softstackhq.github.io/telegram-mini-app/"
-                    width="200"
-                    height="200"
-                ></iframe>
-            )}
             <div className="connect-overlay-header">
                 <p>Connect Account</p>
                 <div onClick={close} className="connect-overlay-close">
