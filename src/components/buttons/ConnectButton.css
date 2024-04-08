@@ -15,8 +15,8 @@
 
 .connect-button-icon {
     flex-shrink: 0; /* Prevent the icon container from shrinking */
-    width: 24px; /* Width of the icon container */
     height: 24px; /* Height of the icon container */
+    width: 42px; /* Width of the icon container */
     display: flex;
     align-items: center; /* Center the icon vertically */
     justify-content: center; /* Center the icon horizontally */

@@ -9,7 +9,7 @@ type Props = {
     icon: string;
 };
 
-const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
+const EVMConnectModal: React.FC<Props> = ({ title, icon }) => {
     // const { open } = useWeb3Modal();
 
     const openModal = () => {
@@ -24,4 +24,4 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
     );
 };
 
-export default WalletConnectModal;
+export default EVMConnectModal;

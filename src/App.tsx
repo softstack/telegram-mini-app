@@ -10,7 +10,7 @@ import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
 import SkipButton from './components/buttons/SkipButton';
 
-import WalletConnectModal from './components/connectors/WalletConnectModal';
+import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
 import SolanaConnectModal from './components/connectors/SolanaConnectModal';
 
@@ -18,7 +18,7 @@ import avatarPhone from './assets/avatar_phone.png';
 import avatarScooter from './assets/avatar_scooter.png';
 import avatarTable from './assets/avatar_table.png';
 
-import walletConnectIcon from './assets/wallet_connect.png';
+import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
 import solanaConnectIcon from './assets/solana_connect.png';
 
@@ -143,9 +143,9 @@ function App() {
                         <Avatar src={avatarPhone} height="60%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
-                            <WalletConnectModal
-                                title="Wallet Connect"
-                                icon={walletConnectIcon}
+                            <EVMConnectModal
+                                title="EVM Connect"
+                                icon={evmConnectIcon}
                             />
                             <TonConnectModal
                                 title="TON Connect"
