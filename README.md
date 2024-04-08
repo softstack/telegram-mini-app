@@ -5,7 +5,7 @@ Welcome to our guide on developing Telegram Mini Apps! Telegram Mini Apps offer 
 Reach out if you need custom telegram mini app development or support. 
 <p align="left">
 
-  <a href="https://t.me/softstack" alt="WhatsApp" target="_blank">
+  <a href="https://t.me/yannikheinze" alt="Telegram" target="_blank">
     <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=WhatsApp&logoColor=%231c1914" />
   </a>
 
@@ -118,7 +118,7 @@ Let's build something great together.
 
 <p align="left">
 
-  <a href="https://t.me/softstack" alt="WhatsApp" target="_blank">
+  <a href="https://t.me/yannikheinze" alt="Telegram" target="_blank">
     <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=WhatsApp&logoColor=%231c1914" />
   </a>
 
