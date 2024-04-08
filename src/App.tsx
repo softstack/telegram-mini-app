@@ -140,12 +140,16 @@ function App() {
 
     // Connect Overlay
     const [showConnectOverlay, setShowConnectOverlay] = useState(false);
+    // Set correct animation
+    const [slideAnimation, setSlideAnimation] = useState('in');
 
     const openConnectOverlay = () => {
-        setShowConnectOverlay(true);
+        setSlideAnimation('in');
+        setTimeout(() => setShowConnectOverlay(true), 100);
     };
     const closeConnectOverlay = () => {
-        setShowConnectOverlay(false);
+        setSlideAnimation('out');
+        setTimeout(() => setShowConnectOverlay(false), 100);
     };
 
     return (
@@ -200,7 +204,10 @@ function App() {
                             />
                         </div>
                         {showConnectOverlay && (
-                            <ConnectOverlay close={closeConnectOverlay} />
+                            <ConnectOverlay
+                                close={closeConnectOverlay}
+                                slideAnimation={slideAnimation}
+                            />
                         )}
                     </div>
                 )}

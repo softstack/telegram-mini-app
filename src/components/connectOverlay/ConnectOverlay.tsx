@@ -16,10 +16,11 @@ import './ConnectOverlay.css';
 import WebApp from '@twa-dev/sdk';
 
 type Props = {
+    slideAnimation: string;
     close: () => void;
 };
 
-const ConnectOverlay: React.FC<Props> = ({ close }) => {
+const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [walletsExpanded, setWalletsExpanded] = useState(false);
 
@@ -41,7 +42,7 @@ const ConnectOverlay: React.FC<Props> = ({ close }) => {
     };
 
     return (
-        <div className="connect-overlay">
+        <div className={`connect-overlay ${slideAnimation}`}>
             <div className="connect-overlay-header">
                 <p>Connect Account</p>
                 <div onClick={close} className="connect-overlay-close">

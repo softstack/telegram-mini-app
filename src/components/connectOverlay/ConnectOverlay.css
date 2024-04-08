@@ -1,3 +1,25 @@
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(+100%);
+        opacity: 0.5;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(+100%);
+        opacity: 0;
+    }
+}
+
 .connect-overlay {
     background-color: #ffffff;
     border-top-left-radius: 15px;
@@ -11,6 +33,14 @@
     right: 0;
 
     box-shadow: 0px 6px 8px 13px rgba(0, 0, 0, 0.1);
+}
+
+.connect-overlay.in {
+    animation: slideInFromBottom 0.5s ease-out forwards;
+}
+
+.connect-overlay.out {
+    animation: slideOutToBottom 0.5s ease-out forwards;
 }
 
 .connect-overlay-header {
