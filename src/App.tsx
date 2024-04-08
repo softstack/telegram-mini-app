@@ -61,13 +61,15 @@ function App() {
     };
 
     // Detect if the user is connected to a web3 provider
-
     const [account, setAccount] = useState<string | null>(null);
     useEffect(() => {
         if (window.ethereum) {
             (window.ethereum as any)
                 .request({ method: 'eth_requestAccounts' })
-                .then((res: any) => setAccount(res[0]));
+                .then((res: any) => {
+                    setAccount(res[0]);
+                    setView(View.CONNECTED);
+                });
         }
     }, [window.ethereum]);
 
@@ -102,17 +104,6 @@ function App() {
             WebApp.MainButton.setText('Contact Sales');
         }
     }, [view]);
-
-    // Wallet Connect
-    const { address, isConnected } = useWeb3ModalAccount();
-    useEffect(() => {
-        if (view === View.LANDING || view === View.WALLET) {
-            return;
-        }
-        if (isConnected) {
-            setView(View.CONNECTED);
-        }
-    }, [isConnected]);
 
     // TON Connect
     const tonWallet = useTonWallet();
@@ -193,9 +184,8 @@ function App() {
                     <div className="components-container">
                         <div className="navigation">
                             <BackButton goBack={goBack} />
-                            {isConnected && <SkipButton skip={skip} />}
+                            {account && <SkipButton skip={skip} />}
                         </div>
-                        {account}
                         <Avatar src={avatarPhone} height="60%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
@@ -229,7 +219,7 @@ function App() {
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
                                 <div className="address-container">
-                                    <p>{address}</p>
+                                    <p>{account}</p>
                                 </div>
                                 <div className="wallet-provider-icon">
                                     <img src={tonConnectIcon} alt="" />
