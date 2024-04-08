@@ -60,6 +60,17 @@ function App() {
         setView(View.WALLET);
     };
 
+    // Detect if the user is connected to a web3 provider
+
+    const [account, setAccount] = useState<string | null>(null);
+    useEffect(() => {
+        if (window.ethereum) {
+            (window.ethereum as any)
+                .request({ method: 'eth_requestAccounts' })
+                .then((res: any) => setAccount(res[0]));
+        }
+    }, [window.ethereum]);
+
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
@@ -184,6 +195,7 @@ function App() {
                             <BackButton goBack={goBack} />
                             {isConnected && <SkipButton skip={skip} />}
                         </div>
+                        {account}
                         <Avatar src={avatarPhone} height="60%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
