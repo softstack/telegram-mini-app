@@ -1,0 +1,12 @@
+.transaction-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1em;
+}
+
+.transaction-button-container p {
+    margin: 0;
+    color: #007aff;
+    font-weight: 600;
+}

@@ -127,6 +127,13 @@
     background-color: #efeff4;
 }
 
+.transaction-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+    padding: 1em 2em;
+}
+
 .test-functions {
     display: flex;
     flex-direction: column;

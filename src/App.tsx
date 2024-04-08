@@ -8,7 +8,9 @@ import './App.css';
 import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
 import SkipButton from './components/buttons/SkipButton';
+import PrimaryButton from './components/buttons/PrimaryButton';
 import Tooltip from './components/utils/Tooltip';
+import TransactionButton from './components/buttons/TransactionButton';
 
 import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
@@ -21,7 +23,9 @@ import avatarTable from './assets/avatar_table.png';
 import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
 import solanaConnectIcon from './assets/solana_connect.png';
-import PrimaryButton from './components/buttons/PrimaryButton';
+import sendIcon from './assets/send_icon.svg';
+import receiveIcon from './assets/receive_icon.svg';
+import sellIcon from './assets/sell_icon.svg';
 
 enum View {
     LANDING = 0,
@@ -107,12 +111,26 @@ function App() {
         // Solana Connect
     }, []);
 
+    // Test Functions
     const triggerTestMessageSign = () => {
         // Trigger Test Message Sign
     };
 
     const triggerTestMessageToChat = () => {
         // Trigger Test Message to Chat
+    };
+
+    // Transaction Functions
+    const sendFunds = () => {
+        // Send Funds
+    };
+
+    const receiveFunds = () => {
+        // Receive Funds
+    };
+
+    const sell = () => {
+        // Sell
     };
 
     return (
@@ -206,7 +224,21 @@ function App() {
                                 <p>$250</p>
                             </div>
                             <div className="transaction-options">
-                                {/* class for button */}
+                                <TransactionButton
+                                    text="Send"
+                                    icon={sendIcon}
+                                    callback={sendFunds}
+                                />
+                                <TransactionButton
+                                    text="Receive"
+                                    icon={receiveIcon}
+                                    callback={receiveFunds}
+                                />
+                                <TransactionButton
+                                    text="Sell"
+                                    icon={sellIcon}
+                                    callback={sell}
+                                />
                             </div>
                             <div className="transaction-history">
                                 {/* class for transaction history entry */}
