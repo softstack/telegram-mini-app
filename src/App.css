@@ -125,6 +125,25 @@
     height: 100vh;
     flex-direction: column;
     background-color: #efeff4;
+    padding: 1em;
+    gap: 1em;
+}
+
+.balance-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.balance-details-header {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.balance-details-value {
+    font-size: 3em;
+    margin: 0;
+    font-weight: 800;
 }
 
 .transaction-options {
@@ -137,6 +156,12 @@
 .test-functions {
     display: flex;
     flex-direction: column;
-    padding: 1em;
+
     gap: 0.6em;
+}
+
+.transaction-history {
+    display: flex;
+    flex-direction: column;
+    min-height: 25%;
 }

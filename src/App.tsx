@@ -11,6 +11,7 @@ import SkipButton from './components/buttons/SkipButton';
 import PrimaryButton from './components/buttons/PrimaryButton';
 import Tooltip from './components/utils/Tooltip';
 import TransactionButton from './components/buttons/TransactionButton';
+import TransactionHistoryItem from './components/utils/TransactionHistoryItem';
 
 import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
@@ -220,8 +221,13 @@ function App() {
                         <div className="wallet-details-container">
                             <BackButton goBack={goBack} />
                             <div className="balance-details">
-                                <p>Total Balance</p>
-                                <p>$250</p>
+                                <p className="balance-details-header">
+                                    Total Balance
+                                </p>
+                                <p className="balance-details-value">
+                                    <span style={{ color: '#707579' }}>$</span>
+                                    250
+                                </p>
                             </div>
                             <div className="transaction-options">
                                 <TransactionButton
@@ -241,7 +247,12 @@ function App() {
                                 />
                             </div>
                             <div className="transaction-history">
-                                {/* class for transaction history entry */}
+                                <TransactionHistoryItem
+                                    currency="Toncoin"
+                                    symbol="TON"
+                                    valueSpot={100}
+                                    valueFiat={150}
+                                />
                             </div>
                             <div className="test-functions">
                                 <PrimaryButton
