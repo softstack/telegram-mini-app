@@ -47,10 +47,6 @@ function App() {
         setView(view - 1);
     };
 
-    const addToHomeScreen = () => {
-        setView(View.CONNECT);
-    };
-
     const openWallet = () => {
         setView(View.WALLET);
     };
@@ -59,10 +55,10 @@ function App() {
     useEffect(() => {
         if (view === View.LANDING) {
             WebApp.MainButton.show();
-            WebApp.MainButton.setText('Add to your Home Screen');
+            WebApp.MainButton.setText('Connect Your Wallet');
             WebApp.MainButton.color = '#007aff';
             WebApp.MainButton.textColor = '#ffffff';
-            WebApp.MainButton.onClick(addToHomeScreen);
+            WebApp.MainButton.onClick(skip);
         }
         if (view === View.CONNECT) {
             WebApp.MainButton.show();
@@ -119,21 +115,23 @@ function App() {
                         <Avatar src={avatarScooter} />
                         <div className="add-to-home">
                             <div>
-                                <h2 className="headline">CALL IT HOME</h2>
+                                <h2 className="headline">
+                                    Telegram Mini App Demo
+                                </h2>
                             </div>
                             <div>
                                 <p className="landing-text">
-                                    Catat Keuanganmu dengan Mudah, setiap
-                                    pengeluaran dan pemasukan akan terdata rapi
+                                    Click on the button below and follow the
+                                    instructions to link your wallet to this
+                                    telegram mini app demo.
+                                </p>
+                                <p className="landing-text">
+                                    Softstack is a Web3 software development,
+                                    cybersecurity and consulting service
+                                    partner.
                                 </p>
                             </div>
                         </div>
-                        {/* <div className="button-container">
-                            <PrimaryButton
-                                title="Add to your Home Screen"
-                                callback={addToHomeScreen}
-                            />
-                        </div> */}
                     </div>
                 )}
                 {view === View.CONNECT && (
