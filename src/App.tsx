@@ -220,49 +220,53 @@ function App() {
                     <div>
                         <div className="wallet-details-container">
                             <BackButton goBack={goBack} />
-                            <div className="balance-details">
-                                <p className="balance-details-header">
-                                    Total Balance
-                                </p>
-                                <p className="balance-details-value">
-                                    <span style={{ color: '#707579' }}>$</span>
-                                    250
-                                </p>
-                            </div>
-                            <div className="transaction-options">
-                                <TransactionButton
-                                    text="Send"
-                                    icon={sendIcon}
-                                    callback={sendFunds}
-                                />
-                                <TransactionButton
-                                    text="Receive"
-                                    icon={receiveIcon}
-                                    callback={receiveFunds}
-                                />
-                                <TransactionButton
-                                    text="Sell"
-                                    icon={sellIcon}
-                                    callback={sell}
-                                />
-                            </div>
-                            <div className="transaction-history">
-                                <TransactionHistoryItem
-                                    currency="Toncoin"
-                                    symbol="TON"
-                                    valueSpot={100}
-                                    valueFiat={150}
-                                />
-                            </div>
-                            <div className="test-functions">
-                                <PrimaryButton
-                                    title="Sign Test Message in Wallet"
-                                    callback={triggerTestMessageSign}
-                                />
-                                <PrimaryButton
-                                    title="Trigger Test Message to Chat"
-                                    callback={triggerTestMessageToChat}
-                                />
+                            <div className="wallet-details-wrapper">
+                                <div className="balance-details">
+                                    <p className="balance-details-header">
+                                        Total Balance
+                                    </p>
+                                    <p className="balance-details-value">
+                                        <span style={{ color: '#707579' }}>
+                                            $
+                                        </span>
+                                        250
+                                    </p>
+                                </div>
+                                <div className="transaction-options">
+                                    <TransactionButton
+                                        text="Send"
+                                        icon={sendIcon}
+                                        callback={sendFunds}
+                                    />
+                                    <TransactionButton
+                                        text="Receive"
+                                        icon={receiveIcon}
+                                        callback={receiveFunds}
+                                    />
+                                    <TransactionButton
+                                        text="Sell"
+                                        icon={sellIcon}
+                                        callback={sell}
+                                    />
+                                </div>
+                                <div className="transaction-history">
+                                    <TransactionHistoryItem
+                                        currency="Toncoin"
+                                        symbol="TON"
+                                        valueSpot={100}
+                                        valueFiat={150}
+                                    />
+                                </div>
+                                <div className="test-functions">
+                                    <PrimaryButton
+                                        title="Sign Test Message in Wallet"
+                                        callback={triggerTestMessageSign}
+                                    />
+                                    <PrimaryButton
+                                        title="Trigger Test Message to Chat"
+                                        callback={triggerTestMessageToChat}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
