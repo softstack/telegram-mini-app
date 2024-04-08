@@ -12,6 +12,7 @@ import PrimaryButton from './components/buttons/PrimaryButton';
 import Tooltip from './components/utils/Tooltip';
 import TransactionButton from './components/buttons/TransactionButton';
 import TransactionHistoryItem from './components/utils/TransactionHistoryItem';
+import ConnectOverlay from './components/connectOverlay/ConnectOverlay';
 
 import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
@@ -134,6 +135,16 @@ function App() {
         // Sell
     };
 
+    // Connect Overlay
+    const [showConnectOverlay, setShowConnectOverlay] = useState(false);
+
+    const openConnectOverlay = () => {
+        setShowConnectOverlay(true);
+    };
+    const closeConnectOverlay = () => {
+        setShowConnectOverlay(false);
+    };
+
     return (
         <>
             <div className="main-component">
@@ -174,6 +185,7 @@ function App() {
                             <EVMConnectModal
                                 title="EVM Connect"
                                 icon={evmConnectIcon}
+                                callback={openConnectOverlay}
                             />
                             <TonConnectModal
                                 title="TON Connect"
@@ -184,13 +196,15 @@ function App() {
                                 icon={solanaConnectIcon}
                             />
                         </div>
+                        {showConnectOverlay && (
+                            <ConnectOverlay close={closeConnectOverlay} />
+                        )}
                     </div>
                 )}
                 {view === View.CONNECTED && (
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
-                            <SkipButton skip={skip} />
                             <Avatar src={avatarTable} height="60%" />
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>

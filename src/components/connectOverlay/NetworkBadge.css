@@ -1,0 +1,11 @@
+.network-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.network-badge img {
+    width: 42px;
+    height: 42px;
+}

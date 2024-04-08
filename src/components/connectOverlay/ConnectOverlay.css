@@ -1,0 +1,74 @@
+.connect-overlay {
+    background-color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    min-height: 400px;
+}
+
+.connect-overlay-header {
+    text-align: left;
+    padding: 0.8em 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.connect-overlay-header p {
+    margin: 0;
+
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.connect-overlay-close {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.horizontal-line {
+    margin: 0;
+    border-top: 1px solid #c6c6c6;
+    border-bottom: none;
+}
+
+.choose-network-header {
+    display: flex;
+    padding: 1em 1.3em;
+    justify-content: space-between;
+}
+
+.choose-network-header p {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0;
+}
+
+.available-networks {
+    display: flex;
+    margin: 1em;
+    justify-content: space-around;
+}
+
+.select-wallet-header {
+    display: flex;
+    padding: 1em 1.3em;
+    justify-content: space-between;
+}
+
+.select-wallet-header p {
+    font-size: 1em;
+    font-weight: 500;
+    margin: 0;
+}
+
+.available-wallets {
+    display: flex;
+    margin: 1em;
+    justify-content: space-around;
+}
