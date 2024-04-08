@@ -119,3 +119,17 @@
     font-size: 1.7em;
     font-weight: 800;
 }
+
+.wallet-details-container {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #efeff4;
+}
+
+.test-functions {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    gap: 0.6em;
+}

@@ -21,6 +21,7 @@ import avatarTable from './assets/avatar_table.png';
 import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
 import solanaConnectIcon from './assets/solana_connect.png';
+import PrimaryButton from './components/buttons/PrimaryButton';
 
 enum View {
     LANDING = 0,
@@ -106,6 +107,14 @@ function App() {
         // Solana Connect
     }, []);
 
+    const triggerTestMessageSign = () => {
+        // Trigger Test Message Sign
+    };
+
+    const triggerTestMessageToChat = () => {
+        // Trigger Test Message to Chat
+    };
+
     return (
         <>
             <div className="main-component">
@@ -162,6 +171,7 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
+                            <SkipButton skip={skip} />
                             <Avatar src={avatarTable} />
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
@@ -189,8 +199,28 @@ function App() {
                 )}
                 {view === View.WALLET && (
                     <div>
-                        <div className="components-container">
+                        <div className="wallet-details-container">
                             <BackButton goBack={goBack} />
+                            <div className="balance-details">
+                                <p>Total Balance</p>
+                                <p>$250</p>
+                            </div>
+                            <div className="transaction-options">
+                                {/* class for button */}
+                            </div>
+                            <div className="transaction-history">
+                                {/* class for transaction history entry */}
+                            </div>
+                            <div className="test-functions">
+                                <PrimaryButton
+                                    title="Sign Test Message in Wallet"
+                                    callback={triggerTestMessageSign}
+                                />
+                                <PrimaryButton
+                                    title="Trigger Test Message to Chat"
+                                    callback={triggerTestMessageToChat}
+                                />
+                            </div>
                         </div>
                     </div>
                 )}
