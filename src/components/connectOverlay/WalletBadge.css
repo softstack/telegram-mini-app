@@ -1,0 +1,10 @@
+.wallet-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+
+.wallet-badge img {
+    width: 36px;
+    height: 36px;
+}

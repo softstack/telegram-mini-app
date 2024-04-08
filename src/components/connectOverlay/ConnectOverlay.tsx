@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import NetworkBadge from './NetworkBadge';
+import WalletBadge from './WalletBadge';
 
 import crossIcon from '../../assets/cross_icon.svg';
 import upCircleIcon from '../../assets/up_circle_icon.svg';
@@ -8,6 +9,8 @@ import downCircleIcon from '../../assets/down_circle_icon.svg';
 import ethereumLogo from '../../assets/ethereum_logo.svg';
 import polygonLogo from '../../assets/polygon_logo.svg';
 import avalancheLogo from '../../assets/avalanche_logo.svg';
+import metamaskLogo from '../../assets/metamask_logo.svg';
+import coinbaseLogo from '../../assets/coinbase_logo.svg';
 
 import './ConnectOverlay.css';
 
@@ -60,7 +63,12 @@ const ConnectOverlay: React.FC<Props> = ({ close }) => {
                     alt=""
                 />
             </div>
-            {walletsExpanded && <div></div>}
+            {walletsExpanded && (
+                <div className="available-wallets">
+                    <WalletBadge walletName="Metamask" icon={metamaskLogo} />
+                    <WalletBadge walletName="Coinbase" icon={coinbaseLogo} />
+                </div>
+            )}
         </div>
     );
 };
