@@ -1,6 +1,5 @@
 import React from 'react';
 import ConnectButton from '../buttons/ConnectButton';
-import { useWeb3Modal } from '@web3modal/ethers/react';
 
 type Props = {
     title: string;
@@ -8,12 +7,9 @@ type Props = {
     callback: () => void;
 };
 
-const EVMConnectModal: React.FC<Props> = ({ title, icon }) => {
-    const { open } = useWeb3Modal();
-
+const EVMConnectModal: React.FC<Props> = ({ title, icon, callback }) => {
     const openModal = () => {
-        // callback();
-        open();
+        callback();
     };
 
     return (
