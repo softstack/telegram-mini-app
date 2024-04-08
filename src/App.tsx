@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useWeb3ModalAccount } from '@web3modal/ethers/react';
 import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 
