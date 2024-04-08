@@ -22,6 +22,7 @@
     margin: 0;
 
     font-size: 1.1em;
+    color: #212121;
     font-weight: 700;
 }
 
@@ -44,6 +45,7 @@
 }
 
 .choose-network-header p {
+    color: #212121;
     font-size: 1em;
     font-weight: 500;
     margin: 0;
@@ -65,6 +67,7 @@
     font-size: 1em;
     font-weight: 500;
     margin: 0;
+    color: #212121;
 }
 
 .available-wallets {
