@@ -176,7 +176,7 @@ function App() {
                                         <p>Total Balance</p>
                                         <Tooltip
                                             headline="Balance"
-                                            content="The balance that your wallet is currently holding."
+                                            content="The balance your wallet is currently holding."
                                         />
                                     </div>
                                     <div className="wallet-balance-value">

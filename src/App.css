@@ -69,7 +69,7 @@
     flex-direction: column;
     background-color: #ffffff;
     padding: 1em 2em 2em 2em;
-    gap: 1em;
+    gap: 0.6em;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     border-bottom-left-radius: 10px;
@@ -78,8 +78,8 @@
 }
 
 .address-container {
-    font-size: 0.7em;
-    font-weight: 500;
+    font-size: 0.65em;
+    font-weight: 600;
     text-align: center;
     color: #707579;
 }
@@ -94,4 +94,28 @@
 .wallet-provider-icon img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.wallet-balance-details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wallet-balance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.wallet-balance-header p {
+    margin: 0;
+}
+
+.wallet-balance-value {
+    font-size: 1.7em;
+    font-weight: 800;
 }
