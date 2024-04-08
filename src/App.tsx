@@ -162,7 +162,7 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
-                            <Avatar src={avatarTable} height="60%" />
+                            <Avatar src={avatarTable} />
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
                                 <div className="address-container">
