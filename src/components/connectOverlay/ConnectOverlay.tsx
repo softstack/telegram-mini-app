@@ -13,6 +13,7 @@ import metamaskLogo from '../../assets/metamask_logo.svg';
 import coinbaseLogo from '../../assets/coinbase_logo.svg';
 
 import './ConnectOverlay.css';
+import WebApp from '@twa-dev/sdk';
 
 type Props = {
     close: () => void;
@@ -34,6 +35,9 @@ const ConnectOverlay: React.FC<Props> = ({ close }) => {
 
     const connectMetamask = () => {
         console.log('Connecting Metamask');
+        WebApp.openLink(
+            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/'
+        );
     };
 
     return (
