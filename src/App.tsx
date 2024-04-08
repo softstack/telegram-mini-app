@@ -168,13 +168,19 @@ function App() {
                                 <div className="address-container">
                                     <p>{address}</p>
                                 </div>
+                                <div className="wallet-provider-icon">
+                                    <img src={tonConnectIcon} alt="" />
+                                </div>
+                                <div className="wallet-balance-details">
+                                    <div className="wallet-balance-header">
+                                        <p>Total Balance</p>
+                                        {/* Tooltip */}
+                                    </div>
+                                    <div className="wallet-balance-value">
+                                        200
+                                    </div>
+                                </div>
                             </div>
-                            {/* <div className="button-container">
-                                <PrimaryButton
-                                    title="Open my Wallet"
-                                    callback={openWallet}
-                                />
-                            </div> */}
                         </div>
                     </div>
                 )}
