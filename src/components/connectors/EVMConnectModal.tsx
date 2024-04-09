@@ -1,7 +1,8 @@
 import React from 'react';
-import { useConnectModal } from '@rainbow-me/rainbowkit';
+// import { useConnectModal } from '@rainbow-me/rainbowkit';
 
-import ConnectButton from '../buttons/ConnectButton';
+// import ConnectButton from '../buttons/ConnectButton';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 type Props = {
     title: string;
@@ -9,8 +10,9 @@ type Props = {
     callback: () => void;
 };
 
-const EVMConnectModal: React.FC<Props> = ({ title, icon }) => {
-    const { openConnectModal } = useConnectModal();
+const EVMConnectModal: React.FC<Props> = () => {
+    // const EVMConnectModal: React.FC<Props> = ({ title, icon, callback }) => {
+
     // const openModal = () => {
     //     callback();
 
@@ -19,13 +21,14 @@ const EVMConnectModal: React.FC<Props> = ({ title, icon }) => {
 
     return (
         <>
-            {openConnectModal && (
+            {/* {openConnectModal && (
                 <ConnectButton
                     title={title}
                     icon={icon}
                     callback={openConnectModal}
                 />
-            )}
+            )} */}
+            <ConnectButton />
         </>
     );
 };
