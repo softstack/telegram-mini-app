@@ -19,7 +19,8 @@ import { clusterApiUrl } from '@solana/web3.js';
 // Rainbow Kit
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { WagmiProvider, http } from 'wagmi';
+import { WagmiProvider, http, createConfig } from 'wagmi';
+import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors';
 import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
@@ -88,6 +89,16 @@ const rainbow_config = getDefaultConfig({
 
 const queryClient = new QueryClient();
 
+// Wagmi Config
+const wagmiConfig = createConfig({
+    chains: [mainnet, base],
+    connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
+    transports: {
+        [mainnet.id]: http(),
+        [base.id]: http(),
+    },
+});
+
 // Solana Context
 const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
     const network = WalletAdapterNetwork.Mainnet;
@@ -112,7 +123,7 @@ const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <WagmiProvider config={rainbow_config}>
+        <WagmiProvider config={wagmiConfig}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider>
                     <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
