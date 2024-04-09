@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSDK } from '@metamask/sdk-react';
 
 import NetworkBadge from './NetworkBadge';
 import WalletBadge from './WalletBadge';
@@ -13,7 +14,7 @@ import metamaskLogo from '../../assets/metamask_logo.svg';
 import coinbaseLogo from '../../assets/coinbase_logo.svg';
 
 import './ConnectOverlay.css';
-import WebApp from '@twa-dev/sdk';
+// import WebApp from '@twa-dev/sdk';
 
 type Props = {
     slideAnimation: string;
@@ -21,6 +22,18 @@ type Props = {
 };
 
 const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
+    const [account, setAccount] = useState<string>();
+    const { sdk, connected } = useSDK();
+
+    const connect = async () => {
+        try {
+            const accounts = await sdk?.connect();
+            setAccount(accounts?.[0]);
+        } catch (err) {
+            console.warn('failed to connect..', err);
+        }
+    };
+
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [walletsExpanded, setWalletsExpanded] = useState(false);
 
@@ -35,11 +48,12 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     // connect function
 
     const connectMetamask = () => {
-        console.log('Connecting Metamask');
-        WebApp.openLink(
-            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
-            { try_instant_view: true }
-        );
+        // console.log('Connecting Metamask');
+        // WebApp.openLink(
+        //     'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
+        //     { try_instant_view: true }
+        // );
+        connect();
     };
 
     // Toggle Wallets
@@ -49,6 +63,7 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
 
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
+            {connected && <div>{account}</div>}
             <div className="connect-overlay-header">
                 <p>Connect Account</p>
                 <div onClick={close} className="connect-overlay-close">

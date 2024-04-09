@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@metamask/detect-provider": "^2.0.0",
+        "@metamask/sdk-react-ui": "^0.18.0",
         "@rainbow-me/rainbowkit": "^2.0.5",
         "@solana/wallet-adapter-base": "^0.9.23",
         "@solana/wallet-adapter-react": "^0.15.35",
