@@ -34,7 +34,7 @@ WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 // Activate the haptic feedback
-WebApp.HapticFeedback.impactOccurred('light');
+// WebApp.HapticFeedback.impactOccurred('light');
 
 // Wallet Connect Config
 // 1. Get projectId
