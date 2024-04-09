@@ -9,7 +9,7 @@ type Props = {
     callback: () => void;
 };
 
-const EVMConnectModal: React.FC<Props> = ({ title, icon, callback }) => {
+const EVMConnectModal: React.FC<Props> = ({ title, icon }) => {
     const { openConnectModal } = useConnectModal();
     // const openModal = () => {
     //     callback();
