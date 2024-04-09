@@ -37,7 +37,8 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     const connectMetamask = () => {
         console.log('Connecting Metamask');
         WebApp.openLink(
-            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/'
+            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
+            { try_instant_view: true }
         );
     };
 

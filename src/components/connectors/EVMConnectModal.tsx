@@ -1,5 +1,4 @@
 import React from 'react';
-import WebApp from '@twa-dev/sdk';
 
 import ConnectButton from '../buttons/ConnectButton';
 
@@ -11,10 +10,6 @@ type Props = {
 
 const EVMConnectModal: React.FC<Props> = ({ title, icon, callback }) => {
     const openModal = () => {
-        WebApp.openLink(
-            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
-            { try_instant_view: true }
-        );
         callback();
     };
 
