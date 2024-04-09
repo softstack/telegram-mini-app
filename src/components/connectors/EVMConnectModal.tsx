@@ -1,8 +1,7 @@
 import React from 'react';
-// import { useConnectModal } from '@rainbow-me/rainbowkit';
+import WebApp from '@twa-dev/sdk';
 
-// import ConnectButton from '../buttons/ConnectButton';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import ConnectButton from '../buttons/ConnectButton';
 
 type Props = {
     title: string;
@@ -10,25 +9,18 @@ type Props = {
     callback: () => void;
 };
 
-const EVMConnectModal: React.FC<Props> = () => {
-    // const EVMConnectModal: React.FC<Props> = ({ title, icon, callback }) => {
-
-    // const openModal = () => {
-    //     callback();
-
-    //     // openConnectModal();
-    // };
+const EVMConnectModal: React.FC<Props> = ({ title, icon, callback }) => {
+    const openModal = () => {
+        WebApp.openLink(
+            'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
+            { try_instant_view: true }
+        );
+        callback();
+    };
 
     return (
         <>
-            {/* {openConnectModal && (
-                <ConnectButton
-                    title={title}
-                    icon={icon}
-                    callback={openConnectModal}
-                />
-            )} */}
-            <ConnectButton />
+            <ConnectButton title={title} icon={icon} callback={openModal} />
         </>
     );
 };
