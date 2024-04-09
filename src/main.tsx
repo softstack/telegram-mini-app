@@ -19,7 +19,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 // Rainbow Kit
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { WagmiProvider } from 'wagmi';
+import { WagmiProvider, http } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
@@ -81,6 +81,9 @@ const rainbow_config = getDefaultConfig({
     appName: 'My RainbowKit App',
     projectId: projectId,
     chains: [mainnet, polygon, optimism, arbitrum, base],
+    transports: {
+        [mainnet.id]: http(),
+    },
 });
 
 const queryClient = new QueryClient();
