@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
+import './polyfills';
 import ReactDOM from 'react-dom/client';
-import { Buffer } from 'buffer';
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
@@ -26,8 +26,6 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import WebApp from '@twa-dev/sdk';
 import App from './App.tsx';
 import './index.css';
-
-window.Buffer = Buffer;
 
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
