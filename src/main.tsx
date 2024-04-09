@@ -18,10 +18,10 @@ import { clusterApiUrl } from '@solana/web3.js';
 
 // Rainbow Kit
 import '@rainbow-me/rainbowkit/styles.css';
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider, http, createConfig } from 'wagmi';
 import { injected, metaMask, safe, walletConnect } from 'wagmi/connectors';
-import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains';
+import { mainnet, base } from 'wagmi/chains';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 import WebApp from '@twa-dev/sdk';
