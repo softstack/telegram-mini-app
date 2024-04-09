@@ -78,14 +78,14 @@ createWeb3Modal({
 });
 
 // Rainbow Kit
-const rainbow_config = getDefaultConfig({
-    appName: 'My RainbowKit App',
-    projectId: projectId,
-    chains: [mainnet, polygon, optimism, arbitrum, base],
-    transports: {
-        [mainnet.id]: http(),
-    },
-});
+// const rainbow_config = getDefaultConfig({
+//     appName: 'My RainbowKit App',
+//     projectId: projectId,
+//     chains: [mainnet, polygon, optimism, arbitrum, base],
+//     transports: {
+//         [mainnet.id]: http(),
+//     },
+// });
 
 const queryClient = new QueryClient();
 
