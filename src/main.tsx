@@ -15,6 +15,13 @@ import {
 } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
 
+// Rainbow Kit
+import '@rainbow-me/rainbowkit/styles.css';
+import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { WagmiProvider } from 'wagmi';
+import { mainnet, polygon, optimism, arbitrum, base } from 'wagmi/chains';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
 import WebApp from '@twa-dev/sdk';
 import App from './App.tsx';
 import './index.css';
@@ -31,7 +38,7 @@ WebApp.HapticFeedback.impactOccurred('light');
 const projectId = '10bc66667bce58aa9b1b9284ac74e731';
 
 // 2. Set chains
-const mainnet = {
+const mainnet_config = {
     chainId: 1,
     name: 'Ethereum',
     currency: 'ETH',
@@ -63,10 +70,20 @@ const ethersConfig = defaultConfig({
 // 5. Create a Web3Modal instance
 createWeb3Modal({
     ethersConfig,
-    chains: [mainnet],
+    chains: [mainnet_config],
     projectId,
     enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
+
+// Rainbow Kit
+const rainbow_config = getDefaultConfig({
+    appName: 'My RainbowKit App',
+    projectId: 'YOUR_PROJECT_ID',
+    chains: [mainnet, polygon, optimism, arbitrum, base],
+    ssr: true, // If your dApp uses server side rendering (SSR)
+});
+
+const queryClient = new QueryClient();
 
 // Solana Context
 const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -92,10 +109,16 @@ const Context: React.FC<{ children: ReactNode }> = ({ children }) => {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-        <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
-            <Context>
-                <App />
-            </Context>
-        </TonConnectUIProvider>
+        <WagmiProvider config={rainbow_config}>
+            <QueryClientProvider client={queryClient}>
+                <RainbowKitProvider>
+                    <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
+                        <Context>
+                            <App />
+                        </Context>
+                    </TonConnectUIProvider>
+                </RainbowKitProvider>
+            </QueryClientProvider>
+        </WagmiProvider>
     </React.StrictMode>
 );
