@@ -22,15 +22,17 @@ type Props = {
 };
 
 const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
-    const [account, setAccount] = useState<string>();
     const { sdk, connected } = useSDK();
 
-    const connect = async () => {
+    const [signedMessage, setSignedMessage] = useState('');
+
+    const handleConnectAndSign = async () => {
         try {
-            const accounts = await sdk?.connect();
-            setAccount(accounts?.[0]);
-        } catch (err) {
-            console.warn('failed to connect..', err);
+            const message = 'Your message here';
+            const signature = await sdk?.connectAndSign({ msg: message });
+            setSignedMessage(signature);
+        } catch (error) {
+            console.error('Error in signing:', error);
         }
     };
 
@@ -53,7 +55,7 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
         //     'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
         //     { try_instant_view: true }
         // );
-        connect();
+        handleConnectAndSign();
     };
 
     // Toggle Wallets
@@ -63,7 +65,7 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
 
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
-            {connected && <div>{account}</div>}
+            {connected && <div>{signedMessage}</div>}
             <div className="connect-overlay-header">
                 <p>Connect Account</p>
                 <div onClick={close} className="connect-overlay-close">
