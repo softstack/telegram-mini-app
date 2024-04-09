@@ -19,6 +19,16 @@ WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 
+WebApp.showPopup({
+    title: 'Welcome',
+    message: 'Welcome to the Telegram Mini App!',
+    buttons: [
+        {
+            type: 'ok',
+        },
+    ],
+});
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
