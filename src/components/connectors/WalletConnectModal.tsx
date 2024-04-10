@@ -42,7 +42,7 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
     const handleURI = async (uri: string) => {
         console.log('uri', uri);
         const encodedUri = encodeURIComponent(uri);
-        const universalLink = `https://mywallet.com/wc?uri=${encodedUri}`;
+        const universalLink = `https://metamask.app.link/wc?uri=${encodedUri}`;
         WebApp.openLink(universalLink);
     };
 
