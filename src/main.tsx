@@ -1,11 +1,6 @@
 import React from 'react';
 import './polyfills';
-import ReactDOM from 'react-dom/client';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
-
-// Metamask SDK
-import { MetaMaskUIProvider } from '@metamask/sdk-react-ui';
-import { metamaskConfig } from './configs/metamask.ts';
 
 // Rainbow Kit
 import '@rainbow-me/rainbowkit/styles.css';
@@ -17,6 +12,7 @@ import { rainbowConfig } from './configs/rainbowKit.ts';
 import WebApp from '@twa-dev/sdk';
 import App from './App.tsx';
 import './index.css';
+import ReactDOM from 'react-dom';
 
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
@@ -25,18 +21,17 @@ WebApp.expand();
 
 const queryClient = new QueryClient();
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.render(
     <React.StrictMode>
         <WagmiProvider config={rainbowConfig}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider>
                     <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
-                        <MetaMaskUIProvider sdkOptions={metamaskConfig}>
-                            <App />
-                        </MetaMaskUIProvider>
+                        <App />
                     </TonConnectUIProvider>
                 </RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>
-    </React.StrictMode>
+    </React.StrictMode>,
+    document.getElementById('root')
 );

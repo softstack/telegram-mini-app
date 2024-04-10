@@ -1,9 +1,7 @@
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react';
 
-const PROJECT_ID = process.env.WALLET_CONNECT_PROJECT_ID;
-
 // 1. Get projectId
-const projectId = PROJECT_ID || '';
+const projectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || '';
 
 // 2. Set chains
 const mainnet_config = {
