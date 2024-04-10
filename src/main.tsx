@@ -8,6 +8,7 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { rainbowConfig } from './configs/rainbowKit.ts';
+import { createWalletConnectModal } from './configs/walletConnect.ts';
 
 import WebApp from '@twa-dev/sdk';
 import App from './App.tsx';
@@ -20,6 +21,9 @@ WebApp.ready();
 WebApp.expand();
 
 const queryClient = new QueryClient();
+
+// Create the WalletConnect modal
+createWalletConnectModal();
 
 ReactDOM.render(
     <React.StrictMode>
