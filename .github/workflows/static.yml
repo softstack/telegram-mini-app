@@ -36,6 +36,11 @@ jobs:
                   node-version: 18
                   cache: 'npm'
                   cache-dependency-path: './'
+            - name: Create env file
+              run: |
+                  touch .env
+                  echo VITE_WALLET_CONNECT_PROJECT_ID=${{ secrets.WALLET_CONNECT_KEY }} >> .env
+                  cat .env
             - name: Install dependencies
               run: npm install
             - name: Build
