@@ -14,7 +14,7 @@ import TransactionHistoryItem from './components/utils/TransactionHistoryItem';
 import ConnectOverlay from './components/connectOverlay/ConnectOverlay';
 
 import EVMConnectModal from './components/connectors/EVMConnectModal';
-import TonConnectModal from './components/connectors/TonConnectModal';
+// import TonConnectModal from './components/connectors/TonConnectModal';
 import SolanaConnectModal from './components/connectors/SolanaConnectModal';
 import WalletConnectModal from './components/connectors/WalletConnectModal';
 
@@ -199,10 +199,10 @@ function App() {
                                 title="Wallet Connect"
                                 icon={walletConnectIcon}
                             />
-                            <TonConnectModal
+                            {/* <TonConnectModal
                                 title="TON Connect"
                                 icon={tonConnectIcon}
-                            />
+                            /> */}
                             <SolanaConnectModal
                                 title="Solana Connect"
                                 icon={solanaConnectIcon}
