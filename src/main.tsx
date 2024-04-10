@@ -1,8 +1,11 @@
 import React from 'react';
-import './polyfills';
+import ReactDOM from 'react-dom';
+
+// TonConnect UI
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 // Rainbow Kit
+import './polyfills';
 import '@rainbow-me/rainbowkit/styles.css';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
@@ -10,16 +13,19 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { rainbowConfig } from './configs/rainbowKit.ts';
 import { createWalletConnectModal } from './configs/walletConnect.ts';
 
+// Telegram Mini App SDK
 import WebApp from '@twa-dev/sdk';
+
+// App + Styles
 import App from './App.tsx';
 import './index.css';
-import ReactDOM from 'react-dom';
 
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 
+// Initialize the React Query client
 const queryClient = new QueryClient();
 
 // Create the WalletConnect modal
