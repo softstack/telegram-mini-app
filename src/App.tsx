@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useTonWallet } from '@tonconnect/ui-react';
+// import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 
 import './App.css';
@@ -107,11 +107,11 @@ function App() {
     }, [view]);
 
     // TON Connect
-    const tonWallet = useTonWallet();
-    useEffect(() => {
-        // TON Connect
-        // console.log(tonWallet);
-    }, [tonWallet]);
+    // const tonWallet = useTonWallet();
+    // useEffect(() => {
+    //     // TON Connect
+    //     // console.log(tonWallet);
+    // }, [tonWallet]);
 
     // Solana Connect
     useEffect(() => {
