@@ -23,6 +23,8 @@
         "@twa-dev/sdk": "^7.0.0",
         "@types/react-router-dom": "^5.3.3",
         "@vitejs/plugin-basic-ssl": "^1.1.0",
+        "@walletconnect/client": "^1.8.0",
+        "@walletconnect/core": "^2.12.1",
         "@web3modal/ethers": "^4.1.1",
         "dotenv": "^16.4.5",
         "ethers": "^6.11.1",
