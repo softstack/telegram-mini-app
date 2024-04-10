@@ -169,3 +169,8 @@
     flex-direction: column;
     min-height: 150px;
 }
+
+.address-container {
+    width: 80%;
+    margin: 0 auto;
+}

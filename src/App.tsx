@@ -188,6 +188,12 @@ function App() {
                             {account && <SkipButton skip={skip} />}
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
+                        {account && (
+                            <div className="address-container">
+                                <p>Your Address:</p>
+                                <p>{account}</p>
+                            </div>
+                        )}
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
                             {/* <EVMConnectModal
@@ -195,10 +201,17 @@ function App() {
                                 icon={evmConnectIcon}
                                 callback={openConnectOverlay}
                             /> */}
-                            <WalletConnectModal
-                                title="Wallet Connect"
-                                icon={walletConnectIcon}
-                            />
+                            {account ? (
+                                <WalletConnectModal
+                                    title="Wallet Connect"
+                                    icon={walletConnectIcon}
+                                />
+                            ) : (
+                                <PrimaryButton
+                                    title="Open my Wallet"
+                                    callback={skip}
+                                />
+                            )}
                             {/* <TonConnectModal
                                 title="TON Connect"
                                 icon={tonConnectIcon}
