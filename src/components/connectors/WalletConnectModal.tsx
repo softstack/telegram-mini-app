@@ -24,8 +24,14 @@ const WalletConnectModal: React.FC<Props> = ({
     const [uri, setUri] = React.useState<string | null>('No URI received yet');
     const [provider, setProvider] = React.useState<any | null>(null);
 
+    // debug
+    const [debugState, setDebugState] =
+        React.useState<string>('Init did not start');
+
     React.useEffect(() => {
+        setDebugState('Hook started');
         const init = async () => {
+            setDebugState('Init started');
             const provider = await EthereumProvider.init({
                 projectId: PROJECT_ID,
                 metadata: {
@@ -44,10 +50,14 @@ const WalletConnectModal: React.FC<Props> = ({
                 },
             });
 
+            setDebugState('Provider set');
+
             setProvider(provider);
             accountCallback(provider.accounts[0]);
             provider.on('display_uri', handleURI);
             await provider.connect();
+
+            setDebugState('Connected');
         };
 
         init();
@@ -80,6 +90,7 @@ const WalletConnectModal: React.FC<Props> = ({
 
     return (
         <>
+            {debugState}
             {uri}
             {provider ? (
                 <PrimaryButton title="Disconnect" callback={handleDisconnect} />
