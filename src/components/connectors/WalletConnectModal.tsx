@@ -58,8 +58,8 @@ const WalletConnectModal: React.FC<Props> = ({
             await provider.connect();
 
             setDebugState('Connected');
-        } catch (error: unknown) {
-            setError(error as string);
+        } catch (_: unknown) {
+            setError('error occurred');
         }
     };
 
