@@ -42,6 +42,7 @@ const WalletConnectModal: React.FC<Props> = ({
                     icons: [''],
                 },
                 showQrModal: false,
+                relayUrl: 'https://relay.walletconnect.com',
                 optionalChains: [1, 137, 2020],
                 /*Optional - Add custom RPCs for each supported chain*/
                 rpcMap: {
