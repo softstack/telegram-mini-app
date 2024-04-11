@@ -21,7 +21,7 @@ const WalletConnectModal: React.FC<Props> = ({
 }) => {
     const PROJECT_ID = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || '';
 
-    const [uri, setUri] = React.useState<string | null>(null);
+    const [uri, setUri] = React.useState<string | null>('No URI received yet');
     const [provider, setProvider] = React.useState<any | null>(null);
 
     React.useEffect(() => {
