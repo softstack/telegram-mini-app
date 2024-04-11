@@ -42,7 +42,6 @@ const WalletConnectModal: React.FC<Props> = ({
                 },
                 showQrModal: false,
                 optionalChains: [1, 137, 2020],
-                relayUrl: 'https://relay.walletconnect.org',
                 /*Optional - Add custom RPCs for each supported chain*/
                 rpcMap: {
                     1: 'mainnet.rpc...',
@@ -90,8 +89,10 @@ const WalletConnectModal: React.FC<Props> = ({
 
     return (
         <>
-            {debugState}
-            {uri}
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {debugState}
+                {uri}
+            </div>
             {provider ? (
                 <PrimaryButton title="Disconnect" callback={handleDisconnect} />
             ) : (
