@@ -6,16 +6,22 @@ import WebApp from '@twa-dev/sdk';
 // import WalletConnect from '@walletconnect/client';
 // import { useWeb3Modal } from '@web3modal/ethers/react';
 import ConnectButton from '../buttons/ConnectButton';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 type Props = {
     title: string;
     icon: string;
+    accountCallback: (account: string) => void;
 };
 
-const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
-    // const [provider, setProvider] = useState<any>(null);
-
+const WalletConnectModal: React.FC<Props> = ({
+    title,
+    icon,
+    accountCallback,
+}) => {
     const PROJECT_ID = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || '';
+
+    const [provider, setProvider] = React.useState<any | null>(null);
 
     const init = async () => {
         const provider = await EthereumProvider.init({
@@ -35,6 +41,9 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
                 137: 'polygon.rpc...',
             },
         });
+
+        setProvider(provider);
+        accountCallback(provider.accounts[0]);
         provider.on('display_uri', handleURI);
         await provider.connect();
     };
@@ -42,6 +51,7 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
     const handleURI = async (uri: string) => {
         console.log('uri', uri);
         const encodedUri = encodeURIComponent(uri);
+        console.log('encodedUri', encodedUri);
         const universalLink = `https://metamask.app.link/wc?uri=${encodedUri}`;
         WebApp.openLink(universalLink);
     };
@@ -50,9 +60,20 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
         init();
     };
 
+    const handleDisconnect = async () => {
+        if (provider) {
+            await provider.disconnect();
+            setProvider(null);
+        }
+    };
+
     return (
         <>
-            <ConnectButton title={title} icon={icon} callback={openModal} />
+            {provider ? (
+                <PrimaryButton title="Disconnect" callback={handleDisconnect} />
+            ) : (
+                <ConnectButton title={title} icon={icon} callback={openModal} />
+            )}
         </>
     );
 };
