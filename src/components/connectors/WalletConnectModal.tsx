@@ -52,7 +52,7 @@ const WalletConnectModal: React.FC<Props> = ({
         console.log('uri', uri);
         const encodedUri = encodeURIComponent(uri);
         console.log('encodedUri', encodedUri);
-        const universalLink = `https://metamask.app.link/wc?uri=${encodedUri}`;
+        const universalLink = `https://metamask.app.link/wc?uri=${uri}`;
         WebApp.openLink(universalLink);
     };
 
