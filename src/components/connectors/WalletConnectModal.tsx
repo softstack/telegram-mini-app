@@ -11,7 +11,7 @@ import PrimaryButton from '../buttons/PrimaryButton';
 type Props = {
     title: string;
     icon: string;
-    accountCallback: (account: string) => void;
+    accountCallback: (account: string | null) => void;
 };
 
 const WalletConnectModal: React.FC<Props> = ({
@@ -63,6 +63,7 @@ const WalletConnectModal: React.FC<Props> = ({
     const handleDisconnect = async () => {
         if (provider) {
             await provider.disconnect();
+            accountCallback(null);
             setProvider(null);
         }
     };
