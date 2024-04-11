@@ -21,44 +21,54 @@ const WalletConnectModal: React.FC<Props> = ({
 }) => {
     const PROJECT_ID = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || '';
 
+    const [uri, setUri] = React.useState<string | null>(null);
     const [provider, setProvider] = React.useState<any | null>(null);
 
-    const init = async () => {
-        const provider = await EthereumProvider.init({
-            projectId: PROJECT_ID,
-            metadata: {
-                name: 'TMA Wallet PoC',
-                description: 'Connect your wallet to a telegram mini app',
-                url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
-                icons: ['https://avatars.githubusercontent.com/u/37784886'],
-            },
-            showQrModal: false,
-            optionalChains: [1, 137, 2020],
+    React.useEffect(() => {
+        const init = async () => {
+            const provider = await EthereumProvider.init({
+                projectId: PROJECT_ID,
+                metadata: {
+                    name: 'TMA Wallet PoC',
+                    description: 'Connect your wallet to a telegram mini app',
+                    url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
+                    icons: ['https://avatars.githubusercontent.com/u/37784886'],
+                },
+                showQrModal: false,
+                optionalChains: [1, 137, 2020],
 
-            /*Optional - Add custom RPCs for each supported chain*/
-            rpcMap: {
-                1: 'mainnet.rpc...',
-                137: 'polygon.rpc...',
-            },
-        });
+                /*Optional - Add custom RPCs for each supported chain*/
+                rpcMap: {
+                    1: 'mainnet.rpc...',
+                    137: 'polygon.rpc...',
+                },
+            });
 
-        setProvider(provider);
-        accountCallback(provider.accounts[0]);
-        provider.on('display_uri', handleURI);
-        await provider.connect();
-    };
+            setProvider(provider);
+            accountCallback(provider.accounts[0]);
+            provider.on('display_uri', handleURI);
+            await provider.connect();
+        };
+
+        init();
+    }, []);
 
     const handleURI = async (uri: string) => {
-        console.log('uri', uri);
+        setUri(uri);
+    };
+
+    const connect = async () => {
+        if (!uri) {
+            return;
+        }
         const encodedUri = encodeURIComponent(uri);
-        console.log('encodedUri', encodedUri);
-        const universalLink = `https://metamask.app.link/wc?uri=${uri}`;
+        const universalLink = `https://metamask.app.link/wc?uri=${encodedUri}`;
         WebApp.openLink(universalLink);
     };
 
-    const openModal = () => {
-        init();
-    };
+    // const openModal = () => {
+    //     init();
+    // };
 
     const handleDisconnect = async () => {
         if (provider) {
@@ -70,10 +80,11 @@ const WalletConnectModal: React.FC<Props> = ({
 
     return (
         <>
+            {uri}
             {provider ? (
                 <PrimaryButton title="Disconnect" callback={handleDisconnect} />
             ) : (
-                <ConnectButton title={title} icon={icon} callback={openModal} />
+                <ConnectButton title={title} icon={icon} callback={connect} />
             )}
         </>
     );
