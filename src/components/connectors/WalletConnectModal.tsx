@@ -38,7 +38,7 @@ const WalletConnectModal: React.FC<Props> = ({
                 metadata: {
                     name: 'TMA Wallet PoC',
                     description: 'Connect your wallet to a telegram mini app',
-                    url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
+                    url: 'https://softstackhq.github.io/', // origin must match your domain & subdomain
                     icons: [''],
                 },
                 showQrModal: false,
