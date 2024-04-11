@@ -24,37 +24,43 @@ const WalletConnectModal: React.FC<Props> = ({
     const [uri, setUri] = React.useState<string | null>('No URI received yet');
     const [provider, setProvider] = React.useState<any | null>(null);
 
+    const [error, setError] = React.useState<string | null>(null);
+
     // debug
     const [debugState, setDebugState] =
         React.useState<string>('Init did not start');
 
     const init = async () => {
         setDebugState('Init started');
-        const provider = await EthereumProvider.init({
-            projectId: PROJECT_ID,
-            metadata: {
-                name: 'TMA Wallet PoC',
-                description: 'Connect your wallet to a telegram mini app',
-                url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
-                icons: [''],
-            },
-            showQrModal: false,
-            optionalChains: [1, 137, 2020],
-            /*Optional - Add custom RPCs for each supported chain*/
-            rpcMap: {
-                1: 'mainnet.rpc...',
-                137: 'polygon.rpc...',
-            },
-        });
+        try {
+            const provider = await EthereumProvider.init({
+                projectId: PROJECT_ID,
+                metadata: {
+                    name: 'TMA Wallet PoC',
+                    description: 'Connect your wallet to a telegram mini app',
+                    url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
+                    icons: [''],
+                },
+                showQrModal: false,
+                optionalChains: [1, 137, 2020],
+                /*Optional - Add custom RPCs for each supported chain*/
+                rpcMap: {
+                    1: 'mainnet.rpc...',
+                    137: 'polygon.rpc...',
+                },
+            });
 
-        setDebugState('Provider set');
+            setDebugState('Provider set');
 
-        setProvider(provider);
-        accountCallback(provider.accounts[0]);
-        provider.on('display_uri', handleURI);
-        await provider.connect();
+            setProvider(provider);
+            accountCallback(provider.accounts[0]);
+            provider.on('display_uri', handleURI);
+            await provider.connect();
 
-        setDebugState('Connected');
+            setDebugState('Connected');
+        } catch (error) {
+            setError(error as string);
+        }
     };
 
     const handleURI = async (uri: string) => {
@@ -93,6 +99,7 @@ const WalletConnectModal: React.FC<Props> = ({
             >
                 <p>{debugState}</p>
                 <p>{uri}</p>
+                {error && <p>{error}</p>}
             </div>
             <PrimaryButton title="Connect" callback={init} />
             {provider ? (
