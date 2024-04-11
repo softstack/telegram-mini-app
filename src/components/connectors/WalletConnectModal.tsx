@@ -89,7 +89,13 @@ const WalletConnectModal: React.FC<Props> = ({
 
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    color: 'black',
+                }}
+            >
                 {debugState}
                 {uri}
             </div>
