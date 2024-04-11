@@ -74,6 +74,25 @@ function App() {
         }
     }, [window.ethereum]);
 
+    useEffect(() => {
+        if (window.ethereum) {
+            window.ethereum.on('accountsChanged', (accounts) => {
+                if ((accounts as any).length === 0) {
+                    disconnect();
+                } else {
+                    // Handle account change
+                    return;
+                }
+            });
+        }
+    }, [window.ethereum]);
+
+    // Handle disconnect
+    const disconnect = () => {
+        setAccount(null);
+        setView(View.CONNECT);
+    };
+
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
@@ -201,7 +220,7 @@ function App() {
                                 icon={evmConnectIcon}
                                 callback={openConnectOverlay}
                             /> */}
-                            {account ? (
+                            {!account ? (
                                 <WalletConnectModal
                                     title="Wallet Connect"
                                     icon={walletConnectIcon}
