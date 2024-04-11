@@ -3,8 +3,6 @@ import React from 'react';
 import { EthereumProvider } from '@walletconnect/ethereum-provider';
 import WebApp from '@twa-dev/sdk';
 
-// import WalletConnect from '@walletconnect/client';
-// import { useWeb3Modal } from '@web3modal/ethers/react';
 import ConnectButton from '../buttons/ConnectButton';
 import PrimaryButton from '../buttons/PrimaryButton';
 
@@ -42,13 +40,7 @@ const WalletConnectModal: React.FC<Props> = ({
                     icons: ['https://avatars.githubusercontent.com/u/37784886'],
                 },
                 showQrModal: false,
-                relayUrl: 'https://relay.walletconnect.com/',
                 optionalChains: [1, 137, 2020],
-                /*Optional - Add custom RPCs for each supported chain*/
-                rpcMap: {
-                    1: 'mainnet.rpc...',
-                    137: 'polygon.rpc...',
-                },
             });
 
             setDebugState('Provider set');
@@ -76,10 +68,6 @@ const WalletConnectModal: React.FC<Props> = ({
         const universalLink = `https://metamask.app.link/wc?uri=${encodedUri}`;
         WebApp.openLink(universalLink);
     };
-
-    // const openModal = () => {
-    //     init();
-    // };
 
     const handleDisconnect = async () => {
         if (provider) {

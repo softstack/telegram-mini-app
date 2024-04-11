@@ -26,6 +26,7 @@
         "@walletconnect/client": "^1.8.0",
         "@walletconnect/core": "^2.12.1",
         "@walletconnect/types": "^2.12.2",
+        "@walletconnect/universal-provider": "^2.12.2",
         "@web3modal/ethers": "^4.1.1",
         "dotenv": "^16.4.5",
         "ethers": "^6.11.1",
