@@ -32,11 +32,11 @@ const WalletConnectModal: React.FC<Props> = ({
                     name: 'TMA Wallet PoC',
                     description: 'Connect your wallet to a telegram mini app',
                     url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
-                    icons: ['https://avatars.githubusercontent.com/u/37784886'],
+                    icons: [''],
                 },
                 showQrModal: false,
                 optionalChains: [1, 137, 2020],
-
+                relayUrl: 'https://relay.walletconnect.org',
                 /*Optional - Add custom RPCs for each supported chain*/
                 rpcMap: {
                     1: 'mainnet.rpc...',
