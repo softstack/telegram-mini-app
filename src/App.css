@@ -142,12 +142,14 @@
     margin: 0;
     font-size: 1.2em;
     font-weight: 600;
+    color: black;
 }
 
 .balance-details-value {
     font-size: 3em;
     margin: 0;
     font-weight: 800;
+    color: black;
 }
 
 .transaction-options {

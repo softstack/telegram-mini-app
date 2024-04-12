@@ -6,6 +6,7 @@
     padding: 0.5em 1em;
     border-radius: 20px;
     background-color: #ffffff;
+    color: black;
 }
 
 .transaction-history-item-logo {
