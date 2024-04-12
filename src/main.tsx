@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 // TonConnect UI
-// import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 // Rainbow Kit
 import './polyfills';
@@ -40,9 +40,9 @@ root.render(
         <WagmiProvider config={rainbowConfig}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider>
-                    {/* <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json"> */}
-                    <App />
-                    {/* </TonConnectUIProvider> */}
+                    <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
+                        <App />
+                    </TonConnectUIProvider>
                 </RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>
