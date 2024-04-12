@@ -19,17 +19,10 @@ const WalletConnectModal: React.FC<Props> = ({
 }) => {
     const PROJECT_ID = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || '';
 
-    const [uri, setUri] = React.useState<string | null>('No URI received yet');
     const [provider, setProvider] = React.useState<any | null>(null);
-
-    const [error, setError] = React.useState<string | null>(null);
-
-    // debug
-    const [debugState, setDebugState] =
-        React.useState<string>('Init did not start');
+    const [uri, setUri] = React.useState<string | null>(null);
 
     const init = async () => {
-        setDebugState('Init started');
         try {
             const provider = await EthereumProvider.init({
                 projectId: PROJECT_ID,
@@ -43,16 +36,12 @@ const WalletConnectModal: React.FC<Props> = ({
                 optionalChains: [1, 137, 2020],
             });
 
-            setDebugState('Provider set');
-
             setProvider(provider);
             accountCallback(provider.accounts[0]);
             provider.on('display_uri', handleURI);
             await provider.connect();
-
-            setDebugState('Connected');
         } catch (_: unknown) {
-            setError('error occurred');
+            console.error("Couldn't connect");
         }
     };
 
@@ -79,17 +68,6 @@ const WalletConnectModal: React.FC<Props> = ({
 
     return (
         <>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    color: 'black',
-                }}
-            >
-                <p>{debugState}</p>
-                <p>{uri}</p>
-                {error && <p>{error}</p>}
-            </div>
             <PrimaryButton title="Connect" callback={init} />
             {provider ? (
                 <PrimaryButton title="Disconnect" callback={handleDisconnect} />
