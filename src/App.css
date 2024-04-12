@@ -88,8 +88,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    max-height: 12%;
     max-width: 12%;
+    margin: 0 auto;
 }
 
 .wallet-provider-icon img {
@@ -174,4 +174,5 @@
     width: 80%;
     margin: 0 auto;
     color: #707579;
+    word-wrap: anywhere;
 }
