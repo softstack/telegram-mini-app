@@ -22,28 +22,34 @@ const WalletConnectModal: React.FC<Props> = ({
     const [provider, setProvider] = React.useState<any | null>(null);
     const [uri, setUri] = React.useState<string | null>(null);
 
-    const init = async () => {
-        try {
-            const provider = await EthereumProvider.init({
-                projectId: PROJECT_ID,
-                metadata: {
-                    name: 'TMA Wallet PoC',
-                    description: 'Connect your wallet to a telegram mini app',
-                    url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
-                    icons: ['https://avatars.githubusercontent.com/u/37784886'],
-                },
-                showQrModal: false,
-                optionalChains: [1, 137, 2020],
-            });
+    React.useEffect(() => {
+        const init = async () => {
+            try {
+                const provider = await EthereumProvider.init({
+                    projectId: PROJECT_ID,
+                    metadata: {
+                        name: 'TMA Wallet PoC',
+                        description:
+                            'Connect your wallet to a telegram mini app',
+                        url: 'https://softstackhq.github.io/telegram-mini-app/', // origin must match your domain & subdomain
+                        icons: [
+                            'https://avatars.githubusercontent.com/u/37784886',
+                        ],
+                    },
+                    showQrModal: false,
+                    optionalChains: [1, 137, 2020],
+                });
 
-            setProvider(provider);
-            accountCallback(provider.accounts[0]);
-            provider.on('display_uri', handleURI);
-            await provider.connect();
-        } catch (_: unknown) {
-            console.error("Couldn't connect");
-        }
-    };
+                setProvider(provider);
+                accountCallback(provider.accounts[0]);
+                provider.on('display_uri', handleURI);
+                await provider.connect();
+            } catch (_: unknown) {
+                console.error("Couldn't connect");
+            }
+        };
+        init();
+    }, []);
 
     const handleURI = async (uri: string) => {
         setUri(uri);
@@ -68,7 +74,6 @@ const WalletConnectModal: React.FC<Props> = ({
 
     return (
         <>
-            <PrimaryButton title="Connect" callback={init} />
             {provider ? (
                 <PrimaryButton title="Disconnect" callback={handleDisconnect} />
             ) : (
