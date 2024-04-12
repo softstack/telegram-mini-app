@@ -248,7 +248,9 @@ function App() {
                                 </div>
                                 <div className="wallet-balance-details">
                                     <div className="wallet-balance-header">
-                                        <p>Total Balance</p>
+                                        <p style={{ color: 'black' }}>
+                                            Total Balance
+                                        </p>
                                         <Tooltip
                                             headline="Balance"
                                             content="The balance your wallet is currently holding."
