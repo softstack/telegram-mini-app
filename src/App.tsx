@@ -29,6 +29,7 @@ import tonConnectIcon from './assets/ton_connect.png';
 import sendIcon from './assets/send_icon.svg';
 import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
+import { useTonWallet } from '@tonconnect/ui-react';
 
 enum View {
     LANDING = 0,
@@ -107,11 +108,11 @@ function App() {
     }, [view]);
 
     // TON Connect
-    // const tonWallet = useTonWallet();
-    // useEffect(() => {
-    //     // TON Connect
-    //     // console.log(tonWallet);
-    // }, [tonWallet]);
+    const tonWallet = useTonWallet();
+    useEffect(() => {
+        // TON Connect
+        console.log(tonWallet);
+    }, [tonWallet]);
 
     // Solana Connect
     useEffect(() => {
