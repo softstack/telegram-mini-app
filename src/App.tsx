@@ -110,8 +110,9 @@ function App() {
     // TON Connect
     const tonWallet = useTonWallet();
     useEffect(() => {
-        // TON Connect
-        console.log(tonWallet);
+        if (!tonWallet) return;
+        setAccount(tonWallet.account.address);
+        setView(View.CONNECTED);
     }, [tonWallet]);
 
     // Solana Connect
