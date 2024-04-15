@@ -13,17 +13,17 @@ import TransactionButton from './components/buttons/TransactionButton';
 import TransactionHistoryItem from './components/utils/TransactionHistoryItem';
 import ConnectOverlay from './components/connectOverlay/ConnectOverlay';
 
-// import EVMConnectModal from './components/connectors/EVMConnectModal';
+import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
 // import SolanaConnectModal from './components/connectors/SolanaConnectModal';
-import WalletConnectModal from './components/connectors/WalletConnectModal';
+// import WalletConnectModal from './components/connectors/WalletConnectModal';
 
 import avatarPhone from './assets/avatar_phone.png';
 import avatarScooter from './assets/avatar_scooter.png';
 import avatarTable from './assets/avatar_table.png';
 
-// import evmConnectIcon from './assets/EVM_connect_logos.png';
-import walletConnectIcon from './assets/wallet_connect.png';
+import evmConnectIcon from './assets/EVM_connect_logos.png';
+// import walletConnectIcon from './assets/wallet_connect.png';
 import tonConnectIcon from './assets/ton_connect.png';
 // import solanaConnectIcon from './assets/solana_connect.png';
 import sendIcon from './assets/send_icon.svg';
@@ -111,8 +111,8 @@ function App() {
     const tonWallet = useTonWallet();
     useEffect(() => {
         if (!tonWallet) return;
-        setAccount(tonWallet.account.address);
-        setView(View.CONNECTED);
+        // setAccount(tonWallet.account.address);
+        // setView(View.CONNECTED);
     }, [tonWallet]);
 
     // Solana Connect
@@ -146,10 +146,10 @@ function App() {
     const [showConnectOverlay, setShowConnectOverlay] = useState(false);
     const [slideAnimation, setSlideAnimation] = useState('in');
 
-    // const openConnectOverlay = () => {
-    //     setSlideAnimation('in');
-    //     setTimeout(() => setShowConnectOverlay(true), 100);
-    // };
+    const openConnectOverlay = () => {
+        setSlideAnimation('in');
+        setTimeout(() => setShowConnectOverlay(true), 100);
+    };
     const closeConnectOverlay = () => {
         setSlideAnimation('out');
         setTimeout(() => setShowConnectOverlay(false), 100);
@@ -192,24 +192,24 @@ function App() {
                         <Avatar src={avatarPhone} height="60%" />
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
-                            {/* <EVMConnectModal
+                            <EVMConnectModal
                                 title="EVM Connect"
                                 icon={evmConnectIcon}
                                 callback={openConnectOverlay}
-                            /> */}
-                            <WalletConnectModal
+                            />
+                            {/* <WalletConnectModal
                                 title="Wallet Connect"
                                 icon={walletConnectIcon}
                                 accountCallback={setAccount}
-                            />
-                            {account && (
+                            /> */}
+                            {/* {account && (
                                 <>
                                     <PrimaryButton
                                         title="Open my Wallet"
                                         callback={skip}
                                     />
                                 </>
-                            )}
+                            )} */}
                             <TonConnectModal
                                 title="TON Connect"
                                 icon={tonConnectIcon}

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useSDK } from '@metamask/sdk-react';
+import axios from 'axios';
+import WebApp from '@twa-dev/sdk';
 
 import NetworkBadge from './NetworkBadge';
 import WalletBadge from './WalletBadge';
@@ -48,13 +50,16 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     };
 
     // connect function
-
     const connectMetamask = () => {
-        // console.log('Connecting Metamask');
-        // WebApp.openLink(
-        //     'https://metamask.app.link/dapp/softstackhq.github.io/telegram-mini-app/',
-        //     { try_instant_view: true }
-        // );
+        axios
+            .post(
+                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/connect'
+            )
+            .then((response) => {
+                // Set uri with response data
+                console.log(response.data);
+                WebApp.openLink(response.data.universalLink);
+            });
         handleConnectAndSign();
     };
 
