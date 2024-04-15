@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import WebApp from '@twa-dev/sdk';
+import WebApp from '@twa-dev/sdk';
 
 import ConnectButton from '../buttons/ConnectButton';
 
@@ -23,6 +23,7 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
                 // Set uri with response data
                 console.log(response.data);
                 setUri(response.data.universalLink);
+                WebApp.openLink(response.data.universalLink);
             });
     };
 
