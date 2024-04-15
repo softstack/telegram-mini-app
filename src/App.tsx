@@ -80,10 +80,18 @@ function App() {
     const getAccounts = () => {
         axios
             .get(
-                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/accounts'
+                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/accounts',
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'ngrok-skip-browser-warning': 'true',
+                    },
+                }
             )
+
             .then((response) => {
-                console.log(response.data.accounts);
+                console.log(response.data.accounts[0]);
                 setAccount(response.data.accounts[0]);
             });
     };
