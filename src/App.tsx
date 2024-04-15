@@ -75,6 +75,16 @@ function App() {
         }
     }, [window.ethereum]);
 
+    const getAccount = async () => {
+        if (window.ethereum) {
+            const res = await (window.ethereum as any).request({
+                method: 'eth_requestAccounts',
+            });
+            setAccount(res[0]);
+            // setView(View.CONNECTED);
+        }
+    };
+
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
@@ -193,6 +203,10 @@ function App() {
                         {account}
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
+                            <PrimaryButton
+                                title="get acc"
+                                callback={getAccount}
+                            />
                             <EVMConnectModal
                                 title="EVM Connect"
                                 icon={evmConnectIcon}
