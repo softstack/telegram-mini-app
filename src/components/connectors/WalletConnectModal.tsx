@@ -28,7 +28,7 @@ const WalletConnectModal: React.FC<Props> = ({ title, icon }) => {
 
     return (
         <>
-            {uri}
+            <p style={{ color: 'black' }}>{uri}</p>
             <ConnectButton title={title} icon={icon} callback={connect} />
         </>
     );
