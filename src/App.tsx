@@ -190,6 +190,7 @@ function App() {
                             {account && <SkipButton skip={skip} />}
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
+                        {account}
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
                             <EVMConnectModal
