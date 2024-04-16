@@ -42,27 +42,41 @@ const ConnectOverlay: React.FC<Props> = ({
 
     // connect function
     const connectMetamask = async () => {
-        await axios.post(BRIDGE_URL + '/connect').then((response) => {
-            try {
-                WebApp.openLink(response.data.universalLink);
-                close();
-            } catch (error) {
-                console.error(error);
-            }
-        });
+        try {
+            const response = await axios.post(BRIDGE_URL + '/connect');
+            WebApp.openLink(response.data.universalLink);
+            close();
 
-        // check if connected
-        await axios.get(BRIDGE_URL + '/is-connected').then((response) => {
-            try {
-                if (response.data.connected) {
-                    onConnect();
-                } else {
-                    console.log('Not Connected');
+            const startTime = Date.now(); // Record start time
+            const timeout = 30000; // 30 seconds timeout
+
+            // Function to check connection status
+            const checkConnection = async () => {
+                if (Date.now() - startTime > timeout) {
+                    return;
                 }
-            } catch (error) {
-                console.error(error);
-            }
-        });
+
+                try {
+                    const statusResponse = await axios.get(
+                        BRIDGE_URL + '/is-connected'
+                    );
+                    if (statusResponse.data.connected) {
+                        onConnect();
+                    } else {
+                        console.log('Not Connected, checking again...');
+                        setTimeout(checkConnection, 1000);
+                    }
+                } catch (error) {
+                    console.error('Error checking connection:', error);
+                    setTimeout(checkConnection, 1000);
+                }
+            };
+
+            // Start checking connection status
+            checkConnection();
+        } catch (error) {
+            console.error('Error during initial connection:', error);
+        }
     };
 
     // Toggle Wallets
