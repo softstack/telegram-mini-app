@@ -96,15 +96,6 @@ function App() {
             });
     };
 
-    // const accountEventSource = new EventSource(
-    //     'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/account-event'
-    // );
-
-    // accountEventSource.onmessage = (event) => {
-    //     console.log(event.data);
-    //     setAccount(event.data);
-    // };
-
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
@@ -144,11 +135,6 @@ function App() {
         // setAccount(tonWallet.account.address);
         // setView(View.CONNECTED);
     }, [tonWallet]);
-
-    // Solana Connect
-    useEffect(() => {
-        // Solana Connect
-    }, []);
 
     // Test Functions
     const [signedMessage, setSignedMessage] = useState<string | null>(null);

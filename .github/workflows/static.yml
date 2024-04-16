@@ -40,6 +40,7 @@ jobs:
               run: |
                   touch .env
                   echo VITE_WALLET_CONNECT_PROJECT_ID=${{ secrets.WALLET_CONNECT_KEY }} >> .env
+                  echo VITE_BRIDGE_URL=${{ secrets.BRIDGE_URL }} >> .env
                   cat .env
             - name: Install dependencies
               run: npm install
