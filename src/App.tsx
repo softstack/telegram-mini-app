@@ -162,6 +162,7 @@ function App() {
                 }
             )
             .then((response) => {
+                WebApp.openLink('https://metamask.app.link/');
                 setSignedMessage(response.data.message);
             });
     };
