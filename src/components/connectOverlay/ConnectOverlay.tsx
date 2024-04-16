@@ -58,7 +58,14 @@ const ConnectOverlay: React.FC<Props> = ({
 
                 try {
                     const statusResponse = await axios.get(
-                        BRIDGE_URL + '/is-connected'
+                        BRIDGE_URL + '/is-connected',
+                        {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': '*',
+                                'ngrok-skip-browser-warning': 'true',
+                            },
+                        }
                     );
                     if (statusResponse.data.connected) {
                         onConnect();
