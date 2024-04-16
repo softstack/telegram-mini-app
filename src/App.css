@@ -170,7 +170,7 @@
 .transaction-history {
     display: flex;
     flex-direction: column;
-    min-height: 150px;
+    min-height: 120px;
 }
 
 .address-container {

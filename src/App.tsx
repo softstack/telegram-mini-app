@@ -144,7 +144,7 @@ function App() {
 
     const [testMessage, setTestMessage] = useState<string>('');
 
-    const handleTestMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleTestMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTestMessage(e.target.value);
     };
 
@@ -309,11 +309,11 @@ function App() {
                                         valueFiat={150}
                                     />
                                 </div>
-                                <textarea
-                                    className="transaction-input"
+                                <input
+                                    type="text"
                                     placeholder="Enter test message here"
                                     onInput={handleTestMessageChange}
-                                ></textarea>
+                                ></input>
                                 {signedMessage && (
                                     <div>
                                         <p>Signed Message:</p>
