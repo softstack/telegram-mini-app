@@ -314,7 +314,12 @@ function App() {
                                     onInput={handleTestMessageChange}
                                 ></input> */}
                                 {signedMessage && (
-                                    <div style={{ color: 'black' }}>
+                                    <div
+                                        style={{
+                                            color: 'black',
+                                            textWrap: 'wrap',
+                                        }}
+                                    >
                                         <p>Signed Message:</p>
                                         <p>{signedMessage}</p>
                                     </div>
