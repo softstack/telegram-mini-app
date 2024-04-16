@@ -317,11 +317,12 @@ function App() {
                                     <div
                                         style={{
                                             color: 'black',
-                                            textWrap: 'wrap',
                                         }}
                                     >
                                         <p>Signed Message:</p>
-                                        <p>{signedMessage}</p>
+                                        <p style={{ textWrap: 'wrap' }}>
+                                            {signedMessage}
+                                        </p>
                                     </div>
                                 )}
                                 <div className="test-functions">
