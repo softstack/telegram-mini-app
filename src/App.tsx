@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 // import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 import axios from 'axios';
@@ -134,7 +134,7 @@ function App() {
         WebApp.openLink('https://metamask.app.link/');
         axios
             .post(BRIDGE_URL + '/sign', {
-                message: 'This is a test message to sign in the wallet.',
+                message: testMessage,
                 account: account,
             })
             .then((response) => {
@@ -142,9 +142,15 @@ function App() {
             });
     };
 
-    const triggerTestMessageToChat = () => {
-        // Trigger Test Message to Chat
+    const [testMessage, setTestMessage] = useState<string>('');
+
+    const handleTestMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setTestMessage(e.target.value);
     };
+
+    // const triggerTestMessageToChat = () => {
+    //     // Trigger Test Message to Chat
+    // };
 
     // Transaction Functions
     const sendFunds = () => {
@@ -211,10 +217,6 @@ function App() {
                         {account}
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
-                            <PrimaryButton
-                                title="sign message"
-                                callback={triggerTestMessageSign}
-                            />
                             <EVMConnectModal
                                 title="EVM Connect"
                                 icon={evmConnectIcon}
@@ -238,6 +240,7 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
+                            <SkipButton skip={skip} />
                             <Avatar src={avatarTable} height="60%" />
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
@@ -306,15 +309,26 @@ function App() {
                                         valueFiat={150}
                                     />
                                 </div>
+                                <textarea
+                                    className="transaction-input"
+                                    placeholder="Enter test message here"
+                                    onInput={handleTestMessageChange}
+                                ></textarea>
+                                {signedMessage && (
+                                    <div>
+                                        <p>Signed Message:</p>
+                                        <p>{signedMessage}</p>
+                                    </div>
+                                )}
                                 <div className="test-functions">
                                     <PrimaryButton
                                         title="Sign Test Message in Wallet"
                                         callback={triggerTestMessageSign}
                                     />
-                                    <PrimaryButton
+                                    {/* <PrimaryButton
                                         title="Trigger Test Message to Chat"
                                         callback={triggerTestMessageToChat}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </div>
