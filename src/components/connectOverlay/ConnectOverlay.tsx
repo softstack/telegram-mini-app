@@ -38,9 +38,12 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     // connect function
     const connectMetamask = () => {
         axios.post(BRIDGE_URL + '/connect').then((response) => {
-            // Set uri with response data
-            console.log(response.data);
-            WebApp.openLink(response.data.universalLink);
+            try {
+                WebApp.openLink(response.data.universalLink);
+                close();
+            } catch (error) {
+                console.error(error);
+            }
         });
     };
 
