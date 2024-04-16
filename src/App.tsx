@@ -152,7 +152,17 @@ function App() {
 
     // Test Functions
     const triggerTestMessageSign = () => {
-        // Trigger Test Message Sign
+        axios
+            .post(
+                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/sign',
+                {
+                    message: 'This is a test message to sign in the wallet.',
+                    account: account,
+                }
+            )
+            .then((response) => {
+                console.log(response.data);
+            });
     };
 
     const triggerTestMessageToChat = () => {
@@ -226,6 +236,10 @@ function App() {
                             <PrimaryButton
                                 title="get accs"
                                 callback={getAccounts}
+                            />
+                            <PrimaryButton
+                                title="sign message"
+                                callback={triggerTestMessageSign}
                             />
                             <EVMConnectModal
                                 title="EVM Connect"
