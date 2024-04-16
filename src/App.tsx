@@ -79,6 +79,10 @@ function App() {
             });
     };
 
+    const handleConnect = () => {
+        setView(View.CONNECTED);
+    };
+
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
@@ -222,8 +226,9 @@ function App() {
                         </div>
                         {showConnectOverlay && (
                             <ConnectOverlay
-                                close={closeConnectOverlay}
                                 slideAnimation={slideAnimation}
+                                close={closeConnectOverlay}
+                                onConnect={handleConnect}
                             />
                         )}
                     </div>

@@ -19,11 +19,16 @@ import './ConnectOverlay.css';
 type Props = {
     slideAnimation: string;
     close: () => void;
+    onConnect: () => void;
 };
 
 const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
-const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
+const ConnectOverlay: React.FC<Props> = ({
+    slideAnimation,
+    close,
+    onConnect,
+}) => {
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [walletsExpanded, setWalletsExpanded] = useState(false);
 
@@ -36,11 +41,24 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     };
 
     // connect function
-    const connectMetamask = () => {
-        axios.post(BRIDGE_URL + '/connect').then((response) => {
+    const connectMetamask = async () => {
+        await axios.post(BRIDGE_URL + '/connect').then((response) => {
             try {
                 WebApp.openLink(response.data.universalLink);
                 close();
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        // check if connected
+        await axios.get(BRIDGE_URL + '/is-connected').then((response) => {
+            try {
+                if (response.data.connected) {
+                    onConnect();
+                } else {
+                    console.log('Not Connected');
+                }
             } catch (error) {
                 console.error(error);
             }
