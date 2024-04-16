@@ -46,6 +46,8 @@ WebApp.MainButton.color = '#007aff';
 WebApp.MainButton.setText('Add to your Home Screen');
 WebApp.MainButton.show();
 
+const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
+
 function App() {
     const [view, setView] = useState<View>(View.LANDING);
 
@@ -79,16 +81,13 @@ function App() {
     // Get Accounts
     const getAccounts = () => {
         axios
-            .get(
-                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/accounts',
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
-                        'ngrok-skip-browser-warning': 'true',
-                    },
-                }
-            )
+            .get(BRIDGE_URL + '/accounts', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            })
 
             .then((response) => {
                 console.log(response.data.accounts[0]);
@@ -141,13 +140,10 @@ function App() {
     const triggerTestMessageSign = () => {
         WebApp.openLink('https://metamask.app.link/');
         axios
-            .post(
-                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/sign',
-                {
-                    message: 'This is a test message to sign in the wallet.',
-                    account: account,
-                }
-            )
+            .post(BRIDGE_URL + '/sign', {
+                message: 'This is a test message to sign in the wallet.',
+                account: account,
+            })
             .then((response) => {
                 setSignedMessage(response.data.signature);
             });

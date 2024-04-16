@@ -23,6 +23,8 @@ type Props = {
     close: () => void;
 };
 
+const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
+
 const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
     const { sdk, connected } = useSDK();
 
@@ -51,15 +53,11 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
 
     // connect function
     const connectMetamask = () => {
-        axios
-            .post(
-                'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/connect'
-            )
-            .then((response) => {
-                // Set uri with response data
-                console.log(response.data);
-                WebApp.openLink(response.data.universalLink);
-            });
+        axios.post(BRIDGE_URL + '/connect').then((response) => {
+            // Set uri with response data
+            console.log(response.data);
+            WebApp.openLink(response.data.universalLink);
+        });
         handleConnectAndSign();
     };
 
