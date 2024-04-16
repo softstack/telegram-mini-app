@@ -240,7 +240,6 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
-                            <SkipButton skip={skip} />
                             <Avatar src={avatarTable} height="60%" />
                             <div className="wallet-overview">
                                 <h2 className="headline">HORRAY!</h2>
