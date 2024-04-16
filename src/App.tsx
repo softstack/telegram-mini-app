@@ -106,6 +106,8 @@ function App() {
             WebApp.MainButton.color = '#007aff';
             WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(openWallet);
+
+            getAccounts();
         }
         if (view === View.WALLET) {
             WebApp.MainButton.show();
@@ -206,10 +208,6 @@ function App() {
                         {account}
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
-                            <PrimaryButton
-                                title="get accs"
-                                callback={getAccounts}
-                            />
                             <PrimaryButton
                                 title="sign message"
                                 callback={triggerTestMessageSign}
