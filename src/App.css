@@ -119,6 +119,7 @@
 .wallet-balance-value {
     font-size: 1.7em;
     font-weight: 800;
+    color: black;
 }
 
 .wallet-details-container {

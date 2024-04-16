@@ -87,11 +87,13 @@ function App() {
     useEffect(() => {
         if (view === View.LANDING) {
             WebApp.MainButton.show();
+            WebApp.MainButton.enable();
             WebApp.MainButton.setText('Connect Your Wallet');
             WebApp.MainButton.color = '#007aff';
             WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(skip);
         }
+        // Change the Main Buttons color and textColor to match telegrams background color, to "hide" the button
         if (view === View.CONNECT) {
             WebApp.MainButton.show();
             WebApp.MainButton.disable();
@@ -99,9 +101,9 @@ function App() {
             WebApp.MainButton.textColor = '#1a1a1a';
             WebApp.MainButton.color = '#1a1a1a';
         }
-        // Change the Main Buttons color and textColor to match telegrams background color, to "hide" the button
         if (view === View.CONNECTED) {
             WebApp.MainButton.show();
+            WebApp.MainButton.enable();
             WebApp.MainButton.setText('Open my Wallet');
             WebApp.MainButton.color = '#007aff';
             WebApp.MainButton.textColor = '#ffffff';
@@ -111,6 +113,7 @@ function App() {
         }
         if (view === View.WALLET) {
             WebApp.MainButton.show();
+            WebApp.MainButton.enable();
             WebApp.MainButton.color = '#007aff';
             WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.setText('Contact Sales');
