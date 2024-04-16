@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSDK } from '@metamask/sdk-react';
 import axios from 'axios';
 import WebApp from '@twa-dev/sdk';
 
@@ -26,19 +25,17 @@ type Props = {
 const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
 const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
-    const { sdk, connected } = useSDK();
+    // const { connected } = useSDK();
 
-    const [signedMessage, setSignedMessage] = useState('');
-
-    const handleConnectAndSign = async () => {
-        try {
-            const message = 'Your message here';
-            const signature = await sdk?.connectAndSign({ msg: message });
-            setSignedMessage(signature);
-        } catch (error) {
-            console.error('Error in signing:', error);
-        }
-    };
+    // const handleConnectAndSign = async () => {
+    //     try {
+    //         const message = 'Your message here';
+    //         const signature = await sdk?.connectAndSign({ msg: message });
+    //         setSignedMessage(signature);
+    //     } catch (error) {
+    //         console.error('Error in signing:', error);
+    //     }
+    // };
 
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [walletsExpanded, setWalletsExpanded] = useState(false);
@@ -58,7 +55,7 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
             console.log(response.data);
             WebApp.openLink(response.data.universalLink);
         });
-        handleConnectAndSign();
+        // handleConnectAndSign();
     };
 
     // Toggle Wallets
@@ -68,7 +65,7 @@ const ConnectOverlay: React.FC<Props> = ({ close, slideAnimation }) => {
 
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
-            {connected && <div>{signedMessage}</div>}
+            {/* {connected && <div>{signedMessage}</div>} */}
             <div className="connect-overlay-header">
                 <p>Connect Account</p>
                 <div onClick={close} className="connect-overlay-close">

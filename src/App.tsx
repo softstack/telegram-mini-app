@@ -16,17 +16,13 @@ import ConnectOverlay from './components/connectOverlay/ConnectOverlay';
 
 import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
-// import SolanaConnectModal from './components/connectors/SolanaConnectModal';
-// import WalletConnectModal from './components/connectors/WalletConnectModal';
 
 import avatarPhone from './assets/avatar_phone.png';
 import avatarScooter from './assets/avatar_scooter.png';
 import avatarTable from './assets/avatar_table.png';
 
 import evmConnectIcon from './assets/EVM_connect_logos.png';
-// import walletConnectIcon from './assets/wallet_connect.png';
 import tonConnectIcon from './assets/ton_connect.png';
-// import solanaConnectIcon from './assets/solana_connect.png';
 import sendIcon from './assets/send_icon.svg';
 import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
@@ -65,20 +61,8 @@ function App() {
         setView(View.WALLET);
     };
 
-    // Detect if the user is connected to a web3 provider
-    const [account, setAccount] = useState<string | null>(null);
-    useEffect(() => {
-        if (window.ethereum) {
-            (window.ethereum as any)
-                .request({ method: 'eth_requestAccounts' })
-                .then((res: any) => {
-                    setAccount(res[0]);
-                    setView(View.CONNECTED);
-                });
-        }
-    }, [window.ethereum]);
-
     // Get Accounts
+    const [account, setAccount] = useState<string | null>(null);
     const getAccounts = () => {
         axios
             .get(BRIDGE_URL + '/accounts', {
@@ -231,27 +215,10 @@ function App() {
                                 icon={evmConnectIcon}
                                 callback={openConnectOverlay}
                             />
-                            {/* <WalletConnectModal
-                                title="Wallet Connect"
-                                icon={walletConnectIcon}
-                                accountCallback={setAccount}
-                            /> */}
-                            {/* {account && (
-                                <>
-                                    <PrimaryButton
-                                        title="Open my Wallet"
-                                        callback={skip}
-                                    />
-                                </>
-                            )} */}
                             <TonConnectModal
                                 title="TON Connect"
                                 icon={tonConnectIcon}
                             />
-                            {/* <SolanaConnectModal
-                                title="Solana Connect"
-                                icon={solanaConnectIcon}
-                            /> */}
                         </div>
                         {showConnectOverlay && (
                             <ConnectOverlay
