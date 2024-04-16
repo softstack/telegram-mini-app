@@ -151,6 +151,7 @@ function App() {
     }, []);
 
     // Test Functions
+    const [signedMessage, setSignedMessage] = useState<string | null>(null);
     const triggerTestMessageSign = () => {
         axios
             .post(
@@ -161,7 +162,7 @@ function App() {
                 }
             )
             .then((response) => {
-                console.log(response.data);
+                setSignedMessage(response.data.message);
             });
     };
 
@@ -230,6 +231,7 @@ function App() {
                             {account && <SkipButton skip={skip} />}
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
+                        {signedMessage}
                         {account}
                         <div className="connect-buttons">
                             <h2 className="headline">CONNECT</h2>
