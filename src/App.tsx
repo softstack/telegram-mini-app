@@ -163,7 +163,7 @@ function App() {
                 }
             )
             .then((response) => {
-                setSignedMessage(response.data.message);
+                setSignedMessage(response.data);
             });
     };
 
