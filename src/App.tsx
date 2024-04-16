@@ -153,6 +153,7 @@ function App() {
     // Test Functions
     const [signedMessage, setSignedMessage] = useState<string | null>(null);
     const triggerTestMessageSign = () => {
+        WebApp.openLink('https://metamask.app.link/');
         axios
             .post(
                 'https://8d58-2a02-8106-21-bc00-20a7-e089-bdb8-452a.ngrok-free.app/sign',
@@ -162,7 +163,6 @@ function App() {
                 }
             )
             .then((response) => {
-                WebApp.openLink('https://metamask.app.link/');
                 setSignedMessage(response.data.message);
             });
     };
