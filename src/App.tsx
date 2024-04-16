@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 // import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 import axios from 'axios';
@@ -134,7 +134,7 @@ function App() {
         WebApp.openLink('https://metamask.app.link/');
         axios
             .post(BRIDGE_URL + '/sign', {
-                message: testMessage,
+                message: 'This is a test message.',
                 account: account,
             })
             .then((response) => {
@@ -142,11 +142,11 @@ function App() {
             });
     };
 
-    const [testMessage, setTestMessage] = useState<string>('');
+    // const [testMessage, setTestMessage] = useState<string>('');
 
-    const handleTestMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTestMessage(e.target.value);
-    };
+    // const handleTestMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setTestMessage(e.target.value);
+    // };
 
     // const triggerTestMessageToChat = () => {
     //     // Trigger Test Message to Chat
@@ -309,13 +309,13 @@ function App() {
                                         valueFiat={150}
                                     />
                                 </div>
-                                <input
+                                {/* <input
                                     type="text"
                                     placeholder="Enter test message here"
                                     onInput={handleTestMessageChange}
-                                ></input>
+                                ></input> */}
                                 {signedMessage && (
-                                    <div>
+                                    <div style={{ color: 'black' }}>
                                         <p>Signed Message:</p>
                                         <p>{signedMessage}</p>
                                     </div>
