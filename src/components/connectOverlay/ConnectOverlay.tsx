@@ -60,7 +60,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     const statusResponse = await axios.get(
                         BRIDGE_URL + '/is-connected',
                         {
-                            withCredentials: true,
+                            // withCredentials: true,
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Access-Control-Allow-Origin': '*',
