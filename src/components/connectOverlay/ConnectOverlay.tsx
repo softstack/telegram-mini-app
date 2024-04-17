@@ -82,7 +82,6 @@ const ConnectOverlay: React.FC<Props> = ({
 
             // Start checking connection status
             checkConnection();
-            onConnect();
         } catch (error) {
             console.error('Error during initial connection:', error);
         }
