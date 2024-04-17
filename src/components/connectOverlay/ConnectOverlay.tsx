@@ -47,40 +47,41 @@ const ConnectOverlay: React.FC<Props> = ({
             WebApp.openLink(response.data.universalLink);
             close();
 
-            // const startTime = Date.now(); // Record start time
-            // const timeout = 30000; // 30 seconds timeout
+            const startTime = Date.now(); // Record start time
+            const timeout = 30000; // 30 seconds timeout
 
-            // // Function to check connection status
-            // const checkConnection = async () => {
-            //     if (Date.now() - startTime > timeout) {
-            //         return;
-            //     }
+            // Function to check connection status
+            const checkConnection = async () => {
+                if (Date.now() - startTime > timeout) {
+                    return;
+                }
 
-            //     try {
-            //         const statusResponse = await axios.get(
-            //             BRIDGE_URL + '/is-connected',
-            //             {
-            //                 headers: {
-            //                     'Content-Type': 'application/json',
-            //                     'Access-Control-Allow-Origin': '*',
-            //                     'ngrok-skip-browser-warning': 'true',
-            //                 },
-            //             }
-            //         );
-            //         if (statusResponse.data.connected) {
-            //             onConnect();
-            //         } else {
-            //             console.log('Not Connected, checking again...');
-            //             setTimeout(checkConnection, 1000);
-            //         }
-            //     } catch (error) {
-            //         console.error('Error checking connection:', error);
-            //         setTimeout(checkConnection, 1000);
-            //     }
-            // };
+                try {
+                    const statusResponse = await axios.get(
+                        BRIDGE_URL + '/is-connected',
+                        {
+                            withCredentials: true,
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': '*',
+                                'ngrok-skip-browser-warning': 'true',
+                            },
+                        }
+                    );
+                    if (statusResponse.data.connected) {
+                        onConnect();
+                    } else {
+                        console.log('Not Connected, checking again...');
+                        setTimeout(checkConnection, 1000);
+                    }
+                } catch (error) {
+                    console.error('Error checking connection:', error);
+                    setTimeout(checkConnection, 1000);
+                }
+            };
 
-            // // Start checking connection status
-            // checkConnection();
+            // Start checking connection status
+            checkConnection();
             onConnect();
         } catch (error) {
             console.error('Error during initial connection:', error);
