@@ -27,7 +27,7 @@ const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 const ConnectOverlay: React.FC<Props> = ({
     slideAnimation,
     close,
-    // onConnect,
+    onConnect,
 }) => {
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [walletsExpanded, setWalletsExpanded] = useState(false);
@@ -44,43 +44,43 @@ const ConnectOverlay: React.FC<Props> = ({
     const connectMetamask = async () => {
         try {
             const response = await axios.post(BRIDGE_URL + '/init-provider');
-            WebApp.openLink(response.data.uri);
+            WebApp.openLink(response.data.universalLink);
             close();
 
-            // const startTime = Date.now(); // Record start time
-            // const timeout = 30000; // 30 seconds timeout
+            const startTime = Date.now(); // Record start time
+            const timeout = 30000; // 30 seconds timeout
 
             // Function to check connection status
-            // const checkConnection = async () => {
-            //     if (Date.now() - startTime > timeout) {
-            //         return;
-            //     }
+            const checkConnection = async () => {
+                if (Date.now() - startTime > timeout) {
+                    return;
+                }
 
-            //     try {
-            //         const statusResponse = await axios.get(
-            //             BRIDGE_URL + '/is-connected',
-            //             {
-            //                 headers: {
-            //                     'Content-Type': 'application/json',
-            //                     'Access-Control-Allow-Origin': '*',
-            //                     'ngrok-skip-browser-warning': 'true',
-            //                 },
-            //             }
-            //         );
-            //         if (statusResponse.data.connected) {
-            //             onConnect();
-            //         } else {
-            //             console.log('Not Connected, checking again...');
-            //             setTimeout(checkConnection, 1000);
-            //         }
-            //     } catch (error) {
-            //         console.error('Error checking connection:', error);
-            //         setTimeout(checkConnection, 1000);
-            //     }
-            // };
+                try {
+                    const statusResponse = await axios.get(
+                        BRIDGE_URL + '/is-connected',
+                        {
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': '*',
+                                'ngrok-skip-browser-warning': 'true',
+                            },
+                        }
+                    );
+                    if (statusResponse.data.connected) {
+                        onConnect();
+                    } else {
+                        console.log('Not Connected, checking again...');
+                        setTimeout(checkConnection, 1000);
+                    }
+                } catch (error) {
+                    console.error('Error checking connection:', error);
+                    setTimeout(checkConnection, 1000);
+                }
+            };
 
-            // // Start checking connection status
-            // checkConnection();
+            // Start checking connection status
+            checkConnection();
         } catch (error) {
             console.error('Error during initial connection:', error);
         }
