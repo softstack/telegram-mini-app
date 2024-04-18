@@ -139,6 +139,7 @@ function App() {
                 account: account,
             })
             .then((response) => {
+                console.log(response.data.signature);
                 setSignedMessage(response.data.signature);
             });
     };
