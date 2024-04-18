@@ -74,11 +74,11 @@ const ConnectOverlay: React.FC<Props> = ({
                         onConnect();
                     } else {
                         console.log('Not Connected, checking again...');
-                        setTimeout(checkConnection, 2000);
+                        setTimeout(checkConnection, 1000);
                     }
                 } catch (error) {
                     console.error('Error checking connection:', error);
-                    setTimeout(checkConnection, 2000);
+                    setTimeout(checkConnection, 1000);
                 }
             };
 
