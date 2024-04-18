@@ -65,8 +65,8 @@ const ConnectOverlay: React.FC<Props> = ({
                             withCredentials: true,
                             headers: {
                                 'Content-Type': 'application/json',
-                                // 'Access-Control-Allow-Origin': '*',
-                                // 'ngrok-skip-browser-warning': 'true',
+                                'Access-Control-Allow-Origin': '*',
+                                'ngrok-skip-browser-warning': 'true',
                             },
                         }
                     );
