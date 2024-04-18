@@ -45,7 +45,6 @@ const ConnectOverlay: React.FC<Props> = ({
         try {
             const response = await axios.post(BRIDGE_URL + '/init-provider');
             const providerId = response.data.providerId;
-            const sessionID = response.data.sessionID;
             WebApp.openLink(response.data.universalLink);
             close();
 
@@ -63,7 +62,6 @@ const ConnectOverlay: React.FC<Props> = ({
                         BRIDGE_URL + '/is-connected',
                         {
                             providerId: providerId,
-                            sessionID: sessionID,
                             withCredentials: true,
                             headers: {
                                 'Content-Type': 'application/json',
