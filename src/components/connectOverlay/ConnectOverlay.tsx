@@ -15,6 +15,7 @@ import metamaskLogo from '../../assets/metamask_logo.svg';
 import coinbaseLogo from '../../assets/coinbase_logo.svg';
 
 import './ConnectOverlay.css';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 type Props = {
     slideAnimation: string;
@@ -27,7 +28,7 @@ const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 const ConnectOverlay: React.FC<Props> = ({
     slideAnimation,
     close,
-    onConnect,
+    // onConnect,
 }) => {
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [walletsExpanded, setWalletsExpanded] = useState(false);
@@ -40,50 +41,67 @@ const ConnectOverlay: React.FC<Props> = ({
         setWalletsExpanded(!walletsExpanded);
     };
 
+    const test = async () => {
+        const statusResponse = await axios.post(BRIDGE_URL + '/is-connected', {
+            // providerId: providerId,
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'ngrok-skip-browser-warning': 'true',
+            },
+        });
+        if (statusResponse) {
+            console.log(statusResponse.data);
+        } else {
+            console.log('Not Connected, checking again...');
+        }
+    };
+
     // connect function
     const connectMetamask = async () => {
         try {
             const response = await axios.post(BRIDGE_URL + '/init-provider');
-            const providerId = response.data.providerId;
+            // const providerId = response.data.providerId;
             WebApp.openLink(response.data.universalLink);
             close();
 
-            const startTime = Date.now(); // Record start time
-            const timeout = 30000; // 30 seconds timeout
+            // const startTime = Date.now(); // Record start time
+            // const timeout = 30000; // 30 seconds timeout
 
-            // Function to check connection status
-            const checkConnection = async () => {
-                if (Date.now() - startTime > timeout) {
-                    return;
-                }
+            // // Function to check connection status
+            // const checkConnection = async () => {
+            //     if (Date.now() - startTime > timeout) {
+            //         return;
+            //     }
 
-                try {
-                    const statusResponse = await axios.post(
-                        BRIDGE_URL + '/is-connected',
-                        {
-                            providerId: providerId,
-                            withCredentials: true,
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Access-Control-Allow-Origin': '*',
-                                'ngrok-skip-browser-warning': 'true',
-                            },
-                        }
-                    );
-                    if (statusResponse.data.connected) {
-                        onConnect();
-                    } else {
-                        console.log('Not Connected, checking again...');
-                        setTimeout(checkConnection, 1000);
-                    }
-                } catch (error) {
-                    console.error('Error checking connection:', error);
-                    setTimeout(checkConnection, 1000);
-                }
-            };
+            //     try {
+            //         const statusResponse = await axios.post(
+            //             BRIDGE_URL + '/is-connected',
+            //             {
+            //                 providerId: providerId,
+            //                 withCredentials: true,
+            //                 headers: {
+            //                     'Content-Type': 'application/json',
+            //                     'Access-Control-Allow-Origin': '*',
+            //                     'ngrok-skip-browser-warning': 'true',
+            //                 },
+            //             }
+            //         );
+            //         if (statusResponse.data.connected) {
+            //             onConnect();
+            //         } else {
+            //             console.log('Not Connected, checking again...');
+            //             setTimeout(checkConnection, 1000);
+            //         }
+            //     } catch (error) {
+            //         console.error('Error checking connection:', error);
+            //         setTimeout(checkConnection, 1000);
+            //     }
+            // };
 
-            // Start checking connection status
-            checkConnection();
+            // // Start checking connection status
+            // checkConnection();
         } catch (error) {
             console.error('Error during initial connection:', error);
         }
@@ -141,6 +159,7 @@ const ConnectOverlay: React.FC<Props> = ({
             </div>
             {walletsExpanded && (
                 <div className="available-wallets">
+                    <PrimaryButton title="Test" callback={test} />
                     <WalletBadge
                         walletName="Metamask"
                         icon={metamaskLogo}
