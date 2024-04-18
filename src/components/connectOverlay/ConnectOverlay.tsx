@@ -40,12 +40,14 @@ const ConnectOverlay: React.FC<Props> = ({
         setWalletsExpanded(!walletsExpanded);
     };
 
+    const [sessionID, setSessionID] = useState('');
+
     // connect function
     const connectMetamask = async () => {
         try {
             const response = await axios.post(BRIDGE_URL + '/init-provider');
             const providerId = response.data.providerId;
-            localStorage.setItem('sessionID', response.data.sessionID);
+            setSessionID(response.data.sessionID);
             WebApp.openLink(response.data.universalLink);
             close();
 
@@ -68,8 +70,7 @@ const ConnectOverlay: React.FC<Props> = ({
                                 'Content-Type': 'application/json',
                                 'Access-Control-Allow-Origin': '*',
                                 'ngrok-skip-browser-warning': 'true',
-                                'X-Session-ID':
-                                    localStorage.getItem('sessionID') || '',
+                                'X-Session-ID': sessionID,
                             },
                         }
                     );
