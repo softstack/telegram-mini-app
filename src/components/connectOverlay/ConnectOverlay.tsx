@@ -45,17 +45,14 @@ const ConnectOverlay: React.FC<Props> = ({
         try {
             const response = await axios.post(BRIDGE_URL + '/init-provider');
             const providerId = response.data.providerId;
-            WebApp.openLink(response.data.universalLink);
             close();
 
             const startTime = Date.now(); // Record start time
             const timeout = 30000; // 30 seconds timeout
 
-            // wait for 10 seconds before checking connection status
-            await new Promise((resolve) => setTimeout(resolve, 10000));
-
             // Function to check connection status
             const checkConnection = async () => {
+                WebApp.openLink(response.data.universalLink);
                 if (Date.now() - startTime > timeout) {
                     return;
                 }
