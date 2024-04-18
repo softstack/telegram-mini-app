@@ -65,12 +65,12 @@ const ConnectOverlay: React.FC<Props> = ({
                         BRIDGE_URL + '/is-connected',
                         {
                             providerId: providerId,
+                            sessionID: sessionID,
                             withCredentials: true,
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Access-Control-Allow-Origin': '*',
                                 'ngrok-skip-browser-warning': 'true',
-                                'X-Session-ID': sessionID,
                             },
                         }
                     );
