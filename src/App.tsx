@@ -132,11 +132,13 @@ function App() {
     // Test Functions
     const [signedMessage, setSignedMessage] = useState<string | null>(null);
     const triggerTestMessageSign = () => {
+        const providerId = window.localStorage.getItem('providerId');
         WebApp.openLink('https://metamask.app.link/');
         axios
             .post(BRIDGE_URL + '/sign', {
                 message: 'This is a test message.',
                 account: account,
+                providerId: providerId,
             })
             .then((response) => {
                 console.log(response.data.signature);
