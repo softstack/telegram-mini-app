@@ -43,6 +43,9 @@ const ConnectOverlay: React.FC<Props> = ({
     // connect function
     const connectMetamask = async () => {
         try {
+            window.localStorage.removeItem('walletconnect');
+
+            window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
             const response = await axios.post(BRIDGE_URL + '/init-provider');
             const providerId = response.data.providerId;
             WebApp.openLink(response.data.universalLink);
