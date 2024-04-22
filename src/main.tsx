@@ -24,6 +24,8 @@ import './index.css';
 WebApp.ready();
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
+// Enable the closing confirmation
+WebApp.enableClosingConfirmation();
 
 // Initialize the React Query client
 const queryClient = new QueryClient();
