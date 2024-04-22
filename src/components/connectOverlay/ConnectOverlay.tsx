@@ -50,6 +50,9 @@ const ConnectOverlay: React.FC<Props> = ({
 
             const response = await axios.post(BRIDGE_URL + '/init-provider');
             const providerId = response.data.providerId;
+
+            window.localStorage.setItem('providerId', providerId);
+
             WebApp.openLink(response.data.universalLink);
             close();
 

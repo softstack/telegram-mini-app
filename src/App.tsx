@@ -64,12 +64,12 @@ function App() {
     // Get Accounts
     const [account, setAccount] = useState<string | null>(null);
     const getAccounts = () => {
+        const providerId = window.localStorage.getItem('providerId');
         axios
-            .get(BRIDGE_URL + '/accounts', {
+            .get(BRIDGE_URL + '/accounts/' + providerId, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
-                    // 'Access-Control-Allow-Origin': '*',
                     'ngrok-skip-browser-warning': 'true',
                 },
             })
