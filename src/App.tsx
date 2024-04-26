@@ -293,7 +293,7 @@ function App() {
                                     </p>
                                     <p className="balance-details-value">
                                         <span style={{ color: '#707579' }}>
-                                            $
+                                            ETH
                                         </span>
                                         {balance || 0}
                                     </p>
