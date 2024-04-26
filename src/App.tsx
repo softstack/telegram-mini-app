@@ -295,7 +295,7 @@ function App() {
                                         <span style={{ color: '#707579' }}>
                                             $
                                         </span>
-                                        250
+                                        {balance || 0}
                                     </p>
                                 </div>
                                 <div className="transaction-options">
@@ -317,10 +317,9 @@ function App() {
                                 </div>
                                 <div className="transaction-history">
                                     <TransactionHistoryItem
-                                        currency="Toncoin"
-                                        symbol="TON"
-                                        valueSpot={100}
-                                        valueFiat={150}
+                                        currency="Ether"
+                                        symbol="ETH"
+                                        valueSpot={parseFloat(balance || '0.0')}
                                     />
                                 </div>
                                 {/* <input
