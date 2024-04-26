@@ -40,9 +40,13 @@ const ConnectOverlay: React.FC<Props> = ({
         setWalletsExpanded(!walletsExpanded);
     };
 
+    const [connecting, setConnecting] = useState<boolean>(false);
+
     // connect function
     const connectMetamask = async () => {
         try {
+            setConnecting(true);
+
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
@@ -79,6 +83,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         }
                     );
                     if (statusResponse.data.connected) {
+                        setConnecting(false);
                         onConnect();
                     } else {
                         console.log('Not Connected, checking again...');
@@ -105,61 +110,72 @@ const ConnectOverlay: React.FC<Props> = ({
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
             <div className="connect-overlay-header">
-                <p>Connect Account</p>
+                {connecting ? <p>Connecting</p> : <p>Connect Wallet</p>}
                 <div onClick={close} className="connect-overlay-close">
                     <img src={crossIcon} alt="" />
                 </div>
             </div>
             <hr className="horizontal-line" />
-
-            <div className="choose-network-header">
-                <p>Choose Network</p>
-                <img
-                    src={networksExpanded ? upCircleIcon : downCircleIcon}
-                    onClick={toggleNetworks}
-                    alt=""
-                />
-            </div>
-            {networksExpanded && (
-                <div className="available-networks">
-                    <NetworkBadge
-                        network="Ethereum"
-                        icon={ethereumLogo}
-                        callback={showAvailableWallets}
-                    />
-                    <NetworkBadge
-                        network="Polygon"
-                        icon={polygonLogo}
-                        callback={showAvailableWallets}
-                    />
-                    <NetworkBadge
-                        network="Avalanche"
-                        icon={avalancheLogo}
-                        callback={showAvailableWallets}
-                    />
+            {connecting ? (
+                <div>
+                    <p>Connecting...</p>
                 </div>
-            )}
-            <div className="select-wallet-header">
-                <p>Select Wallet</p>
-                <img
-                    src={walletsExpanded ? upCircleIcon : downCircleIcon}
-                    onClick={toggleWallets}
-                    alt=""
-                />
-            </div>
-            {walletsExpanded && (
-                <div className="available-wallets">
-                    <WalletBadge
-                        walletName="Metamask"
-                        icon={metamaskLogo}
-                        callback={connectMetamask}
-                    />
-                    <WalletBadge
-                        walletName="Coinbase"
-                        icon={coinbaseLogo}
-                        callback={() => {}}
-                    />
-                </div>
+            ) : (
+                <>
+                    <div className="choose-network-header">
+                        <p>Choose Network</p>
+                        <img
+                            src={
+                                networksExpanded ? upCircleIcon : downCircleIcon
+                            }
+                            onClick={toggleNetworks}
+                            alt=""
+                        />
+                    </div>
+                    {networksExpanded && (
+                        <div className="available-networks">
+                            <NetworkBadge
+                                network="Ethereum"
+                                icon={ethereumLogo}
+                                callback={showAvailableWallets}
+                            />
+                            <NetworkBadge
+                                network="Polygon"
+                                icon={polygonLogo}
+                                callback={showAvailableWallets}
+                            />
+                            <NetworkBadge
+                                network="Avalanche"
+                                icon={avalancheLogo}
+                                callback={showAvailableWallets}
+                            />
+                        </div>
+                    )}
+                    <div className="select-wallet-header">
+                        <p>Select Wallet</p>
+                        <img
+                            src={
+                                walletsExpanded ? upCircleIcon : downCircleIcon
+                            }
+                            onClick={toggleWallets}
+                            alt=""
+                        />
+                    </div>
+                    {walletsExpanded && (
+                        <div className="available-wallets">
+                            <WalletBadge
+                                walletName="Metamask"
+                                icon={metamaskLogo}
+                                callback={connectMetamask}
+                            />
+                            <WalletBadge
+                                walletName="Coinbase"
+                                icon={coinbaseLogo}
+                                callback={() => {}}
+                            />
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );
