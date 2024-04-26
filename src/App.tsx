@@ -80,10 +80,8 @@ function App() {
             })
 
             .then((response) => {
-                console.log(response.data.accounts[0]);
-                const { account, balance } = response.data;
-                setAccount(account);
-                setBalance(balance);
+                setAccount(response.data.account);
+                setBalance(response.data.balance);
             });
     };
 
