@@ -24,7 +24,7 @@ import avatarTable from './assets/avatar_table.png';
 import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
 import walletConnectIcon from './assets/wallet_connect.png';
-import etherIcon from './assets/ethereum.svg';
+import etherIcon from './assets/ether_icon.png';
 import sendIcon from './assets/send_icon.svg';
 import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
@@ -219,7 +219,8 @@ function App() {
                     <div className="components-container">
                         <div className="navigation">
                             <BackButton goBack={goBack} />
-                            {account && <SkipButton skip={skip} />}
+                            {/* {account && <SkipButton skip={skip} />} */}
+                            <SkipButton skip={skip} />
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
                         {signedMessage}
