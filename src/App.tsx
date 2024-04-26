@@ -23,11 +23,13 @@ import avatarTable from './assets/avatar_table.png';
 
 import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
+import walletConnectIcon from './assets/wallet_connect.png';
 import etherIcon from './assets/ethereum.svg';
 import sendIcon from './assets/send_icon.svg';
 import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
 import { useTonWallet } from '@tonconnect/ui-react';
+import WalletConnectModal from './components/connectors/WalletConnectModal';
 
 enum View {
     LANDING = 0,
@@ -234,6 +236,11 @@ function App() {
                             <TonConnectModal
                                 title="TON Connect"
                                 icon={tonConnectIcon}
+                            />
+                            <WalletConnectModal
+                                title="Wallet Connect (TEST)"
+                                icon={walletConnectIcon}
+                                accountCallback={() => {}}
                             />
                         </div>
                         {showConnectOverlay && (
