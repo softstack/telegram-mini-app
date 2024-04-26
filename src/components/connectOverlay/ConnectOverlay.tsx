@@ -117,9 +117,17 @@ const ConnectOverlay: React.FC<Props> = ({
             </div>
             <hr className="horizontal-line" />
             {connecting ? (
-                <div>
-                    <p>Connecting...</p>
-                </div>
+                <>
+                    <div>
+                        <p>Connecting...</p>
+                    </div>
+                    <div>
+                        <p>Connecting Wallet</p>
+                    </div>
+                    <div>
+                        <p>Please connect MetaMask & approve transaction</p>
+                    </div>
+                </>
             ) : (
                 <>
                     <div className="choose-network-header">
