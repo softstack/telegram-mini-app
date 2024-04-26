@@ -66,9 +66,9 @@ function App() {
     const [account, setAccount] = useState<string | null>(null);
     const [balance, setBalance] = useState<string | null>(null);
 
-    const getAccountAndBalance = () => {
+    const getAccountAndBalance = async () => {
         const providerId = window.localStorage.getItem('providerId');
-        axios
+        await axios
             .get(BRIDGE_URL + '/accounts/' + providerId, {
                 withCredentials: true,
                 headers: {
@@ -82,7 +82,7 @@ function App() {
                 setAccount(response.data.accounts[0]);
             });
 
-        axios
+        await axios
             .get(BRIDGE_URL + '/balance/' + account, {
                 withCredentials: true,
                 headers: {
