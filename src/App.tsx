@@ -66,10 +66,10 @@ function App() {
     const [account, setAccount] = useState<string | null>(null);
     const [balance, setBalance] = useState<string | null>(null);
 
-    const getAccountAndBalance = async () => {
+    const getAccountData = async () => {
         const providerId = window.localStorage.getItem('providerId');
         await axios
-            .get(BRIDGE_URL + '/accounts/' + providerId, {
+            .get(BRIDGE_URL + '/account/' + providerId, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,20 +79,9 @@ function App() {
 
             .then((response) => {
                 console.log(response.data.accounts[0]);
-                setAccount(response.data.accounts[0]);
-            });
-
-        await axios
-            .get(BRIDGE_URL + '/balance/' + account, {
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'ngrok-skip-browser-warning': 'true',
-                },
-            })
-            .then((response) => {
-                console.log(response.data.balance);
-                setBalance(response.data.balance);
+                const { account, balance } = response.data;
+                setAccount(account);
+                setBalance(balance);
             });
     };
 
@@ -126,7 +115,7 @@ function App() {
             WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(openWallet);
 
-            getAccountAndBalance();
+            getAccountData();
         }
         if (view === View.WALLET) {
             WebApp.MainButton.show();
