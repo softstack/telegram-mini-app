@@ -119,13 +119,15 @@ const ConnectOverlay: React.FC<Props> = ({
             {connecting ? (
                 <>
                     <div>
-                        <p>Connecting...</p>
+                        <p style={{ color: 'black' }}>Connecting...</p>
                     </div>
                     <div>
-                        <p>Connecting Wallet</p>
+                        <p style={{ color: 'black' }}>Connecting Wallet</p>
                     </div>
                     <div>
-                        <p>Please connect MetaMask & approve transaction</p>
+                        <p style={{ color: 'black' }}>
+                            Please connect MetaMask & approve transaction
+                        </p>
                     </div>
                 </>
             ) : (
