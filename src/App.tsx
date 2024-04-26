@@ -23,6 +23,7 @@ import avatarTable from './assets/avatar_table.png';
 
 import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
+import etherIcon from './assets/ethereum.svg';
 import sendIcon from './assets/send_icon.svg';
 import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
@@ -63,7 +64,9 @@ function App() {
 
     // Get Accounts
     const [account, setAccount] = useState<string | null>(null);
-    const getAccounts = () => {
+    const [balance, setBalance] = useState<string | null>(null);
+
+    const getAccountAndBalance = () => {
         const providerId = window.localStorage.getItem('providerId');
         axios
             .get(BRIDGE_URL + '/accounts/' + providerId, {
@@ -77,6 +80,19 @@ function App() {
             .then((response) => {
                 console.log(response.data.accounts[0]);
                 setAccount(response.data.accounts[0]);
+            });
+
+        axios
+            .get(BRIDGE_URL + '/balance/' + account, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true',
+                },
+            })
+            .then((response) => {
+                console.log(response.data.balance);
+                setBalance(response.data.balance);
             });
     };
 
@@ -110,7 +126,7 @@ function App() {
             WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(openWallet);
 
-            getAccounts();
+            getAccountAndBalance();
         }
         if (view === View.WALLET) {
             WebApp.MainButton.show();
@@ -251,7 +267,7 @@ function App() {
                                     <p>{account}</p>
                                 </div>
                                 <div className="wallet-provider-icon">
-                                    <img src={tonConnectIcon} alt="" />
+                                    <img src={etherIcon} alt="" />
                                 </div>
                                 <div className="wallet-balance-details">
                                     <div className="wallet-balance-header">
@@ -264,7 +280,7 @@ function App() {
                                         />
                                     </div>
                                     <div className="wallet-balance-value">
-                                        200
+                                        {balance || 0}
                                     </div>
                                 </div>
                             </div>
