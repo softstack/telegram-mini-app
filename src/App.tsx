@@ -219,8 +219,7 @@ function App() {
                     <div className="components-container">
                         <div className="navigation">
                             <BackButton goBack={goBack} />
-                            {/* {account && <SkipButton skip={skip} />} */}
-                            <SkipButton skip={skip} />
+                            {account && <SkipButton skip={skip} />}
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
                         {signedMessage}
