@@ -92,11 +92,11 @@ function App() {
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
-            WebApp.MainButton.show();
-            WebApp.MainButton.enable();
-            WebApp.MainButton.setText('Connect Your Wallet');
-            WebApp.MainButton.color = '#007aff';
-            WebApp.MainButton.textColor = '#ffffff';
+            // WebApp.MainButton.show();
+            // WebApp.MainButton.enable();
+            // WebApp.MainButton.setText('Connect Your Wallet');
+            // WebApp.MainButton.color = '#007aff';
+            // WebApp.MainButton.textColor = '#ffffff';
             WebApp.MainButton.onClick(skip);
         }
         // Change the Main Buttons color and textColor to match telegrams background color, to "hide" the button
