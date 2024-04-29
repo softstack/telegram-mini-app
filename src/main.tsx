@@ -25,6 +25,7 @@ WebApp.expand();
 
 WebApp.SettingsButton.hide();
 WebApp.MainButton.hide();
+WebApp.BackButton.hide();
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
 // Enable the closing confirmation
