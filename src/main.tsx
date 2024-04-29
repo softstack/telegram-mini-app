@@ -24,6 +24,7 @@ import './index.css';
 WebApp.expand();
 
 WebApp.SettingsButton.hide();
+WebApp.MainButton.hide();
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
 // Enable the closing confirmation
