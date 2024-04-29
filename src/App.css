@@ -13,6 +13,7 @@
     height: 100vh;
     width: 100vw;
     border-radius: 10px;
+    z-index: 10000;
 }
 
 .components-container {
