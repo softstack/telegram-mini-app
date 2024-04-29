@@ -23,9 +23,6 @@ import './index.css';
 // Expand the Telegram Mini App to full screen
 WebApp.expand();
 
-WebApp.SettingsButton.hide();
-WebApp.MainButton.hide();
-WebApp.BackButton.hide();
 // Initialize the Telegram Mini App SDK
 WebApp.ready();
 // Enable the closing confirmation
