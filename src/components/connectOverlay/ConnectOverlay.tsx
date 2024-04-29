@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import WebApp from '@twa-dev/sdk';
+import { PulseLoader } from 'react-spinners';
 
 import NetworkBadge from './NetworkBadge';
 import WalletBadge from './WalletBadge';
@@ -40,7 +41,8 @@ const ConnectOverlay: React.FC<Props> = ({
         setWalletsExpanded(!walletsExpanded);
     };
 
-    const [connecting, setConnecting] = useState<boolean>(false);
+    // !!!!!!!!!
+    const [connecting, setConnecting] = useState<boolean>(true);
 
     // connect function
     const connectMetamask = async () => {
@@ -119,7 +121,7 @@ const ConnectOverlay: React.FC<Props> = ({
             {connecting ? (
                 <>
                     <div>
-                        <p style={{ color: 'black' }}>Connecting...</p>
+                        <PulseLoader size={12} margin={5} />
                     </div>
                     <div>
                         <p style={{ color: 'black' }}>Connecting Wallet</p>
