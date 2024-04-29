@@ -42,7 +42,7 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     // !!!!!!!!!
-    const [connecting, setConnecting] = useState<boolean>(true);
+    const [connecting, setConnecting] = useState<boolean>(false);
 
     // connect function
     const connectMetamask = async () => {
