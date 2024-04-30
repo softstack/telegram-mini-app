@@ -218,7 +218,6 @@ function App() {
                         <div className="flex justify-between">
                             <BackButton goBack={goBack} />
                             {account && <SkipButton skip={skip} />}
-                            <SkipButton skip={skip} />
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
                         <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
@@ -251,9 +250,8 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
-                            <SkipButton skip={skip} />
                             <Avatar src={avatarTable} height="60%" />
-                            <div className="flex flex-col bg-white pt-4 px-8 pb-8 h-2/4 gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
+                            <div className="flex flex-col bg-white pt-4 px-8 pb-8 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                                 <h2 className="headline">HORRAY!</h2>
                                 <div className="text-sm font-semibold text-center text-customGrayAddress">
                                     <p>{account}</p>
