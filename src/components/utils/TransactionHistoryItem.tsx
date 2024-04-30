@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import ethereumIcon from '../../assets/ether_icon.png';
 
-import './TransactionHistoryItem.css';
-
 type Props = {
     currency: string;
     symbol: string;
@@ -30,18 +28,22 @@ const TransactionHistoryItem: React.FC<Props> = ({
     }, []);
 
     return (
-        <div className="transaction-history-item">
-            <div className="transaction-history-item-logo">
-                <img src={ethereumIcon} alt="" />
+        <div className="grid grid-cols-custom-1-3-1 gap-2 items-center py-2 px-4 rounded-2xl bg-white">
+            <div className="h-12 w-12">
+                <img
+                    className="object-contain h-full w-full"
+                    src={ethereumIcon}
+                    alt=""
+                />
             </div>
-            <div className="transaction-history-item-spot-details">
-                <p>{currency}</p>
-                <div className="transaction-history-item-spot-details-value">
-                    <p>{valueSpot}</p>
-                    <p>{symbol}</p>
+            <div className="flex flex-col text-left text-lg justify-center">
+                <p className="m-0 font-semibold">{currency}</p>
+                <div className="flex gap-1 text-customGrayAddress">
+                    <p className="m-0">{valueSpot}</p>
+                    <p className="m-0">{symbol}</p>
                 </div>
             </div>
-            <div className="transaction-history-item-fiat-details">
+            <div className="text-lg font-medium text-right">
                 <p>${valueFiat}</p>
             </div>
         </div>

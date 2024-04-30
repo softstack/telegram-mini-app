@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './TransactionButton.css';
-
 interface Props {
     text: string;
     icon: string;
@@ -10,11 +8,11 @@ interface Props {
 
 const TransactionButton: React.FC<Props> = ({ text, icon, callback }) => {
     return (
-        <div onClick={callback} className="transaction-button-container">
+        <div onClick={callback} className="flex flex-col justify-center gap-1">
             <div>
                 <img src={icon} alt="" />
             </div>
-            <p>{text}</p>
+            <p className="m-0 text-customBlueButton font-semibold">{text}</p>
         </div>
     );
 };

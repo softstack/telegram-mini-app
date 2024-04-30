@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 import WebApp from '@twa-dev/sdk';
 import axios from 'axios';
 
-import './App.css';
-
 import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
 import SkipButton from './components/buttons/SkipButton';
@@ -189,24 +187,24 @@ function App() {
 
     return (
         <>
-            <div className="main-component">
+            <div className="flex flex-col overflow-hidden h-screen w-screen rounded-xl bg-customBlue">
                 {view === View.LANDING && (
                     <div className="components-container">
                         <SkipButton skip={skip} />
                         <Avatar src={avatarScooter} />
-                        <div className="add-to-home">
+                        <div className="flex flex-col bg-white pt-4 pr-8 pb-8 pl-8 gap-4 rounded-t-3xl rounded-bl-md rounded-br-md shadow-custom-white">
                             <div>
                                 <h2 className="headline">
                                     Telegram Mini App Demo
                                 </h2>
                             </div>
                             <div>
-                                <p className="landing-text">
+                                <p className="text-customGrayText mt-0 mr-0 mb-4 ml-0">
                                     Click on the button below and follow the
                                     instructions to link your wallet to this
                                     telegram mini app demo.
                                 </p>
-                                <p className="landing-text">
+                                <p className="text-customGrayText mt-0 mr-0 mb-4 ml-0">
                                     Softstack is a Web3 software development,
                                     cybersecurity and consulting service
                                     partner.
@@ -217,13 +215,13 @@ function App() {
                 )}
                 {view === View.CONNECT && (
                     <div className="components-container">
-                        <div className="navigation">
+                        <div className="flex justify-between">
                             <BackButton goBack={goBack} />
                             {account && <SkipButton skip={skip} />}
-                            {/* <SkipButton skip={skip} /> */}
+                            <SkipButton skip={skip} />
                         </div>
                         <Avatar src={avatarPhone} height="60%" />
-                        <div className="connect-buttons">
+                        <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">CONNECT</h2>
                             <EVMConnectModal
                                 title="EVM Connect"
@@ -253,26 +251,29 @@ function App() {
                     <div>
                         <div className="components-container">
                             <BackButton goBack={goBack} />
+                            <SkipButton skip={skip} />
                             <Avatar src={avatarTable} height="60%" />
-                            <div className="wallet-overview">
+                            <div className="flex flex-col bg-white pt-4 px-8 pb-8 h-2/4 gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                                 <h2 className="headline">HORRAY!</h2>
-                                <div className="address-container">
+                                <div className="text-sm font-semibold text-center text-customGrayAddress">
                                     <p>{account}</p>
                                 </div>
-                                <div className="wallet-provider-icon">
-                                    <img src={etherIcon} alt="" />
+                                <div className="flex justify-center items-center max-w-10 my-0 mx-auto">
+                                    <img
+                                        className="max-h-full max-w-full"
+                                        src={etherIcon}
+                                        alt=""
+                                    />
                                 </div>
-                                <div className="wallet-balance-details">
-                                    <div className="wallet-balance-header">
-                                        <p style={{ color: 'black' }}>
-                                            Total Balance
-                                        </p>
+                                <div className="flex flex-col items-center">
+                                    <div className="flex justify-between items-center gap-4 text-lg font-semibold">
+                                        <p className="m-0">Total Balance</p>
                                         <Tooltip
                                             headline="Balance"
                                             content="The balance your wallet is currently holding."
                                         />
                                     </div>
-                                    <div className="wallet-balance-value">
+                                    <div className="text-2xl font-bold">
                                         {balance || 0}
                                     </div>
                                 </div>
@@ -282,21 +283,21 @@ function App() {
                 )}
                 {view === View.WALLET && (
                     <div>
-                        <div className="wallet-details-container">
+                        <div className="h-screen bg-customGrayWallet">
                             <BackButton goBack={goBack} />
-                            <div className="wallet-details-wrapper">
-                                <div className="balance-details">
-                                    <p className="balance-details-header">
+                            <div className="flex flex-col gap-4 p-4">
+                                <div className="flex flex-col">
+                                    <p className="m-0 text-xl font-semibold">
                                         Total Balance
                                     </p>
-                                    <p className="balance-details-value">
-                                        <span style={{ color: '#707579' }}>
+                                    <p className="m-0 text-5xl font-extrabold">
+                                        <span className="text-customGrayAddress">
                                             ETH
                                         </span>
                                         {balance || 0}
                                     </p>
                                 </div>
-                                <div className="transaction-options">
+                                <div className="flex justify-around gap-4 py-4 px-8">
                                     <TransactionButton
                                         text="Send"
                                         icon={sendIcon}
@@ -313,7 +314,17 @@ function App() {
                                         callback={sell}
                                     />
                                 </div>
-                                <div className="transaction-history">
+                                <div className="flex flex-col min-h-32 gap-2">
+                                    <TransactionHistoryItem
+                                        currency="Ether"
+                                        symbol="ETH"
+                                        valueSpot={parseFloat(balance || '0.0')}
+                                    />
+                                    <TransactionHistoryItem
+                                        currency="Ether"
+                                        symbol="ETH"
+                                        valueSpot={parseFloat(balance || '0.0')}
+                                    />
                                     <TransactionHistoryItem
                                         currency="Ether"
                                         symbol="ETH"
@@ -337,7 +348,7 @@ function App() {
                                         </p>
                                     </div>
                                 )}
-                                <div className="test-functions">
+                                <div className="flex flex-col gap-2">
                                     <PrimaryButton
                                         title="Sign Test Message in Wallet"
                                         callback={triggerTestMessageSign}

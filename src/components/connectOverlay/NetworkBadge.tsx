@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './NetworkBadge.css';
-
 type Props = {
     network: string;
     icon: string;
@@ -10,8 +8,11 @@ type Props = {
 
 const NetworkBadge: React.FC<Props> = ({ network, icon, callback }) => {
     return (
-        <div onClick={callback} className="network-badge">
-            <img src={icon} alt="" />
+        <div
+            onClick={callback}
+            className="flex flex-col items-center justify-center text-customBlackText"
+        >
+            <img className="w-11 h-11" src={icon} alt="" />
             <p>{network}</p>
         </div>
     );

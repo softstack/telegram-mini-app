@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './PrimaryButton.css';
-
 type Props = {
     title: string;
     callback: () => void;
@@ -9,7 +7,10 @@ type Props = {
 
 const PrimaryButton: React.FC<Props> = ({ title, callback }) => {
     return (
-        <div className="primary-button" onClick={callback}>
+        <div
+            className="flex items-center justify-center bg-customBlueButton text-white py-3 px-5 rounded-xl border-none text-base font-bold text-center"
+            onClick={callback}
+        >
             <span>{title}</span>
         </div>
     );

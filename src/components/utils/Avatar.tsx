@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './Avatar.css';
-
 type Props = {
     src: string;
     height?: string;
@@ -9,8 +7,15 @@ type Props = {
 
 const Avatar: React.FC<Props> = ({ src, height = '100%' }) => {
     return (
-        <div className="avatar" style={{ height: height }}>
-            <img src={src} alt="" />
+        <div
+            className="flex flex-grow items-center justify-center overflow-hidden h-full py-4 px-8"
+            style={{ height: height }}
+        >
+            <img
+                className="max-h-full max-w-full w-auto object-scale-down"
+                src={src}
+                alt=""
+            />
         </div>
     );
 };
