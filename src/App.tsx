@@ -271,7 +271,7 @@ function App() {
                                             content="The balance your wallet is currently holding."
                                         />
                                     </div>
-                                    <div className="text-2xl font-bold">
+                                    <div className="text-2xl font-bold mb-4">
                                         {balance || 0}
                                     </div>
                                 </div>
