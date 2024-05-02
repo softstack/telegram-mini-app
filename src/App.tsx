@@ -253,7 +253,7 @@ function App() {
                     </div>
                 )}
                 {view === View.CONNECTED && (
-                    <div>
+                    <>
                         <div className="components-container mb-2">
                             <BackButton goBack={goBack} />
                             <Avatar src={avatarTable} height="60%" />
@@ -287,7 +287,7 @@ function App() {
                             title="Open my Wallet"
                             callback={openWallet}
                         />
-                    </div>
+                    </>
                 )}
                 {view === View.WALLET && (
                     <div>
