@@ -187,7 +187,7 @@ function App() {
 
     return (
         <>
-            <div className="flex flex-col overflow-hidden h-screen w-screen rounded-xl bg-customGrayWallet">
+            <div className="flex flex-col overflow-hidden h-screen w-screen max-h-screen rounded-xl bg-customGrayWallet">
                 {view === View.LANDING && (
                     <>
                         <div className="components-container mb-2">
@@ -213,10 +213,12 @@ function App() {
                                 </div>
                             </div>
                         </div>
-                        <PrimaryButton
-                            title="Add to your Home Screen"
-                            callback={skip}
-                        />
+                        <div className="min-h-11">
+                            <PrimaryButton
+                                title="Add to your Home Screen"
+                                callback={skip}
+                            />
+                        </div>
                     </>
                 )}
                 {view === View.CONNECT && (
