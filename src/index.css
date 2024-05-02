@@ -25,7 +25,7 @@ body {
     display: flex;
     place-items: center;
     min-width: 320px;
-    min-height: 100vh;
+    max-height: 100vh;
 }
 
 .headline {
@@ -40,6 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     background-color: #aadaf1;
     border-radius: 12px;
 }
