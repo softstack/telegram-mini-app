@@ -187,31 +187,37 @@ function App() {
 
     return (
         <>
-            <div className="flex flex-col overflow-hidden h-screen w-screen rounded-xl bg-customBlue">
+            <div className="flex flex-col overflow-hidden h-screen w-screen rounded-xl bg-customGrayWallet">
                 {view === View.LANDING && (
-                    <div className="components-container">
-                        <SkipButton skip={skip} />
-                        <Avatar src={avatarScooter} />
-                        <div className="flex flex-col bg-white pt-4 pr-8 pb-8 pl-8 gap-4 rounded-t-3xl rounded-bl-md rounded-br-md shadow-custom-white">
-                            <div>
-                                <h2 className="headline">
-                                    Telegram Mini App Demo
-                                </h2>
-                            </div>
-                            <div>
-                                <p className="text-customGrayText mt-0 mr-0 mb-4 ml-0">
-                                    Click on the button below and follow the
-                                    instructions to link your wallet to this
-                                    telegram mini app demo.
-                                </p>
-                                <p className="text-customGrayText mt-0 mr-0 mb-4 ml-0">
-                                    Softstack is a Web3 software development,
-                                    cybersecurity and consulting service
-                                    partner.
-                                </p>
+                    <>
+                        <div className="components-container mb-2">
+                            <SkipButton skip={skip} />
+                            <Avatar src={avatarScooter} />
+                            <div className="flex flex-col bg-white pt-4 pr-8 pb-8 pl-8 gap-4 rounded-t-3xl rounded-bl-md rounded-br-md shadow-custom-white">
+                                <div>
+                                    <h2 className="headline">
+                                        Telegram Mini App Demo
+                                    </h2>
+                                </div>
+                                <div>
+                                    <p className="text-customGrayText mt-0 mr-0 mb-4 ml-0">
+                                        Click on the button below and follow the
+                                        instructions to link your wallet to this
+                                        telegram mini app demo.
+                                    </p>
+                                    <p className="text-customGrayText mt-0 mr-0 mb-4 ml-0">
+                                        Softstack is a Web3 software
+                                        development, cybersecurity and
+                                        consulting service partner.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <PrimaryButton
+                            title="Add to your Home Screen"
+                            callback={skip}
+                        />
+                    </>
                 )}
                 {view === View.CONNECT && (
                     <div className="components-container">
@@ -248,7 +254,7 @@ function App() {
                 )}
                 {view === View.CONNECTED && (
                     <div>
-                        <div className="components-container">
+                        <div className="components-container mb-2">
                             <BackButton goBack={goBack} />
                             <Avatar src={avatarTable} height="60%" />
                             <div className="flex flex-col bg-white pt-4 px-8 pb-8 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
@@ -277,6 +283,10 @@ function App() {
                                 </div>
                             </div>
                         </div>
+                        <PrimaryButton
+                            title="Open my Wallet"
+                            callback={openWallet}
+                        />
                     </div>
                 )}
                 {view === View.WALLET && (

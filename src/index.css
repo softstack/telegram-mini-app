@@ -41,6 +41,8 @@ body {
     flex-direction: column;
     height: 100%;
     width: 100%;
+    background-color: #aadaf1;
+    border-radius: 12px;
 }
 
 @media (prefers-color-scheme: light) {
