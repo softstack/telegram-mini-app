@@ -38,7 +38,7 @@ body {
 
 .components-container {
     display: flex;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex-direction: column;
     width: 100%;
     background-color: #aadaf1;
