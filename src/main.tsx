@@ -28,9 +28,6 @@ WebApp.ready();
 // Enable the closing confirmation
 WebApp.enableClosingConfirmation();
 
-WebApp.MainButton.disable();
-WebApp.MainButton.hide();
-
 // Initialize the React Query client
 const queryClient = new QueryClient();
 
