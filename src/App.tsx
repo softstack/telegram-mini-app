@@ -222,7 +222,7 @@ function App() {
                         <Avatar src={avatarTable} />
                         <div className="flex flex-col bg-white pt-4 px-8 pb-2 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">HORRAY!</h2>
-                            <div className="text-sm font-semibold text-center text-customGrayAddress">
+                            <div className="text-xs break-all font-semibold text-center text-customGrayAddress">
                                 <p className="my-0 mx-auto">{account}</p>
                             </div>
                             <div className="flex justify-center items-center max-w-10 my-0 mx-auto">
@@ -311,7 +311,7 @@ function App() {
                                     }}
                                 >
                                     <p>Signed Message:</p>
-                                    <p className="my-0 mx-auto text-center text-wrap">
+                                    <p className="my-0 mx-auto text-xs break-all text-center text-wrap">
                                         {signedMessage}
                                     </p>
                                 </div>
