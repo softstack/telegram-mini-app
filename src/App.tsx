@@ -150,7 +150,7 @@ function App() {
     return (
         <div className="flex flex-col h-full min-h-screen w-screen rounded-xl bg-customGrayWallet">
             {view === View.LANDING && (
-                <>
+                <div className="flex flex-col flex-grow min-h-full justify-end">
                     <div className="components-container mb-2">
                         <SkipButton skip={skip} />
                         <Avatar src={avatarScooter} />
@@ -180,7 +180,7 @@ function App() {
                             callback={skip}
                         />
                     </div>
-                </>
+                </div>
             )}
             {view === View.CONNECT && (
                 <div className="components-container">
