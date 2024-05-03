@@ -102,7 +102,7 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     // Network Selection
-    const [ethereumSelected, setEthereumSelected] = useState(true);
+    const [ethereumSelected, setEthereumSelected] = useState(false);
     const [polygonSelected, setPolygonSelected] = useState(false);
     const [avalancheSelected, setAvalancheSelected] = useState(false);
 
@@ -129,13 +129,24 @@ const ConnectOverlay: React.FC<Props> = ({
 
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
-            <div className="connect-overlay-header">
-                {connecting ? <p>Connecting</p> : <p>Connect Wallet</p>}
-                <div onClick={close} className="connect-overlay-close">
+            <div className="flex justify-between text-left py-3 px-4">
+                {connecting ? (
+                    <p className="m-0 text-lg font-bold text-customBlackText">
+                        Connecting
+                    </p>
+                ) : (
+                    <p className="m-0 text-lg font-bold text-customBlackText">
+                        Connect Wallet
+                    </p>
+                )}
+                <div
+                    onClick={close}
+                    className="flex items-center cursor-pointer"
+                >
                     <img src={crossIcon} alt="" />
                 </div>
             </div>
-            <hr className="horizontal-line" />
+            <hr className="m-0 border-t-1 border-solid border-customGrayLine" />
             {connecting ? (
                 <>
                     <div>
@@ -152,8 +163,10 @@ const ConnectOverlay: React.FC<Props> = ({
                 </>
             ) : (
                 <>
-                    <div className="choose-network-header">
-                        <p>Choose Network</p>
+                    <div className="flex py-4 px-5 justify-between">
+                        <p className="m-0 text-customBlackText text-base font-medium">
+                            Choose Network
+                        </p>
                         <img
                             src={
                                 networksExpanded ? upCircleIcon : downCircleIcon
@@ -163,7 +176,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         />
                     </div>
                     {networksExpanded && (
-                        <div className="available-networks">
+                        <div className="flex m-4 justify-around">
                             <NetworkBadge
                                 network="Ethereum"
                                 icon={ethereumLogo}
@@ -188,8 +201,10 @@ const ConnectOverlay: React.FC<Props> = ({
                             />
                         </div>
                     )}
-                    <div className="select-wallet-header">
-                        <p>Select Wallet</p>
+                    <div className="flex py-4 px-5 justify-between">
+                        <p className="m-0 text-customBlackText text-base font-medium">
+                            Select Wallet
+                        </p>
                         <img
                             src={
                                 walletsExpanded ? upCircleIcon : downCircleIcon
@@ -199,7 +214,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         />
                     </div>
                     {walletsExpanded && (
-                        <div className="available-wallets">
+                        <div className="flex m-4 justify-around">
                             <WalletBadge
                                 walletName="Metamask"
                                 icon={metamaskLogo}

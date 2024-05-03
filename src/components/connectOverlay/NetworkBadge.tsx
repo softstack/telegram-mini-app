@@ -16,7 +16,7 @@ const NetworkBadge: React.FC<Props> = ({
     return (
         <div
             onClick={callback}
-            className={`flex flex-col items-center justify-center text-customBlackText rounded-lg ${
+            className={`flex flex-col items-center justify-center text-customBlackText rounded-lg p-2 ${
                 selected ? 'bg-customBlueSelected' : ''
             }`}
         >
