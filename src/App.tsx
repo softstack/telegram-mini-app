@@ -38,11 +38,6 @@ enum View {
 
 WebApp.setHeaderColor('#1a1a1a');
 
-// WebApp.MainButton.enable();
-// WebApp.MainButton.color = '#007aff';
-// WebApp.MainButton.setText('Add to your Home Screen');
-// WebApp.MainButton.show();
-
 const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
 function App() {
@@ -90,37 +85,14 @@ function App() {
     // Handle MainButton changes on view change
     useEffect(() => {
         if (view === View.LANDING) {
-            // WebApp.MainButton.show();
-            // WebApp.MainButton.enable();
-            // WebApp.MainButton.setText('Connect Your Wallet');
-            // WebApp.MainButton.color = '#007aff';
-            // WebApp.MainButton.textColor = '#ffffff';
-            WebApp.MainButton.onClick(skip);
         }
         // Change the Main Buttons color and textColor to match telegrams background color, to "hide" the button
         if (view === View.CONNECT) {
-            // WebApp.MainButton.show();
-            // WebApp.MainButton.disable();
-            // WebApp.MainButton.text = '_';
-            // WebApp.MainButton.textColor = '#1a1a1a';
-            // WebApp.MainButton.color = '#1a1a1a';
         }
         if (view === View.CONNECTED) {
-            // WebApp.MainButton.show();
-            // WebApp.MainButton.enable();
-            // WebApp.MainButton.setText('Open my Wallet');
-            // WebApp.MainButton.color = '#007aff';
-            // WebApp.MainButton.textColor = '#ffffff';
-            WebApp.MainButton.onClick(openWallet);
-
             getAccountData();
         }
         if (view === View.WALLET) {
-            // WebApp.MainButton.show();
-            // WebApp.MainButton.enable();
-            // WebApp.MainButton.color = '#007aff';
-            // WebApp.MainButton.textColor = '#ffffff';
-            // WebApp.MainButton.setText('Contact Sales');
         }
     }, [view]);
 
@@ -149,16 +121,6 @@ function App() {
             });
     };
 
-    // const [testMessage, setTestMessage] = useState<string>('');
-
-    // const handleTestMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setTestMessage(e.target.value);
-    // };
-
-    // const triggerTestMessageToChat = () => {
-    //     // Trigger Test Message to Chat
-    // };
-
     // Transaction Functions
     const sendFunds = () => {
         // Send Funds
@@ -186,7 +148,7 @@ function App() {
     };
 
     return (
-        <div className="flex flex-col h-full w-screen rounded-xl bg-customGrayWallet">
+        <div className="flex flex-col h-full min-h-screen w-screen rounded-xl bg-customGrayWallet">
             {view === View.LANDING && (
                 <>
                     <div className="components-container mb-2">
