@@ -186,7 +186,7 @@ function App() {
     };
 
     return (
-        <div className="flex flex-col h-screen w-screen rounded-xl bg-customGrayWallet">
+        <div className="flex flex-col h-full w-screen rounded-xl bg-customGrayWallet">
             {view === View.LANDING && (
                 <>
                     <div className="components-container mb-2">
@@ -258,7 +258,7 @@ function App() {
                     <div className="components-container mb-2">
                         <BackButton goBack={goBack} />
                         <Avatar src={avatarTable} height="60%" />
-                        <div className="flex flex-col bg-white pt-4 px-8 pb-8 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
+                        <div className="flex flex-col bg-white pt-4 px-8 pb-2 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">HORRAY!</h2>
                             <div className="text-sm font-semibold text-center text-customGrayAddress">
                                 <p className="my-0 mx-auto">{account}</p>
