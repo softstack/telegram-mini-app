@@ -213,10 +213,12 @@ function App() {
                                 </div>
                             </div>
                         </div>
-                        <PrimaryButton
-                            title="Add to your Home Screen"
-                            callback={skip}
-                        />
+                        <div className="p-2 mb-2">
+                            <PrimaryButton
+                                title="Add to your Home Screen"
+                                callback={skip}
+                            />
+                        </div>
                     </>
                 )}
                 {view === View.CONNECT && (
@@ -283,10 +285,12 @@ function App() {
                                 </div>
                             </div>
                         </div>
-                        <PrimaryButton
-                            title="Open my Wallet"
-                            callback={openWallet}
-                        />
+                        <div className="p-2 mb-2">
+                            <PrimaryButton
+                                title="Open my Wallet"
+                                callback={openWallet}
+                            />
+                        </div>
                     </>
                 )}
                 {view === View.WALLET && (
