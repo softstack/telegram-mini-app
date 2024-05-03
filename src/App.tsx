@@ -15,9 +15,9 @@ import ConnectOverlay from './components/connectOverlay/ConnectOverlay';
 import EVMConnectModal from './components/connectors/EVMConnectModal';
 import TonConnectModal from './components/connectors/TonConnectModal';
 
-import avatarPhone from './assets/avatar_phone.png';
-import avatarScooter from './assets/avatar_scooter.png';
-import avatarTable from './assets/avatar_table.png';
+import avatarPhone from './assets/avatar_phone.svg';
+import avatarScooter from './assets/avatar_scooter.svg';
+import avatarTable from './assets/avatar_table.svg';
 
 import evmConnectIcon from './assets/EVM_connect_logos.png';
 import tonConnectIcon from './assets/ton_connect.png';
