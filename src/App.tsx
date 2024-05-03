@@ -186,7 +186,7 @@ function App() {
     };
 
     return (
-        <div className="flex flex-col min-h-full h-full w-screen rounded-xl bg-customGrayWallet">
+        <div className="flex flex-col h-screen w-screen rounded-xl bg-customGrayWallet">
             {view === View.LANDING && (
                 <>
                     <div className="components-container mb-2">
