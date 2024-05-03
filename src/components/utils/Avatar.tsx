@@ -2,15 +2,11 @@ import React from 'react';
 
 type Props = {
     src: string;
-    height?: string;
 };
 
-const Avatar: React.FC<Props> = ({ src, height = '100%' }) => {
+const Avatar: React.FC<Props> = ({ src }) => {
     return (
-        <div
-            className="flex flex-grow items-center justify-center overflow-hidden max-h-96 py-4 px-8"
-            style={{ height: height }}
-        >
+        <div className="flex flex-grow items-center justify-center overflow-hidden max-h-96 py-4 px-8">
             <img
                 className="max-h-full max-w-full w-auto object-scale-down"
                 src={src}

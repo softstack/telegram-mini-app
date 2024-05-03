@@ -226,7 +226,7 @@ function App() {
                         <BackButton goBack={goBack} />
                         {account && <SkipButton skip={skip} />}
                     </div>
-                    <Avatar src={avatarPhone} height="60%" />
+                    <Avatar src={avatarPhone} />
                     <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
                         <h2 className="headline">CONNECT</h2>
                         <EVMConnectModal
@@ -257,7 +257,7 @@ function App() {
                 <>
                     <div className="components-container mb-2">
                         <BackButton goBack={goBack} />
-                        <Avatar src={avatarTable} height="60%" />
+                        <Avatar src={avatarTable} />
                         <div className="flex flex-col bg-white pt-4 px-8 pb-2 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">HORRAY!</h2>
                             <div className="text-sm font-semibold text-center text-customGrayAddress">
