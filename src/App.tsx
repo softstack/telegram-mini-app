@@ -214,7 +214,7 @@ function App() {
                     </div>
                     <div className="p-2 mb-2">
                         <PrimaryButton
-                            title="Add to your Home Screen"
+                            title="Connect Your Wallet"
                             callback={skip}
                         />
                     </div>
@@ -261,7 +261,7 @@ function App() {
                         <div className="flex flex-col bg-white pt-4 px-8 pb-8 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">HORRAY!</h2>
                             <div className="text-sm font-semibold text-center text-customGrayAddress">
-                                <p>{account}</p>
+                                <p className="my-0 mx-auto">{account}</p>
                             </div>
                             <div className="flex justify-center items-center max-w-10 my-0 mx-auto">
                                 <img
@@ -342,11 +342,6 @@ function App() {
                                     valueSpot={parseFloat(balance || '0.0')}
                                 />
                             </div>
-                            {/* <input
-                                    type="text"
-                                    placeholder="Enter test message here"
-                                    onInput={handleTestMessageChange}
-                                ></input> */}
                             {signedMessage && (
                                 <div
                                     style={{
@@ -354,7 +349,7 @@ function App() {
                                     }}
                                 >
                                     <p>Signed Message:</p>
-                                    <p style={{ textWrap: 'wrap' }}>
+                                    <p className="my-0 mx-auto text-center text-wrap">
                                         {signedMessage}
                                     </p>
                                 </div>
@@ -364,10 +359,6 @@ function App() {
                                     title="Sign Test Message in Wallet"
                                     callback={triggerTestMessageSign}
                                 />
-                                {/* <PrimaryButton
-                                        title="Trigger Test Message to Chat"
-                                        callback={triggerTestMessageToChat}
-                                    /> */}
                             </div>
                         </div>
                     </div>
