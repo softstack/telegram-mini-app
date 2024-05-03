@@ -41,7 +41,7 @@ const ConnectOverlay: React.FC<Props> = ({
         setWalletsExpanded(!walletsExpanded);
     };
 
-    const [connecting, setConnecting] = useState<boolean>(false);
+    const [connecting, setConnecting] = useState<boolean>(true);
 
     // connect function
     const connectMetamask = async () => {
@@ -149,14 +149,14 @@ const ConnectOverlay: React.FC<Props> = ({
             <hr className="m-0 border-t-1 border-solid border-customGrayLine" />
             {connecting ? (
                 <>
-                    <div>
-                        <PulseLoader size={12} margin={5} />
+                    <div className="my-10">
+                        <PulseLoader size={12} margin={5} color="#2D2D2D;" />
                     </div>
                     <div>
-                        <p style={{ color: 'black' }}>Connecting Wallet</p>
+                        <p className="text-lg m-4 mt-2">Connecting Wallet</p>
                     </div>
                     <div>
-                        <p style={{ color: 'black' }}>
+                        <p className="m-4 mb-8 px-10">
                             Please connect MetaMask & approve transaction
                         </p>
                     </div>
