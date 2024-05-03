@@ -8,7 +8,7 @@ type Props = {
 const Avatar: React.FC<Props> = ({ src, height = '100%' }) => {
     return (
         <div
-            className="flex flex-grow items-center justify-center overflow-hidden h-full py-4 px-8"
+            className="flex flex-grow items-center justify-center overflow-hidden max-h-96 py-4 px-8"
             style={{ height: height }}
         >
             <img
