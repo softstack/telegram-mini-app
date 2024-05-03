@@ -82,8 +82,8 @@ const ConnectOverlay: React.FC<Props> = ({
                         }
                     );
                     if (statusResponse.data.connected) {
-                        setConnecting(false);
                         onConnect();
+                        setConnecting(false);
                     } else {
                         console.log('Not Connected, checking again...');
                         setTimeout(checkConnection, 1000);
