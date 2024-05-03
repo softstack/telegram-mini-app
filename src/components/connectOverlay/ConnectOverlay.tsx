@@ -41,7 +41,6 @@ const ConnectOverlay: React.FC<Props> = ({
         setWalletsExpanded(!walletsExpanded);
     };
 
-    // !!!!!!!!!
     const [connecting, setConnecting] = useState<boolean>(false);
 
     // connect function
@@ -51,8 +50,6 @@ const ConnectOverlay: React.FC<Props> = ({
 
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
-
-            console.log(BRIDGE_URL);
 
             const response = await axios.post(BRIDGE_URL + '/init-provider');
             const providerId = response.data.providerId;
@@ -104,8 +101,29 @@ const ConnectOverlay: React.FC<Props> = ({
         }
     };
 
+    // Network Selection
+    const [ethereumSelected, setEthereumSelected] = useState(true);
+    const [polygonSelected, setPolygonSelected] = useState(false);
+    const [avalancheSelected, setAvalancheSelected] = useState(false);
+
     // Toggle Wallets
-    const showAvailableWallets = () => {
+    const showAvailableWallets = (network: string) => {
+        if (network === 'ethereum') {
+            setEthereumSelected(true);
+            setPolygonSelected(false);
+            setAvalancheSelected(false);
+        }
+        if (network === 'polygon') {
+            setEthereumSelected(false);
+            setPolygonSelected(true);
+            setAvalancheSelected(false);
+        }
+        if (network === 'avalanche') {
+            setEthereumSelected(false);
+            setPolygonSelected(false);
+            setAvalancheSelected(true);
+        }
+
         setWalletsExpanded(true);
     };
 
@@ -149,17 +167,24 @@ const ConnectOverlay: React.FC<Props> = ({
                             <NetworkBadge
                                 network="Ethereum"
                                 icon={ethereumLogo}
-                                callback={showAvailableWallets}
+                                selected={ethereumSelected}
+                                callback={() =>
+                                    showAvailableWallets('ethereum')
+                                }
                             />
                             <NetworkBadge
                                 network="Polygon"
                                 icon={polygonLogo}
-                                callback={showAvailableWallets}
+                                selected={polygonSelected}
+                                callback={() => showAvailableWallets('polygon')}
                             />
                             <NetworkBadge
                                 network="Avalanche"
                                 icon={avalancheLogo}
-                                callback={showAvailableWallets}
+                                selected={avalancheSelected}
+                                callback={() =>
+                                    showAvailableWallets('avalanche')
+                                }
                             />
                         </div>
                     )}

@@ -15,6 +15,7 @@ export default {
                 customGrayAddress: '#707579',
                 customGrayWallet: '#efeff4',
                 customBlackText: '#212121',
+                customBlueSelected: '#B9C1F4',
             },
             gridTemplateColumns: {
                 'custom-1-3-1': '1fr 3fr 1fr',
