@@ -154,7 +154,7 @@ function App() {
                     <div className="components-container mb-2">
                         <SkipButton skip={skip} />
                         <Avatar src={avatarScooter} />
-                        <div className="flex flex-col bg-white pt-4 pr-8 pb-8 pl-8 gap-4 rounded-t-3xl rounded-bl-md rounded-br-md shadow-custom-white">
+                        <div className="flex flex-col bg-white pt-4 pr-8 pb-8 pl-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <div>
                                 <h2 className="headline">
                                     Telegram Mini App Demo
