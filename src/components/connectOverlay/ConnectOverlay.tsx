@@ -13,6 +13,7 @@ import ethereumLogo from '../../assets/ethereum_logo.svg';
 import tezosLogo from '../../assets/tezos_logo.png';
 import metamaskLogo from '../../assets/metamask_logo.svg';
 import trustWalletLogo from '../../assets/trust_wallet.svg';
+import templeLogo from '../../assets/temple_logo.svg';
 
 import './ConnectOverlay.css';
 
@@ -194,7 +195,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         <p className="m-0 text-customBlackText text-base font-medium">
                             Select Wallet
                         </p>
-                        <img
+                        {/* <img
                             src={
                                 ethereumWalletsExpanded
                                     ? upCircleIcon
@@ -202,7 +203,7 @@ const ConnectOverlay: React.FC<Props> = ({
                             }
                             onClick={toggleWallets}
                             alt=""
-                        />
+                        /> */}
                     </div>
                     {ethereumWalletsExpanded && (
                         <div className="flex mb-16 m-4 justify-around">
@@ -221,8 +222,13 @@ const ConnectOverlay: React.FC<Props> = ({
                     {tezosWalletsExpanded && (
                         <div className="flex mb-16 m-4 justify-around">
                             <WalletBadge
-                                walletName="Beacon"
-                                icon={metamaskLogo}
+                                walletName="Trust Wallet"
+                                icon={trustWalletLogo}
+                                callback={() => connectWallet('trust')}
+                            />
+                            <WalletBadge
+                                walletName="Temple"
+                                icon={templeLogo}
                                 callback={() => {}}
                             />
                         </div>
