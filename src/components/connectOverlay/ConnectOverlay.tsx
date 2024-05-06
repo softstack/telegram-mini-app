@@ -10,10 +10,9 @@ import crossIcon from '../../assets/cross_icon.svg';
 import upCircleIcon from '../../assets/up_circle_icon.svg';
 import downCircleIcon from '../../assets/down_circle_icon.svg';
 import ethereumLogo from '../../assets/ethereum_logo.svg';
-import polygonLogo from '../../assets/polygon_logo.svg';
-import avalancheLogo from '../../assets/avalanche_logo.svg';
+import tezosLogo from '../../assets/tezos_logo.png';
 import metamaskLogo from '../../assets/metamask_logo.svg';
-import coinbaseLogo from '../../assets/coinbase_logo.svg';
+import trustWalletLogo from '../../assets/trust_wallet.svg';
 
 import './ConnectOverlay.css';
 
@@ -31,27 +30,31 @@ const ConnectOverlay: React.FC<Props> = ({
     onConnect,
 }) => {
     const [networksExpanded, setNetworksExpanded] = useState(true);
-    const [walletsExpanded, setWalletsExpanded] = useState(false);
+    const [ethereumWalletsExpanded, setEthereumWalletsExpanded] =
+        useState(false);
+    const [tezosWalletsExpanded, setTezosWalletsExpanded] = useState(false);
 
     const toggleNetworks = () => {
         setNetworksExpanded(!networksExpanded);
     };
 
     const toggleWallets = () => {
-        setWalletsExpanded(!walletsExpanded);
+        setEthereumWalletsExpanded(!ethereumWalletsExpanded);
     };
 
     const [connecting, setConnecting] = useState<boolean>(false);
 
     // connect function
-    const connectMetamask = async () => {
+    const connectWallet = async (wallet: string) => {
         try {
             setConnecting(true);
 
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
-            const response = await axios.post(BRIDGE_URL + '/init-provider');
+            const response = await axios.post(BRIDGE_URL + '/init-provider', {
+                wallet: wallet,
+            });
             const providerId = response.data.providerId;
 
             window.localStorage.setItem('providerId', providerId);
@@ -103,28 +106,22 @@ const ConnectOverlay: React.FC<Props> = ({
 
     // Network Selection
     const [ethereumSelected, setEthereumSelected] = useState(false);
-    const [polygonSelected, setPolygonSelected] = useState(false);
-    const [avalancheSelected, setAvalancheSelected] = useState(false);
+    const [tezosSelected, setTezosSelected] = useState(false);
 
     // Toggle Wallets
     const showAvailableWallets = (network: string) => {
         if (network === 'ethereum') {
             setEthereumSelected(true);
-            setPolygonSelected(false);
-            setAvalancheSelected(false);
+            setTezosSelected(false);
+            setTezosWalletsExpanded(false);
+            setEthereumWalletsExpanded(true);
         }
-        if (network === 'polygon') {
+        if (network === 'tezos') {
             setEthereumSelected(false);
-            setPolygonSelected(true);
-            setAvalancheSelected(false);
+            setTezosSelected(true);
+            setEthereumWalletsExpanded(false);
+            setTezosWalletsExpanded(true);
         }
-        if (network === 'avalanche') {
-            setEthereumSelected(false);
-            setPolygonSelected(false);
-            setAvalancheSelected(true);
-        }
-
-        setWalletsExpanded(true);
     };
 
     return (
@@ -186,18 +183,10 @@ const ConnectOverlay: React.FC<Props> = ({
                                 }
                             />
                             <NetworkBadge
-                                network="Polygon"
-                                icon={polygonLogo}
-                                selected={polygonSelected}
-                                callback={() => showAvailableWallets('polygon')}
-                            />
-                            <NetworkBadge
-                                network="Avalanche"
-                                icon={avalancheLogo}
-                                selected={avalancheSelected}
-                                callback={() =>
-                                    showAvailableWallets('avalanche')
-                                }
+                                network="Tezos"
+                                icon={tezosLogo}
+                                selected={tezosSelected}
+                                callback={() => showAvailableWallets('tezos')}
                             />
                         </div>
                     )}
@@ -207,22 +196,33 @@ const ConnectOverlay: React.FC<Props> = ({
                         </p>
                         <img
                             src={
-                                walletsExpanded ? upCircleIcon : downCircleIcon
+                                ethereumWalletsExpanded
+                                    ? upCircleIcon
+                                    : downCircleIcon
                             }
                             onClick={toggleWallets}
                             alt=""
                         />
                     </div>
-                    {walletsExpanded && (
+                    {ethereumWalletsExpanded && (
                         <div className="flex m-4 justify-around">
                             <WalletBadge
                                 walletName="Metamask"
                                 icon={metamaskLogo}
-                                callback={connectMetamask}
+                                callback={() => connectWallet('metamask')}
                             />
                             <WalletBadge
-                                walletName="Coinbase"
-                                icon={coinbaseLogo}
+                                walletName="Trust Wallet"
+                                icon={trustWalletLogo}
+                                callback={() => connectWallet('trust')}
+                            />
+                        </div>
+                    )}
+                    {tezosWalletsExpanded && (
+                        <div className="flex m-4 justify-around">
+                            <WalletBadge
+                                walletName="Beacon"
+                                icon={metamaskLogo}
                                 callback={() => {}}
                             />
                         </div>

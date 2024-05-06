@@ -192,7 +192,7 @@ function App() {
                     <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
                         <h2 className="headline">CONNECT</h2>
                         <EVMConnectModal
-                            title="EVM Connect"
+                            title="t:connect"
                             icon={evmConnectIcon}
                             callback={openConnectOverlay}
                         />
