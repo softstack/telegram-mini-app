@@ -205,7 +205,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         />
                     </div>
                     {ethereumWalletsExpanded && (
-                        <div className="flex m-4 justify-around">
+                        <div className="flex mb-16 m-4 justify-around">
                             <WalletBadge
                                 walletName="Metamask"
                                 icon={metamaskLogo}
@@ -219,7 +219,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         </div>
                     )}
                     {tezosWalletsExpanded && (
-                        <div className="flex m-4 justify-around">
+                        <div className="flex mb-16 m-4 justify-around">
                             <WalletBadge
                                 walletName="Beacon"
                                 icon={metamaskLogo}
