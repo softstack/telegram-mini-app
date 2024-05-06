@@ -39,9 +39,9 @@ const ConnectOverlay: React.FC<Props> = ({
         setNetworksExpanded(!networksExpanded);
     };
 
-    const toggleWallets = () => {
-        setEthereumWalletsExpanded(!ethereumWalletsExpanded);
-    };
+    // const toggleWallets = () => {
+    //     setEthereumWalletsExpanded(!ethereumWalletsExpanded);
+    // };
 
     const [connecting, setConnecting] = useState<boolean>(false);
 
