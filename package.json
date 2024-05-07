@@ -22,7 +22,7 @@
         "@walletconnect/universal-provider": "^2.12.2",
         "@web3modal/ethers": "^4.1.1",
         "axios": "^1.6.8",
-        "colorthief": "^2.4.0",
+        "color-thief-react": "^2.1.0",
         "dotenv": "^16.4.5",
         "ethers": "^6.11.1",
         "react": "^18.2.0",
