@@ -7,10 +7,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 // Rainbow Kit
 import './polyfills';
 import '@rainbow-me/rainbowkit/styles.css';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { WagmiProvider } from 'wagmi';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { rainbowConfig } from './configs/rainbowKit.ts';
+
 import { createWalletConnectModal } from './configs/walletConnect.ts';
 
 // Telegram Mini App SDK
@@ -29,9 +26,6 @@ WebApp.ready();
 // Enable the closing confirmation
 WebApp.enableClosingConfirmation();
 
-// Initialize the React Query client
-const queryClient = new QueryClient();
-
 // Create the WalletConnect modal
 createWalletConnectModal();
 
@@ -41,14 +35,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <WagmiProvider config={rainbowConfig}>
-            <QueryClientProvider client={queryClient}>
-                <RainbowKitProvider>
-                    <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
-                        <App />
-                    </TonConnectUIProvider>
-                </RainbowKitProvider>
-            </QueryClientProvider>
-        </WagmiProvider>
+        <TonConnectUIProvider manifestUrl="https://softstackhq.github.io/telegram-mini-app/tonconnect-manifest.json">
+            <App />
+        </TonConnectUIProvider>
     </React.StrictMode>
 );
