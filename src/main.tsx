@@ -6,7 +6,6 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 // Rainbow Kit
 import './polyfills';
-import '@rainbow-me/rainbowkit/styles.css';
 
 import { createWalletConnectModal } from './configs/walletConnect.ts';
 
