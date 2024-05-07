@@ -10,14 +10,6 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@metamask/detect-provider": "^2.0.0",
-        "@metamask/sdk-react-ui": "^0.18.0",
-        "@rainbow-me/rainbowkit": "^2.0.5",
-        "@solana/wallet-adapter-base": "^0.9.23",
-        "@solana/wallet-adapter-react": "^0.15.35",
-        "@solana/wallet-adapter-react-ui": "^0.9.35",
-        "@solana/wallet-adapter-wallets": "^0.19.32",
-        "@solana/web3.js": "^1.91.2",
         "@tanstack/react-query": "^5.29.0",
         "@tonconnect/ui-react": "^2.0.0",
         "@twa-dev/sdk": "^7.0.0",
@@ -36,9 +28,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.22.3",
-        "react-spinners": "^0.13.8",
-        "viem": "^2.9.15",
-        "wagmi": "^2.5.19"
+        "react-spinners": "^0.13.8"
     },
     "devDependencies": {
         "@types/react": "^18.2.66",
@@ -47,6 +37,7 @@
         "@typescript-eslint/parser": "^7.2.0",
         "@vitejs/plugin-react": "^4.2.1",
         "autoprefixer": "^10.4.19",
+        "depcheck": "^1.4.7",
         "eslint": "^8.57.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.6",
