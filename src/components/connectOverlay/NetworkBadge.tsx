@@ -76,6 +76,7 @@ const NetworkBadge: React.FC<Props> = ({
             if (color === 'rgba(0,0,0, 0.5)') return;
             console.log('Dominant color:', color);
             backgroundColorSelected = color;
+            console.log('Background color:', backgroundColorSelected);
         });
     }, [icon]);
 
