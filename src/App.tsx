@@ -105,6 +105,8 @@ function App() {
     }, [tonWallet]);
 
     // Test Functions
+    const [wallet, setWallet] = useState<string | null>(null);
+
     const [signedMessage, setSignedMessage] = useState<string | null>(null);
     const triggerTestMessageSign = () => {
         const providerId = window.localStorage.getItem('providerId');
@@ -113,6 +115,8 @@ function App() {
             return;
         }
         const wallet = localStorage.getItem('wallet');
+        setWallet(wallet);
+
         if (wallet === 'metamask') {
             WebApp.openLink('https://metamask.app.link/');
         }
@@ -268,6 +272,7 @@ function App() {
                 <div>
                     <div className="h-screen bg-customGrayWallet">
                         <BackButton goBack={goBack} />
+                        {wallet}
                         <div className="flex flex-col gap-4 p-4">
                             <div className="flex flex-col">
                                 <p className="m-0 text-xl font-semibold">
