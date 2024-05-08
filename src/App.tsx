@@ -106,17 +106,18 @@ function App() {
 
     // Test Functions
     const [signedMessage, setSignedMessage] = useState<string | null>(null);
-    const triggerTestMessageSign = (wallet: string) => {
+    const triggerTestMessageSign = () => {
         const providerId = window.localStorage.getItem('providerId');
         if (!providerId) {
             console.error('Provider ID not found.');
             return;
         }
+        const wallet = localStorage.getItem('wallet');
         if (wallet === 'metamask') {
             WebApp.openLink('https://metamask.app.link/');
         }
         if (wallet === 'trust') {
-            WebApp.openLink('https://trustwallet.com/');
+            WebApp.openLink('https://link.trustwallet.com/');
         }
         axios
             .post(BRIDGE_URL + '/sign', {
@@ -328,9 +329,7 @@ function App() {
                             <div className="flex flex-col gap-2">
                                 <PrimaryButton
                                     title="Sign Test Message in Wallet"
-                                    callback={() =>
-                                        triggerTestMessageSign('metamask')
-                                    }
+                                    callback={() => triggerTestMessageSign}
                                 />
                             </div>
                         </div>

@@ -87,6 +87,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     );
                     if (statusResponse.data.connected) {
                         onConnect();
+                        localStorage.setItem('wallet', wallet);
                         setConnecting(false);
                     } else {
                         console.log('Not Connected, checking again...');
