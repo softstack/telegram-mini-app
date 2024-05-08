@@ -118,12 +118,18 @@ function App() {
             return;
         }
 
-        if (wallet === 'metamask') {
-            WebApp.openLink('https://metamask.app.link/');
+        switch (wallet) {
+            case 'metamask':
+                WebApp.openLink('https://metamask.app.link/');
+                break;
+            case 'trust':
+                WebApp.openLink('https://link.trustwallet.com/');
+                break;
+            default:
+                console.error('Wallet not recognized.');
+                return;
         }
-        if (wallet === 'trust') {
-            WebApp.openLink('https://link.trustwallet.com/');
-        }
+
         axios
             .post(BRIDGE_URL + '/sign', {
                 message: 'This is a test message.',
