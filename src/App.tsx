@@ -340,7 +340,7 @@ function App() {
                             <div className="flex flex-col gap-2">
                                 <PrimaryButton
                                     title="Sign Test Message in Wallet"
-                                    callback={() => triggerTestMessageSign}
+                                    callback={triggerTestMessageSign}
                                 />
                             </div>
                         </div>
