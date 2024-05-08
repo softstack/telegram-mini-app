@@ -112,16 +112,16 @@ function App() {
             console.error('Provider ID not found.');
             return;
         }
-        const wallet = window.localStorage.getItem('wallet') || 'trust';
+        const wallet = window.localStorage.getItem('walletProvider');
         if (!wallet) {
             console.error('Wallet not found.');
             return;
         }
 
-        if (wallet == 'metamask') {
+        if (wallet === 'metamask') {
             WebApp.openLink('https://metamask.app.link/');
         }
-        if (wallet == 'trust') {
+        if (wallet === 'trust') {
             WebApp.openLink('https://link.trustwallet.com/');
         }
         axios

@@ -52,7 +52,7 @@ const ConnectOverlay: React.FC<Props> = ({
 
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
-            window.localStorage.setItem('wallet', wallet);
+            window.localStorage.setItem('walletProvider', wallet);
 
             const response = await axios.post(BRIDGE_URL + '/init-provider', {
                 wallet: wallet,
