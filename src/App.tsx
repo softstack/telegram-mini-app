@@ -121,7 +121,7 @@ function App() {
         if (wallet === 'metamask') {
             WebApp.openLink('https://metamask.app.link/');
         } else if (wallet === 'trust') {
-            WebApp.openLink('https://link.trustwallet.com/');
+            WebApp.openLink('https://link.trustwallet.com');
         }
 
         axios
