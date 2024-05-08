@@ -113,7 +113,7 @@ function App() {
             console.error('Provider ID not found.');
             return;
         }
-        const wallet = localStorage.getItem('wallet');
+        const wallet = window.localStorage.getItem('wallet');
 
         if (wallet === 'metamask') {
             WebApp.openLink('https://metamask.app.link/');
