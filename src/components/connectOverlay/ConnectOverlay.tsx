@@ -45,8 +45,21 @@ const ConnectOverlay: React.FC<Props> = ({
 
     const [connecting, setConnecting] = useState<boolean>(false);
 
+    const [metaMaskSelected, setMetaMaskSelected] = useState<boolean>(false);
+    const [trustWalletSelected, setTrustWalletSelected] =
+        useState<boolean>(false);
+
     // connect function
     const connectWallet = async (wallet: string) => {
+        if (wallet === 'metamask') {
+            setMetaMaskSelected(true);
+            setTrustWalletSelected(false);
+        }
+        if (wallet === 'trust') {
+            setMetaMaskSelected(false);
+            setTrustWalletSelected(true);
+        }
+
         try {
             setConnecting(true);
 
@@ -213,11 +226,13 @@ const ConnectOverlay: React.FC<Props> = ({
                             <WalletBadge
                                 walletName="Metamask"
                                 icon={metamaskLogo}
+                                selected={metaMaskSelected}
                                 callback={() => connectWallet('metamask')}
                             />
                             <WalletBadge
                                 walletName="Trust Wallet"
                                 icon={trustWalletLogo}
+                                selected={trustWalletSelected}
                                 callback={() => connectWallet('trust')}
                             />
                         </div>
@@ -227,6 +242,7 @@ const ConnectOverlay: React.FC<Props> = ({
                             <WalletBadge
                                 walletName="Trust Wallet"
                                 icon={trustWalletLogo}
+                                selected={trustWalletSelected}
                                 callback={() => connectWallet('trust')}
                             />
                             <WalletBadge
