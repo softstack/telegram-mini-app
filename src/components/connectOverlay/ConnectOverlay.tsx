@@ -52,6 +52,7 @@ const ConnectOverlay: React.FC<Props> = ({
 
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+            window.localStorage.setItem('wallet', wallet);
 
             const response = await axios.post(BRIDGE_URL + '/init-provider', {
                 wallet: wallet,
@@ -87,7 +88,6 @@ const ConnectOverlay: React.FC<Props> = ({
                     );
                     if (statusResponse.data.connected) {
                         onConnect();
-                        localStorage.setItem('wallet', wallet);
                         setConnecting(false);
                     } else {
                         console.log('Not Connected, checking again...');
