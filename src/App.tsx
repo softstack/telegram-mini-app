@@ -105,7 +105,6 @@ function App() {
     }, [tonWallet]);
 
     // Test Functions
-    const [testMessage, setTestMessage] = useState<string | null>(null);
     const [signedMessage, setSignedMessage] = useState<string | null>(null);
     const triggerTestMessageSign = () => {
         const providerId = window.localStorage.getItem('providerId');
@@ -113,8 +112,11 @@ function App() {
             console.error('Provider ID not found.');
             return;
         }
-        const wallet = window.localStorage.getItem('wallet');
-        setTestMessage(wallet);
+        const wallet = window.localStorage.getItem('wallet') || 'trust';
+        if (!wallet) {
+            console.error('Wallet not found.');
+            return;
+        }
 
         if (wallet == 'metamask') {
             WebApp.openLink('https://metamask.app.link/');
@@ -271,7 +273,6 @@ function App() {
                 <div>
                     <div className="h-screen bg-customGrayWallet">
                         <BackButton goBack={goBack} />
-                        {testMessage}
                         <div className="flex flex-col gap-4 p-4">
                             <div className="flex flex-col">
                                 <p className="m-0 text-xl font-semibold">
