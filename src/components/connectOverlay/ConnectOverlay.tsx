@@ -57,8 +57,10 @@ const ConnectOverlay: React.FC<Props> = ({
                 wallet: wallet,
             });
             const providerId = response.data.providerId;
+            const uri = response.data.uri;
 
             window.localStorage.setItem('providerId', providerId);
+            window.localStorage.setItem('walletConnectURI', uri);
             window.localStorage.setItem('walletProvider', wallet);
 
             WebApp.openLink(response.data.universalLink);

@@ -118,10 +118,12 @@ function App() {
             return;
         }
 
+        const uri = window.localStorage.getItem('walletConnectURI');
+
         if (wallet === 'metamask') {
-            WebApp.openLink('https://metamask.app.link/');
+            WebApp.openLink(`https://metamask.app.link/wc?uri=${uri}`);
         } else if (wallet === 'trust') {
-            WebApp.openLink('https://link.trustwallet.com');
+            WebApp.openLink(`https://link.trustwallet.com/wc?uri=${uri}`);
         }
 
         axios
