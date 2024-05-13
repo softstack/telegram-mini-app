@@ -171,7 +171,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     </div>
                     <div>
                         <p className="m-4 mb-8 px-10">
-                            Please connect MetaMask & approve transaction
+                            Please connect your Wallet & approve transaction
                         </p>
                     </div>
                 </>
