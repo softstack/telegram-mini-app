@@ -23,6 +23,14 @@ type Props = {
     onConnect: () => void;
 };
 
+enum ConnectionState {
+    DISCONNECTED = 'disconnected',
+    CONNECTING = 'connecting',
+    CONNECTED = 'disconnected',
+    ERROR = 'error',
+    RETRYING = 'retrying',
+}
+
 const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
 const ConnectOverlay: React.FC<Props> = ({
@@ -43,7 +51,9 @@ const ConnectOverlay: React.FC<Props> = ({
     //     setEthereumWalletsExpanded(!ethereumWalletsExpanded);
     // };
 
-    const [connecting, setConnecting] = useState<boolean>(false);
+    const [connectionState, setConnectionState] = useState<string>(
+        ConnectionState.DISCONNECTED
+    );
 
     const [metaMaskSelected, setMetaMaskSelected] = useState<boolean>(false);
     const [trustWalletSelected, setTrustWalletSelected] =
@@ -61,7 +71,7 @@ const ConnectOverlay: React.FC<Props> = ({
         }
 
         try {
-            setConnecting(true);
+            setConnectionState(ConnectionState.CONNECTING);
 
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
@@ -103,7 +113,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     );
                     if (statusResponse.data.connected) {
                         onConnect();
-                        setConnecting(false);
+                        setConnectionState(ConnectionState.CONNECTED);
                     } else {
                         console.log('Not Connected, checking again...');
                         setTimeout(checkConnection, 1000);
@@ -144,11 +154,12 @@ const ConnectOverlay: React.FC<Props> = ({
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
             <div className="flex justify-between text-left py-3 px-4">
-                {connecting ? (
+                {connectionState === ConnectionState.CONNECTING && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Connecting
                     </p>
-                ) : (
+                )}
+                {connectionState === ConnectionState.DISCONNECTED && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Connect Wallet
                     </p>
@@ -161,7 +172,7 @@ const ConnectOverlay: React.FC<Props> = ({
                 </div>
             </div>
             <hr className="m-0 border-t-1 border-solid border-customGrayLine" />
-            {connecting ? (
+            {connectionState === ConnectionState.CONNECTING && (
                 <>
                     <div className="my-10">
                         <PulseLoader size={12} margin={5} color="#2D2D2D" />
@@ -175,7 +186,8 @@ const ConnectOverlay: React.FC<Props> = ({
                         </p>
                     </div>
                 </>
-            ) : (
+            )}
+            {connectionState === ConnectionState.DISCONNECTED && (
                 <>
                     <div className="flex py-4 px-5 justify-between">
                         <p className="m-0 text-customBlackText text-base font-medium">
