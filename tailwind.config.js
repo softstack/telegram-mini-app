@@ -17,6 +17,7 @@ export default {
                 customBlackText: '#212121',
                 customBlueSelected: '#B9C1F4',
                 customGrayLine: '#c6c6c6',
+                customGrayAccountDetails: '#616161',
             },
             gridTemplateColumns: {
                 'custom-1-3-1': '1fr 3fr 1fr',

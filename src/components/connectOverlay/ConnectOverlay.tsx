@@ -14,11 +14,17 @@ import tezosLogo from '../../assets/tezos_logo.png';
 import metamaskLogo from '../../assets/metamask_logo.svg';
 import trustWalletLogo from '../../assets/trust_wallet.svg';
 import templeLogo from '../../assets/temple_logo.svg';
+import accountIconPlaceholder from '../../assets/account_placeholder.svg';
+import copyIcon from '../../assets/copy_icon.svg';
+import documentIcon from '../../assets/document_icon.svg';
+
+import { truncateText } from '../../utils/truncateText';
 
 import './ConnectOverlay.css';
 
 type Props = {
     slideAnimation: string;
+    account?: string | null;
     close: () => void;
     onConnect: () => void;
 };
@@ -26,7 +32,7 @@ type Props = {
 enum ConnectionState {
     DISCONNECTED = 'disconnected',
     CONNECTING = 'connecting',
-    CONNECTED = 'disconnected',
+    CONNECTED = 'connected',
     ERROR = 'error',
     RETRYING = 'retrying',
 }
@@ -35,6 +41,7 @@ const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
 const ConnectOverlay: React.FC<Props> = ({
     slideAnimation,
+    account,
     close,
     onConnect,
 }) => {
@@ -52,7 +59,7 @@ const ConnectOverlay: React.FC<Props> = ({
     // };
 
     const [connectionState, setConnectionState] = useState<string>(
-        ConnectionState.DISCONNECTED
+        ConnectionState.CONNECTED
     );
 
     const [metaMaskSelected, setMetaMaskSelected] = useState<boolean>(false);
@@ -128,6 +135,7 @@ const ConnectOverlay: React.FC<Props> = ({
             checkConnection();
         } catch (error) {
             console.error('Error during initial connection:', error);
+            setConnectionState(ConnectionState.ERROR);
         }
     };
 
@@ -151,6 +159,19 @@ const ConnectOverlay: React.FC<Props> = ({
         }
     };
 
+    // Copy Account to Clipboard
+    const copyAccountToClipboard = () => {
+        if (!account) return;
+        navigator.clipboard.writeText(account);
+        WebApp.showAlert('Address copied to clipboard');
+    };
+
+    // View on Explorer
+    const viewOnExplorer = () => {
+        if (!account) return;
+        WebApp.openLink(`https://etherscan.io/address/${account}`);
+    };
+
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
             <div className="flex justify-between text-left py-3 px-4">
@@ -162,6 +183,21 @@ const ConnectOverlay: React.FC<Props> = ({
                 {connectionState === ConnectionState.DISCONNECTED && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Connect Wallet
+                    </p>
+                )}
+                {connectionState === ConnectionState.CONNECTED && (
+                    <p className="m-0 text-lg font-bold text-customBlackText">
+                        Account Details
+                    </p>
+                )}
+                {connectionState === ConnectionState.ERROR && (
+                    <p className="m-0 text-lg font-bold text-customBlackText">
+                        Connection Error
+                    </p>
+                )}
+                {connectionState === ConnectionState.RETRYING && (
+                    <p className="m-0 text-lg font-bold text-customBlackText">
+                        Retrying
                     </p>
                 )}
                 <div
@@ -265,6 +301,47 @@ const ConnectOverlay: React.FC<Props> = ({
                         </div>
                     )}
                 </>
+            )}
+            {connectionState === ConnectionState.CONNECTED && (
+                <div className="my-5 mx-7 border-solid border border-gray-200 rounded-lg">
+                    <div className="flex align-middle justify-start items-center my-2 mx-1 p-2 gap-4">
+                        <div className="w-8 h-8 object-contain">
+                            <img
+                                className="w-full h-full"
+                                src={accountIconPlaceholder}
+                                alt=""
+                            />
+                        </div>
+                        {/* <p>{truncateText(account, 8, 8)}</p> */}
+                        <p className="font-medium text-sm">
+                            {truncateText(
+                                '0xCc383E6f51E06e8eA3F39AF32Bbe48BD74A70BF5',
+                                8,
+                                8
+                            )}
+                        </p>
+                    </div>
+                    <div className="flex justify-between my-2 mx-1 p-2 mr-4 gap-4">
+                        <div
+                            className="flex align-middle justify-start items-center gap-2"
+                            onClick={copyAccountToClipboard}
+                        >
+                            <img src={copyIcon} alt="" />
+                            <p className="text-xs text-customGrayAccountDetails font-normal">
+                                Copy Address
+                            </p>
+                        </div>
+                        <div
+                            className="flex align-middle justify-start items-center gap-2"
+                            onClick={viewOnExplorer}
+                        >
+                            <img src={documentIcon} alt="" />
+                            <p className="text-xs text-customGrayAccountDetails font-normal">
+                                View on explorer
+                            </p>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );

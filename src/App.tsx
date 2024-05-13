@@ -228,6 +228,7 @@ function App() {
                             slideAnimation={slideAnimation}
                             close={closeConnectOverlay}
                             onConnect={handleConnect}
+                            account={account}
                         />
                     )}
                 </div>
