@@ -59,7 +59,7 @@ const ConnectOverlay: React.FC<Props> = ({
     // };
 
     const [connectionState, setConnectionState] = useState<string>(
-        ConnectionState.CONNECTED
+        ConnectionState.DISCONNECTED
     );
 
     const [metaMaskSelected, setMetaMaskSelected] = useState<boolean>(false);
