@@ -1,4 +1,5 @@
-import { HtmlWebpackPlugin } from 'html-webpack-plugin';
+import pkg from 'html-webpack-plugin';
+const { HtmlWebpackPlugin } = pkg;
 import path from 'path';
 
 module.exports = {
