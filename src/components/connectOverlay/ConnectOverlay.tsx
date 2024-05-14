@@ -156,7 +156,7 @@ const ConnectOverlay: React.FC<Props> = ({
     const copyAccountToClipboard = () => {
         if (!account) return;
         navigator.clipboard.writeText(account);
-        WebApp.showAlert('Address copied to clipboard');
+        WebApp.showPopup({ message: 'Address copied to clipboard!' });
     };
 
     // View on Explorer
