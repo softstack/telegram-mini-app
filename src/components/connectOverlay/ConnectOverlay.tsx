@@ -165,6 +165,16 @@ const ConnectOverlay: React.FC<Props> = ({
         WebApp.openLink(`https://etherscan.io/address/${account}`);
     };
 
+    // Handle Disconnect
+    const handelDisconnect = () => {
+        window.localStorage.removeItem('providerId');
+        window.localStorage.removeItem('walletConnectURI');
+        window.localStorage.removeItem('walletProvider');
+        window.localStorage.removeItem('walletconnect');
+        window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+        dispatch(setConnectionState('disconnected'));
+    };
+
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
             <div className="flex justify-between text-left py-3 px-4">
@@ -296,35 +306,51 @@ const ConnectOverlay: React.FC<Props> = ({
                 </>
             )}
             {connectionState === 'connected' && (
-                <div className="my-5 mx-7 border-solid border border-gray-200 rounded-lg">
-                    <div className="flex align-middle justify-start items-center my-2 mx-1 p-2 gap-4">
-                        <div className="w-8 h-8 object-contain">
-                            <img
-                                className="w-full h-full"
-                                src={accountIconPlaceholder}
-                                alt=""
-                            />
+                <div className="flex flex-col gap-4 py-5 px-7">
+                    <div className="border-solid border border-gray-200 rounded-lg">
+                        <div className="flex align-middle justify-start items-center my-2 mx-1 p-2 gap-4">
+                            <div className="w-8 h-8 object-contain">
+                                <img
+                                    className="w-full h-full"
+                                    src={accountIconPlaceholder}
+                                    alt=""
+                                />
+                            </div>
+                            {account && <p>{truncateText(account, 8, 8)}</p>}
                         </div>
-                        {account && <p>{truncateText(account, 8, 8)}</p>}
+                        <div className="flex justify-between my-2 mx-1 p-2 mr-4 gap-4">
+                            <div
+                                className="flex align-middle justify-start items-center gap-2"
+                                onClick={copyAccountToClipboard}
+                            >
+                                <img src={copyIcon} alt="" />
+                                <p className="text-xs text-customGrayAccountDetails font-normal">
+                                    Copy Address
+                                </p>
+                            </div>
+                            <div
+                                className="flex align-middle justify-start items-center gap-2"
+                                onClick={viewOnExplorer}
+                            >
+                                <img src={documentIcon} alt="" />
+                                <p className="text-xs text-customGrayAccountDetails font-normal">
+                                    View on explorer
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex justify-between my-2 mx-1 p-2 mr-4 gap-4">
-                        <div
-                            className="flex align-middle justify-start items-center gap-2"
-                            onClick={copyAccountToClipboard}
-                        >
-                            <img src={copyIcon} alt="" />
-                            <p className="text-xs text-customGrayAccountDetails font-normal">
-                                Copy Address
+                    <div className="flex justify-between">
+                        <div className="flex align-middle items-center">
+                            <p className="text-xs">
+                                Connected with{' '}
+                                {window.localStorage.getItem('walletProvider')}
                             </p>
                         </div>
                         <div
-                            className="flex align-middle justify-start items-center gap-2"
-                            onClick={viewOnExplorer}
+                            className="border border-red-300 rounded-xl py-4 px-6 bg-red-100"
+                            onClick={handelDisconnect}
                         >
-                            <img src={documentIcon} alt="" />
-                            <p className="text-xs text-customGrayAccountDetails font-normal">
-                                View on explorer
-                            </p>
+                            <p className="text-base font-normal">Disconnect</p>
                         </div>
                     </div>
                 </div>

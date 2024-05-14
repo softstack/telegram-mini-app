@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 // import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 import axios from 'axios';
+import { RootState } from './redux/store';
 
 import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
@@ -28,6 +29,7 @@ import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
 import { useTonWallet } from '@tonconnect/ui-react';
 import WalletConnectModal from './components/connectors/WalletConnectModal';
+import { useSelector } from 'react-redux';
 
 enum View {
     LANDING = 0,
@@ -42,6 +44,11 @@ const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
 function App() {
     const [view, setView] = useState<View>(View.LANDING);
+
+    // Connection State
+    const connectionState = useSelector(
+        (state: RootState) => state.connection.connectionState
+    );
 
     const skip = () => {
         setView(view + 1);
@@ -203,7 +210,9 @@ function App() {
                 <div className="components-container">
                     <div className="flex justify-between">
                         <BackButton goBack={goBack} />
-                        {account && <SkipButton skip={skip} />}
+                        {connectionState === 'connected' && (
+                            <SkipButton skip={skip} />
+                        )}
                     </div>
                     <Avatar src={avatarPhone} />
                     <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
