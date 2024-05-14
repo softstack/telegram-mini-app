@@ -305,14 +305,7 @@ const ConnectOverlay: React.FC<Props> = ({
                                 alt=""
                             />
                         </div>
-                        {/* <p>{truncateText(account, 8, 8)}</p> */}
-                        <p className="font-medium text-sm">
-                            {truncateText(
-                                '0xCc383E6f51E06e8eA3F39AF32Bbe48BD74A70BF5',
-                                8,
-                                8
-                            )}
-                        </p>
+                        {account && <p>{truncateText(account, 8, 8)}</p>}
                     </div>
                     <div className="flex justify-between my-2 mx-1 p-2 mr-4 gap-4">
                         <div
