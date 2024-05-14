@@ -20,6 +20,10 @@ import documentIcon from '../../assets/document_icon.svg';
 
 import { truncateText } from '../../utils/truncateText';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../redux/store';
+import { setConnectionState } from '../../redux/connectionSlice';
+
 import './ConnectOverlay.css';
 
 type Props = {
@@ -29,14 +33,6 @@ type Props = {
     onConnect: () => void;
 };
 
-enum ConnectionState {
-    DISCONNECTED = 'disconnected',
-    CONNECTING = 'connecting',
-    CONNECTED = 'connected',
-    ERROR = 'error',
-    RETRYING = 'retrying',
-}
-
 const BRIDGE_URL = import.meta.env.VITE_BRIDGE_URL || '';
 
 const ConnectOverlay: React.FC<Props> = ({
@@ -45,6 +41,11 @@ const ConnectOverlay: React.FC<Props> = ({
     close,
     onConnect,
 }) => {
+    const connectionState = useSelector(
+        (state: RootState) => state.connection.connectionState
+    );
+    const dispatch = useDispatch<AppDispatch>();
+
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [ethereumWalletsExpanded, setEthereumWalletsExpanded] =
         useState(false);
@@ -53,14 +54,6 @@ const ConnectOverlay: React.FC<Props> = ({
     const toggleNetworks = () => {
         setNetworksExpanded(!networksExpanded);
     };
-
-    // const toggleWallets = () => {
-    //     setEthereumWalletsExpanded(!ethereumWalletsExpanded);
-    // };
-
-    const [connectionState, setConnectionState] = useState<string>(
-        ConnectionState.DISCONNECTED
-    );
 
     const [metaMaskSelected, setMetaMaskSelected] = useState<boolean>(false);
     const [trustWalletSelected, setTrustWalletSelected] =
@@ -78,7 +71,7 @@ const ConnectOverlay: React.FC<Props> = ({
         }
 
         try {
-            setConnectionState(ConnectionState.CONNECTING);
+            dispatch(setConnectionState('connecting'));
 
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
@@ -119,7 +112,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         }
                     );
                     if (statusResponse.data.connected) {
-                        setConnectionState(ConnectionState.CONNECTED);
+                        dispatch(setConnectionState('connected'));
                         onConnect();
                     } else {
                         console.log('Not Connected, checking again...');
@@ -135,7 +128,7 @@ const ConnectOverlay: React.FC<Props> = ({
             checkConnection();
         } catch (error) {
             console.error('Error during initial connection:', error);
-            setConnectionState(ConnectionState.ERROR);
+            dispatch(setConnectionState('error'));
         }
     };
 
@@ -175,27 +168,27 @@ const ConnectOverlay: React.FC<Props> = ({
     return (
         <div className={`connect-overlay ${slideAnimation}`}>
             <div className="flex justify-between text-left py-3 px-4">
-                {connectionState === ConnectionState.CONNECTING && (
+                {connectionState === 'connecting' && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Connecting
                     </p>
                 )}
-                {connectionState === ConnectionState.DISCONNECTED && (
+                {connectionState === 'disconnected' && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Connect Wallet
                     </p>
                 )}
-                {connectionState === ConnectionState.CONNECTED && (
+                {connectionState === 'connected' && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Account Details
                     </p>
                 )}
-                {connectionState === ConnectionState.ERROR && (
+                {connectionState === 'error' && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Connection Error
                     </p>
                 )}
-                {connectionState === ConnectionState.RETRYING && (
+                {connectionState === 'retrying' && (
                     <p className="m-0 text-lg font-bold text-customBlackText">
                         Retrying
                     </p>
@@ -208,7 +201,7 @@ const ConnectOverlay: React.FC<Props> = ({
                 </div>
             </div>
             <hr className="m-0 border-t-1 border-solid border-customGrayLine" />
-            {connectionState === ConnectionState.CONNECTING && (
+            {connectionState === 'connecting' && (
                 <>
                     <div className="my-10">
                         <PulseLoader size={12} margin={5} color="#2D2D2D" />
@@ -223,7 +216,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     </div>
                 </>
             )}
-            {connectionState === ConnectionState.DISCONNECTED && (
+            {connectionState === 'disconnected' && (
                 <>
                     <div className="flex py-4 px-5 justify-between">
                         <p className="m-0 text-customBlackText text-base font-medium">
@@ -302,7 +295,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     )}
                 </>
             )}
-            {connectionState === ConnectionState.CONNECTED && (
+            {connectionState === 'connected' && (
                 <div className="my-5 mx-7 border-solid border border-gray-200 rounded-lg">
                     <div className="flex align-middle justify-start items-center my-2 mx-1 p-2 gap-4">
                         <div className="w-8 h-8 object-contain">
