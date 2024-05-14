@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ConnectionSliceState, ConnectionState } from '../types';
 
 const initialState: ConnectionSliceState = {
-    connectionState: 'disconnected',
+    connectionState: 'connected',
 };
 
 export const connectionSlice = createSlice({

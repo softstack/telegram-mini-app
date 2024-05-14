@@ -59,6 +59,9 @@ const ConnectOverlay: React.FC<Props> = ({
     const [trustWalletSelected, setTrustWalletSelected] =
         useState<boolean>(false);
 
+    // Error
+    const [error, setError] = useState<string | null>(null);
+
     // handle connect overlay close
     const handleClose = () => {
         dispatch(setConnectionState('disconnected'));
@@ -132,9 +135,9 @@ const ConnectOverlay: React.FC<Props> = ({
 
             // Start checking connection status
             checkConnection();
-        } catch (error) {
-            console.error('Error during initial connection:', error);
+        } catch (error: any) {
             dispatch(setConnectionState('error'));
+            setError(error.message);
         }
     };
 
@@ -172,13 +175,17 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     // Handle Disconnect
-    const handelDisconnect = () => {
+    const handleDisconnect = async () => {
         window.localStorage.removeItem('providerId');
         window.localStorage.removeItem('walletConnectURI');
         window.localStorage.removeItem('walletProvider');
         window.localStorage.removeItem('walletconnect');
         window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
         dispatch(setConnectionState('disconnected'));
+
+        await axios.post(BRIDGE_URL + '/disconnect', {
+            providerId: window.localStorage.getItem('providerId'),
+        });
     };
 
     return (
@@ -354,10 +361,28 @@ const ConnectOverlay: React.FC<Props> = ({
                         </div>
                         <div
                             className="border border-red-300 rounded-xl py-4 px-6 bg-red-100"
-                            onClick={handelDisconnect}
+                            onClick={handleDisconnect}
                         >
                             <p className="text-base font-normal">Disconnect</p>
                         </div>
+                    </div>
+                </div>
+            )}
+            {connectionState === 'error' && (
+                <div className="flex flex-col gap-4 py-5 px-7">
+                    <div className="flex justify-center">
+                        <p className="text-lg text-red-500">Error!</p>
+                    </div>
+                    <div className="flex flex-col gap-2 justify-center">
+                        <p className="text-sm text-gray-500">
+                            An error occurred while connecting to the wallet.
+                        </p>
+                        <p>{error}</p>
+                    </div>
+                    <div className="flex justify-center">
+                        <p className="text-sm text-gray-500">
+                            Please try again later.
+                        </p>
                     </div>
                 </div>
             )}
