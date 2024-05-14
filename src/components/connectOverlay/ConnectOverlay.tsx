@@ -59,6 +59,12 @@ const ConnectOverlay: React.FC<Props> = ({
     const [trustWalletSelected, setTrustWalletSelected] =
         useState<boolean>(false);
 
+    // handle connect overlay close
+    const handleClose = () => {
+        dispatch(setConnectionState('disconnected'));
+        close();
+    };
+
     // connect function
     const connectWallet = async (wallet: string) => {
         if (wallet === 'metamask') {
@@ -204,7 +210,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     </p>
                 )}
                 <div
-                    onClick={close}
+                    onClick={handleClose}
                     className="flex items-center cursor-pointer"
                 >
                     <img src={crossIcon} alt="" />
