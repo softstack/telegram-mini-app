@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+// Redux
+import { Provider } from 'react-redux';
+import { store } from './redux/store.ts';
+
 // TonConnect UI
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
@@ -34,8 +38,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <TonConnectUIProvider manifestUrl="https://softstack.github.io/telegram-mini-app/tonconnect-manifest.json">
-            <App />
-        </TonConnectUIProvider>
+        <Provider store={store}>
+            <TonConnectUIProvider manifestUrl="https://softstack.github.io/telegram-mini-app/tonconnect-manifest.json">
+                <App />
+            </TonConnectUIProvider>
+        </Provider>
     </React.StrictMode>
 );
