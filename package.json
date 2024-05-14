@@ -5,6 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "dev-expose": "vite --host",
         "build": "tsc && vite build",
         "build-wp": "webpack --mode production",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
