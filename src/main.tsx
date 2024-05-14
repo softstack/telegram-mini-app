@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 // Redux
 import { Provider } from 'react-redux';
-import { store } from './redux/store.ts';
+import { store } from './redux/store';
 
 // TonConnect UI
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
@@ -11,13 +11,13 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 // Rainbow Kit
 import './polyfills';
 
-import { createWalletConnectModal } from './configs/walletConnect.ts';
+import { createWalletConnectModal } from './configs/walletConnect';
 
 // Telegram Mini App SDK
 import WebApp from '@twa-dev/sdk';
 
 // App + Styles
-import App from './App.tsx';
+import App from './App';
 import './index.css';
 
 // Hide the main button
