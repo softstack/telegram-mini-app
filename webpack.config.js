@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+import { HtmlWebpackPlugin } from 'html-webpack-plugin';
+import path from 'path';
 
 module.exports = {
     entry: './src/main.tsx', // Make sure this points to your entry file
