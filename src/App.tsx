@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 import axios from 'axios';
 import { AppDispatch, RootState } from './redux/store';
