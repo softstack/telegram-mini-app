@@ -146,6 +146,15 @@ const ConnectOverlay: React.FC<Props> = ({
     const [tezosSelected, setTezosSelected] = useState(false);
 
     // Toggle Wallets
+    const toggleWallets = () => {
+        if (ethereumSelected) {
+            setEthereumWalletsExpanded(!ethereumWalletsExpanded);
+        }
+        if (tezosSelected) {
+            setTezosWalletsExpanded(!tezosWalletsExpanded);
+        }
+    };
+
     const showAvailableWallets = (network: string) => {
         if (network === 'ethereum') {
             setEthereumSelected(true);
@@ -255,27 +264,33 @@ const ConnectOverlay: React.FC<Props> = ({
                     </div>
                     {networksExpanded && (
                         <div className="flex m-4 justify-around">
-                            <NetworkBadge
-                                network="Ethereum"
-                                icon={ethereumLogo}
-                                selected={ethereumSelected}
-                                callback={() =>
-                                    showAvailableWallets('ethereum')
-                                }
-                            />
-                            <NetworkBadge
-                                network="Tezos"
-                                icon={tezosLogo}
-                                selected={tezosSelected}
-                                callback={() => showAvailableWallets('tezos')}
-                            />
+                            <div className="w-1/2 px-6">
+                                <NetworkBadge
+                                    network="Ethereum"
+                                    icon={ethereumLogo}
+                                    selected={ethereumSelected}
+                                    callback={() =>
+                                        showAvailableWallets('ethereum')
+                                    }
+                                />
+                            </div>
+                            <div className="w-1/2 px-6">
+                                <NetworkBadge
+                                    network="Tezos"
+                                    icon={tezosLogo}
+                                    selected={tezosSelected}
+                                    callback={() =>
+                                        showAvailableWallets('tezos')
+                                    }
+                                />
+                            </div>
                         </div>
                     )}
                     <div className="flex py-4 px-5 justify-between">
                         <p className="m-0 text-customBlackText text-base font-medium">
                             Select Wallet
                         </p>
-                        {/* <img
+                        <img
                             src={
                                 ethereumWalletsExpanded
                                     ? upCircleIcon
@@ -283,7 +298,7 @@ const ConnectOverlay: React.FC<Props> = ({
                             }
                             onClick={toggleWallets}
                             alt=""
-                        /> */}
+                        />
                     </div>
                     {ethereumWalletsExpanded && (
                         <div className="flex mb-16 m-4 justify-around">

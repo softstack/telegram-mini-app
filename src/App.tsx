@@ -232,7 +232,11 @@ function App() {
             )}
             {view === View.CONNECT && (
                 <div className="components-container">
-                    <div className={`${showConnectOverlay && 'blur-sm'}`}>
+                    <div
+                        className={`transition-opacity duration-1000 ease-in-out ${
+                            showConnectOverlay && 'blur-sm brightness-90'
+                        }`}
+                    >
                         <div className="flex justify-between">
                             <BackButton goBack={goBack} />
                             {connectionState === 'connected' && (
