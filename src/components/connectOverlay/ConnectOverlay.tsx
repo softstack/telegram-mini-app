@@ -326,7 +326,7 @@ const ConnectOverlay: React.FC<Props> = ({
                                 walletName="Trust Wallet"
                                 icon={trustWalletLogo}
                                 selected={trustWalletSelected}
-                                callback={() => connectWallet('trust')}
+                                callback={() => {}}
                             />
                             <WalletBadge
                                 walletName="Temple"
