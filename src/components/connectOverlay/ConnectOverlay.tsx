@@ -5,6 +5,7 @@ import { PulseLoader } from 'react-spinners';
 
 import NetworkBadge from './NetworkBadge';
 import WalletBadge from './WalletBadge';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 import crossIcon from '../../assets/cross_icon.svg';
 import upCircleIcon from '../../assets/up_circle_icon.svg';
@@ -26,7 +27,6 @@ import { RootState, AppDispatch } from '../../redux/store';
 import { setConnectionState } from '../../redux/connectionSlice';
 
 import './ConnectOverlay.css';
-import PrimaryButton from '../buttons/PrimaryButton';
 
 type Props = {
     slideAnimation: string;

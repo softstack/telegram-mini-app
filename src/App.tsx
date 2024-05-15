@@ -302,16 +302,19 @@ function App() {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-2 p-2 mb-2">
+                    <div className="flex flex-col gap-2 p-2 mb-4">
                         <PrimaryButton
                             title="Open my Wallet"
                             callback={openWallet}
                         />
-                        <PrimaryButton
-                            title="Disconnect"
-                            className="bg-red-200 border border-red-300 text-black"
-                            callback={handleDisconnect}
-                        />
+                        <div>
+                            <PrimaryButton
+                                title="Disconnect"
+                                className="bg-red-200 border border-red-300"
+                                textColor="customBlackText"
+                                callback={handleDisconnect}
+                            />
+                        </div>
                     </div>
                 </>
             )}
