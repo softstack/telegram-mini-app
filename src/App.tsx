@@ -243,7 +243,7 @@ function App() {
                             )}
                         </div>
                         <Avatar src={avatarPhone} />
-                        <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
+                        <div className="flex flex-col absolute w-full bottom-0 bg-white pt-4 px-8 pb-14 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">CONNECT</h2>
                             <EVMConnectModal
                                 title="t:connect"
