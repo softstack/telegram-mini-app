@@ -378,12 +378,12 @@ const ConnectOverlay: React.FC<Props> = ({
                                 {window.localStorage.getItem('walletProvider')}
                             </p>
                         </div>
-                        <div
-                            className="border border-red-300 rounded-xl py-4 px-6 bg-red-100"
+                        <button
+                            className="border border-red-300 rounded-xl py-4 px-6 bg-red-100 active:bg-red-200"
                             onClick={handleDisconnect}
                         >
                             <p className="text-base font-normal">Disconnect</p>
-                        </div>
+                        </button>
                     </div>
                 </div>
             )}
