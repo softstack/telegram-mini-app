@@ -221,7 +221,7 @@ function App() {
                             </div>
                         </div>
                     </div>
-                    <div className="p-2 mb-2">
+                    <div className="p-2 mb-4">
                         <PrimaryButton
                             title="Connect Your Wallet"
                             callback={skip}
