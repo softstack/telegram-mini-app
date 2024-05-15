@@ -310,7 +310,7 @@ function App() {
                         <div>
                             <PrimaryButton
                                 title="Disconnect"
-                                className="bg-red-200 border border-red-300"
+                                className="bg-red-200 border border-red-300 active:bg-red-300"
                                 textColor="customBlackText"
                                 callback={handleDisconnect}
                             />
