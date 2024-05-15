@@ -17,6 +17,7 @@ import templeLogo from '../../assets/temple_logo.svg';
 import accountIconPlaceholder from '../../assets/account_placeholder.svg';
 import copyIcon from '../../assets/copy_icon.svg';
 import documentIcon from '../../assets/document_icon.svg';
+import dangerIcon from '../../assets/danger_icon.svg';
 
 import { truncateText } from '../../utils/truncateText';
 
@@ -25,6 +26,7 @@ import { RootState, AppDispatch } from '../../redux/store';
 import { setConnectionState } from '../../redux/connectionSlice';
 
 import './ConnectOverlay.css';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 type Props = {
     slideAnimation: string;
@@ -59,9 +61,6 @@ const ConnectOverlay: React.FC<Props> = ({
     const [trustWalletSelected, setTrustWalletSelected] =
         useState<boolean>(false);
 
-    // Error
-    const [error, setError] = useState<string | null>(null);
-
     // handle connect overlay close
     const handleClose = () => {
         dispatch(setConnectionState('disconnected'));
@@ -69,7 +68,8 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     // connect function
-    const connectWallet = async (wallet: string) => {
+    const connectWallet = async (wallet: string | null) => {
+        if (!wallet) return;
         if (wallet === 'metamask') {
             setMetaMaskSelected(true);
             setTrustWalletSelected(false);
@@ -137,7 +137,6 @@ const ConnectOverlay: React.FC<Props> = ({
             checkConnection();
         } catch (error: any) {
             dispatch(setConnectionState('error'));
-            setError(error.message);
         }
     };
 
@@ -195,6 +194,11 @@ const ConnectOverlay: React.FC<Props> = ({
         await axios.post(BRIDGE_URL + '/disconnect', {
             providerId: window.localStorage.getItem('providerId'),
         });
+    };
+
+    // Handle Reconnect
+    const handleReconnect = () => {
+        dispatch(setConnectionState('disconnected'));
     };
 
     return (
@@ -385,19 +389,24 @@ const ConnectOverlay: React.FC<Props> = ({
             )}
             {connectionState === 'error' && (
                 <div className="flex flex-col gap-4 py-5 px-7">
-                    <div className="flex justify-center">
-                        <p className="text-lg text-red-500">Error!</p>
+                    <div className="flex justify-center mt-4 mb-0">
+                        <img src={dangerIcon} alt="" />
                     </div>
-                    <div className="flex flex-col gap-2 justify-center">
-                        <p className="text-sm text-gray-500">
-                            An error occurred while connecting to the wallet.
+                    <div>
+                        <p className="text-lg font-normal">
+                            An Unwanted Error Occurred
                         </p>
-                        <p>{error}</p>
                     </div>
-                    <div className="flex justify-center">
-                        <p className="text-sm text-gray-500">
-                            Please try again later.
-                        </p>
+                    <div className="flex flex-col mb-4">
+                        <p>Wallet not connected.</p>
+                        <p>Please try again</p>
+                    </div>
+                    <div className="flex mb-2 align-middle justify-center">
+                        <PrimaryButton
+                            title="Re-Connect"
+                            className="w-3/5"
+                            callback={handleReconnect}
+                        />
                     </div>
                 </div>
             )}
