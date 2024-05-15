@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-// import { useTonWallet } from '@tonconnect/ui-react';
 import WebApp from '@twa-dev/sdk';
 import axios from 'axios';
-import { RootState } from './redux/store';
+import { AppDispatch, RootState } from './redux/store';
 
 import Avatar from './components/utils/Avatar';
 import BackButton from './components/buttons/BackButton';
@@ -29,7 +28,8 @@ import receiveIcon from './assets/receive_icon.svg';
 import sellIcon from './assets/sell_icon.svg';
 import { useTonWallet } from '@tonconnect/ui-react';
 import WalletConnectModal from './components/connectors/WalletConnectModal';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setConnectionState } from './redux/connectionSlice';
 
 enum View {
     LANDING = 0,
@@ -49,6 +49,8 @@ function App() {
     const connectionState = useSelector(
         (state: RootState) => state.connection.connectionState
     );
+
+    const dispatch = useDispatch<AppDispatch>();
 
     const skip = () => {
         setView(view + 1);
@@ -171,6 +173,27 @@ function App() {
         setTimeout(() => setShowConnectOverlay(false), 100);
     };
 
+    // Disconnect
+    const handleDisconnect = async () => {
+        WebApp.showConfirm(
+            'Are you sure you want to disconnect?',
+            async (confirmed: boolean) => {
+                if (!confirmed) return;
+                window.localStorage.removeItem('providerId');
+                window.localStorage.removeItem('walletConnectURI');
+                window.localStorage.removeItem('walletProvider');
+                window.localStorage.removeItem('walletconnect');
+                window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+                dispatch(setConnectionState('disconnected'));
+                setView(View.CONNECT);
+
+                await axios.post(BRIDGE_URL + '/disconnect', {
+                    providerId: window.localStorage.getItem('providerId'),
+                });
+            }
+        );
+    };
+
     return (
         <div className="flex flex-col h-full min-h-screen w-screen rounded-xl bg-customGrayWallet">
             {view === View.LANDING && (
@@ -208,29 +231,35 @@ function App() {
             )}
             {view === View.CONNECT && (
                 <div className="components-container">
-                    <div className="flex justify-between">
-                        <BackButton goBack={goBack} />
-                        {connectionState === 'connected' && (
-                            <SkipButton skip={skip} />
-                        )}
-                    </div>
-                    <Avatar src={avatarPhone} />
-                    <div className="flex flex-col bg-white pt-4 px-8 pb-8 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
-                        <h2 className="headline">CONNECT</h2>
-                        <EVMConnectModal
-                            title="t:connect"
-                            icon={evmConnectIcon}
-                            callback={openConnectOverlay}
-                        />
-                        <TonConnectModal
-                            title="TON Connect"
-                            icon={tonConnectIcon}
-                        />
-                        <WalletConnectModal
-                            title="Wallet Connect (TEST)"
-                            icon={walletConnectIcon}
-                            accountCallback={() => {}}
-                        />
+                    <div
+                        className={`transition-opacity duration-1000 ease-in-out ${
+                            showConnectOverlay && 'blur-sm brightness-90'
+                        }`}
+                    >
+                        <div className="flex justify-between">
+                            <BackButton goBack={goBack} />
+                            {connectionState === 'connected' && (
+                                <SkipButton skip={skip} />
+                            )}
+                        </div>
+                        <Avatar src={avatarPhone} />
+                        <div className="flex flex-col absolute w-full bottom-0 bg-white pt-4 px-8 pb-14 gap-4 rounded-t-3xl rounded-b-xl shadow-custom-white">
+                            <h2 className="headline">CONNECT</h2>
+                            <EVMConnectModal
+                                title="t:connect"
+                                icon={evmConnectIcon}
+                                callback={openConnectOverlay}
+                            />
+                            <TonConnectModal
+                                title="TON Connect"
+                                icon={tonConnectIcon}
+                            />
+                            <WalletConnectModal
+                                title="Wallet Connect (TEST)"
+                                icon={walletConnectIcon}
+                                accountCallback={() => {}}
+                            />
+                        </div>
                     </div>
                     {showConnectOverlay && (
                         <ConnectOverlay
@@ -273,10 +302,15 @@ function App() {
                             </div>
                         </div>
                     </div>
-                    <div className="p-2 mb-2">
+                    <div className="flex flex-col gap-2 p-2 mb-2">
                         <PrimaryButton
                             title="Open my Wallet"
                             callback={openWallet}
+                        />
+                        <PrimaryButton
+                            title="Disconnect"
+                            className="bg-red-200 border border-red-300 text-black"
+                            callback={handleDisconnect}
                         />
                     </div>
                 </>

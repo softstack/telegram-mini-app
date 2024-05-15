@@ -17,6 +17,7 @@ import templeLogo from '../../assets/temple_logo.svg';
 import accountIconPlaceholder from '../../assets/account_placeholder.svg';
 import copyIcon from '../../assets/copy_icon.svg';
 import documentIcon from '../../assets/document_icon.svg';
+import dangerIcon from '../../assets/danger_icon.svg';
 
 import { truncateText } from '../../utils/truncateText';
 
@@ -25,6 +26,7 @@ import { RootState, AppDispatch } from '../../redux/store';
 import { setConnectionState } from '../../redux/connectionSlice';
 
 import './ConnectOverlay.css';
+import PrimaryButton from '../buttons/PrimaryButton';
 
 type Props = {
     slideAnimation: string;
@@ -66,7 +68,8 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     // connect function
-    const connectWallet = async (wallet: string) => {
+    const connectWallet = async (wallet: string | null) => {
+        if (!wallet) return;
         if (wallet === 'metamask') {
             setMetaMaskSelected(true);
             setTrustWalletSelected(false);
@@ -132,8 +135,7 @@ const ConnectOverlay: React.FC<Props> = ({
 
             // Start checking connection status
             checkConnection();
-        } catch (error) {
-            console.error('Error during initial connection:', error);
+        } catch (error: any) {
             dispatch(setConnectionState('error'));
         }
     };
@@ -143,6 +145,15 @@ const ConnectOverlay: React.FC<Props> = ({
     const [tezosSelected, setTezosSelected] = useState(false);
 
     // Toggle Wallets
+    const toggleWallets = () => {
+        if (ethereumSelected) {
+            setEthereumWalletsExpanded(!ethereumWalletsExpanded);
+        }
+        if (tezosSelected) {
+            setTezosWalletsExpanded(!tezosWalletsExpanded);
+        }
+    };
+
     const showAvailableWallets = (network: string) => {
         if (network === 'ethereum') {
             setEthereumSelected(true);
@@ -172,12 +183,21 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     // Handle Disconnect
-    const handelDisconnect = () => {
+    const handleDisconnect = async () => {
         window.localStorage.removeItem('providerId');
         window.localStorage.removeItem('walletConnectURI');
         window.localStorage.removeItem('walletProvider');
         window.localStorage.removeItem('walletconnect');
         window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+        dispatch(setConnectionState('disconnected'));
+
+        await axios.post(BRIDGE_URL + '/disconnect', {
+            providerId: window.localStorage.getItem('providerId'),
+        });
+    };
+
+    // Handle Reconnect
+    const handleReconnect = () => {
         dispatch(setConnectionState('disconnected'));
     };
 
@@ -248,27 +268,33 @@ const ConnectOverlay: React.FC<Props> = ({
                     </div>
                     {networksExpanded && (
                         <div className="flex m-4 justify-around">
-                            <NetworkBadge
-                                network="Ethereum"
-                                icon={ethereumLogo}
-                                selected={ethereumSelected}
-                                callback={() =>
-                                    showAvailableWallets('ethereum')
-                                }
-                            />
-                            <NetworkBadge
-                                network="Tezos"
-                                icon={tezosLogo}
-                                selected={tezosSelected}
-                                callback={() => showAvailableWallets('tezos')}
-                            />
+                            <div className="w-1/2 px-6">
+                                <NetworkBadge
+                                    network="Ethereum"
+                                    icon={ethereumLogo}
+                                    selected={ethereumSelected}
+                                    callback={() =>
+                                        showAvailableWallets('ethereum')
+                                    }
+                                />
+                            </div>
+                            <div className="w-1/2 px-6">
+                                <NetworkBadge
+                                    network="Tezos"
+                                    icon={tezosLogo}
+                                    selected={tezosSelected}
+                                    callback={() =>
+                                        showAvailableWallets('tezos')
+                                    }
+                                />
+                            </div>
                         </div>
                     )}
                     <div className="flex py-4 px-5 justify-between">
                         <p className="m-0 text-customBlackText text-base font-medium">
                             Select Wallet
                         </p>
-                        {/* <img
+                        <img
                             src={
                                 ethereumWalletsExpanded
                                     ? upCircleIcon
@@ -276,7 +302,7 @@ const ConnectOverlay: React.FC<Props> = ({
                             }
                             onClick={toggleWallets}
                             alt=""
-                        /> */}
+                        />
                     </div>
                     {ethereumWalletsExpanded && (
                         <div className="flex mb-16 m-4 justify-around">
@@ -354,10 +380,33 @@ const ConnectOverlay: React.FC<Props> = ({
                         </div>
                         <div
                             className="border border-red-300 rounded-xl py-4 px-6 bg-red-100"
-                            onClick={handelDisconnect}
+                            onClick={handleDisconnect}
                         >
                             <p className="text-base font-normal">Disconnect</p>
                         </div>
+                    </div>
+                </div>
+            )}
+            {connectionState === 'error' && (
+                <div className="flex flex-col gap-4 py-5 px-7">
+                    <div className="flex justify-center mt-4 mb-0">
+                        <img src={dangerIcon} alt="" />
+                    </div>
+                    <div>
+                        <p className="text-lg font-normal">
+                            An Unwanted Error Occurred
+                        </p>
+                    </div>
+                    <div className="flex flex-col mb-4">
+                        <p>Wallet not connected.</p>
+                        <p>Please try again</p>
+                    </div>
+                    <div className="flex mb-2 align-middle justify-center">
+                        <PrimaryButton
+                            title="Re-Connect"
+                            className="w-3/5"
+                            callback={handleReconnect}
+                        />
                     </div>
                 </div>
             )}
