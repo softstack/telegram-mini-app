@@ -8,7 +8,7 @@ type Props = {
 
 const ConnectButton: React.FC<Props> = ({ title, icon, callback }) => {
     return (
-        <div
+        <button
             className="flex items-center justify-center bg-customBlueButton active:bg-blue-400 text-white py-3 px-5 rounded-xl border-none text-base font-semibold whitespace-nowrap"
             onClick={callback}
         >
@@ -17,7 +17,7 @@ const ConnectButton: React.FC<Props> = ({ title, icon, callback }) => {
             </div>
 
             <span className="flex-grow text-center -ml-9">{title}</span>
-        </div>
+        </button>
     );
 };
 

@@ -14,12 +14,12 @@ const PrimaryButton: React.FC<Props> = ({
     callback,
 }) => {
     return (
-        <div
-            className={`flex items-center justify-center bg-customBlueButton h-12 text-${textColor} py-3 px-5 rounded-lg border-customBlueButton border-1 text-base font-semibold text-center ${className} active:bg-blue-400`}
+        <button
+            className={`flex items-center justify-center bg-customBlueButton w-full h-12 text-${textColor} py-3 px-5 rounded-lg border-customBlueButton border-1 text-base font-semibold text-center ${className} active:bg-blue-400`}
             onClick={callback}
         >
             <span>{title}</span>
-        </div>
+        </button>
     );
 };
 
