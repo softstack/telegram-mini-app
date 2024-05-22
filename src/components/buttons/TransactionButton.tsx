@@ -10,14 +10,16 @@ const TransactionButton: React.FC<Props> = ({ text, icon, callback }) => {
     return (
         <div
             onClick={callback}
-            className="flex flex-col justify-center text-center gap-1"
+            className="flex flex-col w-full justify-center text-center gap-1"
         >
-            <div>
+            <div className="flex justify-center">
                 <img src={icon} alt="" />
             </div>
-            <p className="my-0 mx-auto text-customBlueButton font-semibold">
-                {text}
-            </p>
+            <div className="text-center">
+                <p className="my-0 mx-auto text-customBlueButton font-semibold">
+                    {text}
+                </p>
+            </div>
         </div>
     );
 };
