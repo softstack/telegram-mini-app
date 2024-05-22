@@ -238,6 +238,7 @@ function App() {
                     >
                         <div className="flex justify-between">
                             <BackButton goBack={goBack} />
+                            <SkipButton skip={skip} />
                             {connectionState === 'connected' && (
                                 <SkipButton skip={skip} />
                             )}
@@ -319,8 +320,8 @@ function App() {
                 </>
             )}
             {view === View.WALLET && (
-                <div>
-                    <div className="h-screen bg-customGrayWallet">
+                <>
+                    <div className="h-screen bg-customGrayWallet rounded-t-xl">
                         <BackButton goBack={goBack} />
                         <div className="flex flex-col gap-4 p-4">
                             <div className="flex flex-col">
@@ -388,7 +389,7 @@ function App() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </>
             )}
         </div>
     );
