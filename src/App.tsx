@@ -238,7 +238,6 @@ function App() {
                     >
                         <div className="flex justify-between">
                             <BackButton goBack={goBack} />
-                            <SkipButton skip={skip} />
                             {connectionState === 'connected' && (
                                 <SkipButton skip={skip} />
                             )}
@@ -280,10 +279,7 @@ function App() {
                         <div className="flex flex-col bg-white pt-4 px-8 pb-2 min-h-fit gap-2 rounded-t-3xl rounded-b-xl shadow-custom-white">
                             <h2 className="headline">HORRAY!</h2>
                             <div className="text-xs break-all font-semibold text-center text-customGrayAddress">
-                                <p className="my-0 mx-auto">
-                                    {account ||
-                                        '0xcccodoiuwqbqjßq21jruß2rß120j'}
-                                </p>
+                                <p className="my-0 mx-auto">{account}</p>
                             </div>
                             <div className="flex justify-center items-center max-w-10 my-0 mx-auto">
                                 <img
