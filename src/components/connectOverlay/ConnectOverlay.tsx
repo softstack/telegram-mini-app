@@ -120,7 +120,6 @@ const ConnectOverlay: React.FC<Props> = ({
                         }
                     );
                     if (statusResponse.data.connected) {
-                        dispatch(setConnectionState('connected'));
                         onConnect();
                     } else {
                         console.log('Not Connected, checking again...');
