@@ -185,6 +185,7 @@ function App() {
                 window.localStorage.removeItem('walletconnect');
                 window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
                 dispatch(setConnectionState('disconnected'));
+                setSignedMessage(null);
                 setView(View.CONNECT);
 
                 await axios.post(BRIDGE_URL + '/disconnect', {
