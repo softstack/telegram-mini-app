@@ -63,7 +63,9 @@ const ConnectOverlay: React.FC<Props> = ({
 
     // handle connect overlay close
     const handleClose = () => {
-        dispatch(setConnectionState('disconnected'));
+        if (connectionState === 'connecting') {
+            dispatch(setConnectionState('disconnected'));
+        }
         close();
     };
 
