@@ -96,7 +96,6 @@ const ConnectOverlay: React.FC<Props> = ({
             window.localStorage.setItem('walletProvider', wallet);
 
             WebApp.openLink(response.data.universalLink);
-            close();
 
             const startTime = Date.now(); // Record start time
             const timeout = 30000; // 30 seconds timeout
