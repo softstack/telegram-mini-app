@@ -88,6 +88,7 @@ function App() {
     };
 
     const handleConnect = () => {
+        dispatch(setConnectionState('connected'));
         setView(View.CONNECTED);
     };
 
