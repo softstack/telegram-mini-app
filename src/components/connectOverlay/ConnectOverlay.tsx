@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import WebApp from '@twa-dev/sdk';
 import { PulseLoader } from 'react-spinners';
@@ -43,10 +43,21 @@ const ConnectOverlay: React.FC<Props> = ({
     close,
     onConnect,
 }) => {
+    // Redux
     const connectionState = useSelector(
         (state: RootState) => state.connection.connectionState
     );
     const dispatch = useDispatch<AppDispatch>();
+
+    // Dark Mode
+    const [darkMode, setDarkMode] = useState<boolean>(
+        WebApp.colorScheme === 'dark'
+    );
+    useEffect(() => {
+        setDarkMode(WebApp.colorScheme === 'dark');
+        document.documentElement.classList.toggle('dark', darkMode);
+        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    }, [WebApp.colorScheme]);
 
     const [networksExpanded, setNetworksExpanded] = useState(true);
     const [ethereumWalletsExpanded, setEthereumWalletsExpanded] =
@@ -202,30 +213,39 @@ const ConnectOverlay: React.FC<Props> = ({
     };
 
     return (
-        <div className={`connect-overlay ${slideAnimation}`}>
+        <div
+            className={`connect-overlay ${slideAnimation}`}
+            style={
+                darkMode
+                    ? {
+                          backgroundColor: '#262233',
+                      }
+                    : {}
+            }
+        >
             <div className="flex justify-between text-left py-3 px-4">
                 {connectionState === 'connecting' && (
-                    <p className="m-0 text-lg font-bold text-customBlackText">
+                    <p className="m-0 text-lg font-bold text-customBlackText dark:text-customDarkModeTextColor">
                         Connecting
                     </p>
                 )}
                 {connectionState === 'disconnected' && (
-                    <p className="m-0 text-lg font-bold text-customBlackText">
+                    <p className="m-0 text-lg font-bold text-customBlackText dark:text-customDarkModeTextColor">
                         Connect Wallet
                     </p>
                 )}
                 {connectionState === 'connected' && (
-                    <p className="m-0 text-lg font-bold text-customBlackText">
+                    <p className="m-0 text-lg font-bold text-customBlackText dark:text-customDarkModeTextColor">
                         Account Details
                     </p>
                 )}
                 {connectionState === 'error' && (
-                    <p className="m-0 text-lg font-bold text-customBlackText">
+                    <p className="m-0 text-lg font-bold text-customBlackText dark:text-customDarkModeTextColor">
                         Connection Error
                     </p>
                 )}
                 {connectionState === 'retrying' && (
-                    <p className="m-0 text-lg font-bold text-customBlackText">
+                    <p className="m-0 text-lg font-bold text-customBlackText dark:text-customDarkModeTextColor">
                         Retrying
                     </p>
                 )}
@@ -243,10 +263,12 @@ const ConnectOverlay: React.FC<Props> = ({
                         <PulseLoader size={12} margin={5} color="#2D2D2D" />
                     </div>
                     <div>
-                        <p className="text-lg m-4 mt-2">Connecting Wallet</p>
+                        <p className="text-lg m-4 mt-2 dark:text-customDarkModeTextColor">
+                            Connecting Wallet
+                        </p>
                     </div>
                     <div>
-                        <p className="m-4 mb-8 px-10">
+                        <p className="m-4 mb-8 px-10 dark:text-customDarkModeTextColor">
                             Please connect your Wallet & approve transaction
                         </p>
                     </div>
@@ -255,7 +277,7 @@ const ConnectOverlay: React.FC<Props> = ({
             {connectionState === 'disconnected' && (
                 <>
                     <div className="flex py-4 px-5 justify-between">
-                        <p className="m-0 text-customBlackText text-base font-medium">
+                        <p className="m-0 text-customBlackText text-base font-medium dark:text-customDarkModeTextColor">
                             Choose Network
                         </p>
                         <img
@@ -291,7 +313,7 @@ const ConnectOverlay: React.FC<Props> = ({
                         </div>
                     )}
                     <div className="flex py-4 px-5 justify-between">
-                        <p className="m-0 text-customBlackText text-base font-medium">
+                        <p className="m-0 text-customBlackText text-base font-medium dark:text-customDarkModeTextColor">
                             Select Wallet
                         </p>
                         <img
@@ -348,7 +370,11 @@ const ConnectOverlay: React.FC<Props> = ({
                                     alt=""
                                 />
                             </div>
-                            {account && <p>{truncateText(account, 8, 8)}</p>}
+                            {account && (
+                                <p className="dark:text-customDarkModeTextColor">
+                                    {truncateText(account, 8, 8)}
+                                </p>
+                            )}
                         </div>
                         <div className="flex justify-between my-2 mx-1 p-2 mr-4 gap-4">
                             <div
@@ -356,7 +382,7 @@ const ConnectOverlay: React.FC<Props> = ({
                                 onClick={copyAccountToClipboard}
                             >
                                 <img src={copyIcon} alt="" />
-                                <p className="text-xs text-customGrayAccountDetails font-normal">
+                                <p className="text-xs text-customGrayAccountDetails font-normal dark:text-customDarkModeTextColor">
                                     Copy Address
                                 </p>
                             </div>
@@ -365,7 +391,7 @@ const ConnectOverlay: React.FC<Props> = ({
                                 onClick={viewOnExplorer}
                             >
                                 <img src={documentIcon} alt="" />
-                                <p className="text-xs text-customGrayAccountDetails font-normal">
+                                <p className="text-xs text-customGrayAccountDetails font-normal dark:text-customDarkModeTextColor">
                                     View on explorer
                                 </p>
                             </div>
@@ -373,7 +399,7 @@ const ConnectOverlay: React.FC<Props> = ({
                     </div>
                     <div className="flex justify-between">
                         <div className="flex align-middle items-center">
-                            <p className="text-xs">
+                            <p className="text-xs dark:text-customDarkModeTextColor">
                                 Connected with{' '}
                                 {window.localStorage.getItem('walletProvider')}
                             </p>
@@ -393,11 +419,11 @@ const ConnectOverlay: React.FC<Props> = ({
                         <img src={dangerIcon} alt="" />
                     </div>
                     <div>
-                        <p className="text-lg font-normal">
+                        <p className="text-lg font-normal dark:text-customDarkModeTextColor">
                             An Unwanted Error Occurred
                         </p>
                     </div>
-                    <div className="flex flex-col mb-4">
+                    <div className="flex flex-col mb-4 dark:text-customDarkModeTextColor">
                         <p>Wallet not connected.</p>
                         <p>Please try again</p>
                     </div>
