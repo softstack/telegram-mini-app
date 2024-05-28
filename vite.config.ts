@@ -9,4 +9,7 @@ export default defineConfig({
         outDir: './docs',
     },
     base: './',
+    server: {
+        port: 5174,
+    },
 });

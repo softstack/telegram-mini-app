@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     theme: {
         extend: {
@@ -18,6 +19,8 @@ export default {
                 customBlueSelected: '#B9C1F4',
                 customGrayLine: '#c6c6c6',
                 customGrayAccountDetails: '#616161',
+                customDarkModeBackground: '#262233',
+                customDarkModeTextColor: '#DEDEDE',
             },
             gridTemplateColumns: {
                 'custom-1-3-1': '1fr 3fr 1fr',

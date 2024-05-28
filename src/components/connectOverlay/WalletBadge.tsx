@@ -34,7 +34,7 @@ const WalletBadge: React.FC<Props> = ({
             style={{ backgroundColor: selected ? backgroundColor : '' }}
         >
             <img className="w-9 h-9" src={icon} alt="" />
-            <p>{walletName}</p>
+            <p className="dark:text-customDarkModeTextColor">{walletName}</p>
         </div>
     );
 };

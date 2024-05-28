@@ -37,7 +37,7 @@ const NetworkBadge: React.FC<Props> = ({
             style={{ backgroundColor: selected ? backgroundColor : '' }}
         >
             <img className="w-11 h-11" src={icon} alt="" />
-            <p>{network}</p>
+            <p className="dark:text-customDarkModeTextColor">{network}</p>
         </div>
     );
 };
