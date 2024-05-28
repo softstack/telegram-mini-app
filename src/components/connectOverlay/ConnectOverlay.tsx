@@ -56,7 +56,7 @@ const ConnectOverlay: React.FC<Props> = ({
     useEffect(() => {
         setDarkMode(WebApp.colorScheme === 'dark');
         document.documentElement.classList.toggle('dark', darkMode);
-        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+        window.localStorage.setItem('theme', darkMode ? 'dark' : 'light');
     }, [WebApp.colorScheme]);
 
     const [networksExpanded, setNetworksExpanded] = useState(true);
