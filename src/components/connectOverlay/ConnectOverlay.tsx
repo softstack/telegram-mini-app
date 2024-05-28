@@ -260,7 +260,11 @@ const ConnectOverlay: React.FC<Props> = ({
             {connectionState === 'connecting' && (
                 <>
                     <div className="my-10">
-                        <PulseLoader size={12} margin={5} color="#2D2D2D" />
+                        <PulseLoader
+                            size={12}
+                            margin={5}
+                            color={darkMode ? '#DEDEDE' : '#2D2D2D'}
+                        />
                     </div>
                     <div>
                         <p className="text-lg m-4 mt-2 dark:text-customDarkModeTextColor">
