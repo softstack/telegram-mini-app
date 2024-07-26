@@ -78,6 +78,12 @@ To connect a Web App to the Telegram client, place the script `telegram-web-app.
 
 Once the script is connected, a `window.Telegram.WebApp` object will become available.
 
+#### 3. Get your WalletConnect project id
+
+Get project id at [walletConnect](https://cloud.walletconnect.com/) 
+
+Use it in `const projectId = import.meta.env.VITE_WALLET_CONNECT_PROJECT_ID || '';`
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
