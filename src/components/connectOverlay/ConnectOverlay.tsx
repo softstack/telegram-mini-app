@@ -99,7 +99,6 @@ const ConnectOverlay: React.FC<Props> = ({
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
             const response = await axios.post(BRIDGE_URL + '/init-provider', {
-                mode: 'cors',
                 wallet: wallet,
             });
             const providerId = response.data.providerId;
