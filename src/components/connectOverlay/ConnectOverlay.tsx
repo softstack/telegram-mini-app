@@ -147,6 +147,7 @@ const ConnectOverlay: React.FC<Props> = ({
             // Start checking connection status
             checkConnection();
         } catch (error: any) {
+            console.log('Error connecting wallet:', error);
             dispatch(setConnectionState('error'));
         }
     };
