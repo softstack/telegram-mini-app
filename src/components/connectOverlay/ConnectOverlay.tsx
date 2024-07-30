@@ -204,6 +204,9 @@ const ConnectOverlay: React.FC<Props> = ({
 
         await axios.post(BRIDGE_URL + '/disconnect', {
             providerId: window.localStorage.getItem('providerId'),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
     };
 
