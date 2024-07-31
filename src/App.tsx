@@ -189,7 +189,7 @@ function App() {
                 setSignedMessage(null);
                 setView(View.CONNECT);
 
-                await axios.post(BRIDGE_URL + '/disconnect', {
+                await axios.post(BRIDGE_URL + '/api/disconnect', {
                     providerId: window.localStorage.getItem('providerId'),
                 });
             }

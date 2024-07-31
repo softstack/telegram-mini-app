@@ -98,9 +98,12 @@ const ConnectOverlay: React.FC<Props> = ({
             window.localStorage.removeItem('walletconnect');
             window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
 
-            const response = await axios.post(BRIDGE_URL + '/init-provider', {
-                wallet: wallet,
-            });
+            const response = await axios.post(
+                BRIDGE_URL + '/api/init-provider',
+                {
+                    wallet: wallet,
+                }
+            );
             const providerId = response.data.providerId;
             const uri = response.data.uri;
 
@@ -121,7 +124,7 @@ const ConnectOverlay: React.FC<Props> = ({
 
                 try {
                     const statusResponse = await axios.post(
-                        BRIDGE_URL + '/is-connected',
+                        BRIDGE_URL + '/api/is-connected',
                         {
                             providerId: providerId,
                             withCredentials: true,
@@ -203,7 +206,7 @@ const ConnectOverlay: React.FC<Props> = ({
         window.localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
         dispatch(setConnectionState('disconnected'));
 
-        await axios.post(BRIDGE_URL + '/disconnect', {
+        await axios.post(BRIDGE_URL + '/api/disconnect', {
             providerId: window.localStorage.getItem('providerId'),
             headers: {
                 'Content-Type': 'application/json',

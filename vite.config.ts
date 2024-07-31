@@ -11,5 +11,12 @@ export default defineConfig({
     base: './',
     server: {
         port: 5174,
+        proxy: {
+            '/api': {
+                target: 'https://ns3113082.ip-145-239-205.eu:3000',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ''),
+            },
+        },
     },
 });
