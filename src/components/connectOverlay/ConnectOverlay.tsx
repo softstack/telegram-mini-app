@@ -100,11 +100,6 @@ const ConnectOverlay: React.FC<Props> = ({
 
             const response = await axios.post(BRIDGE_URL + '/init-provider', {
                 wallet: wallet,
-                Headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'ngrok-skip-browser-warning': 'true',
-                },
             });
             const providerId = response.data.providerId;
             const uri = response.data.uri;
